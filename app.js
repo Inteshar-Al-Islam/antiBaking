@@ -804,20 +804,6 @@ const PRODUCTS = [
     details: "Crowned with a sparkling tiara against a monochromatic backdrop of dramatic black and ivory piping. Built with 1.5 pounds of moist chocolate fudge cake, fitting for kings, queens, and milestone birthdays."
   },
   {
-    id: "prod-52",
-    name: "Blush & Azure Engagement Cake",
-    featured: false,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Special occasion cake/Pink and blue engagement cakes flavour_ chocolate size_ 1 pound price_ 900 tk.JPG"),
-    details: "Harmonious blend of gentle blush pink and powder blue piped motifs celebrating the union of two hearts. Tender chocolate sponge crumb layered with chocolate frosting, perfect for engagement parties."
-  },
-  {
     id: "prod-54",
     name: "Dhaka to Kuala Lumpur Farewell Cake",
     featured: false,
