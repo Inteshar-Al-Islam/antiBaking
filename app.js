@@ -1122,7 +1122,7 @@ function renderProductGrid() {
   elements.productGrid.innerHTML = currentFilteredProducts.map((product, index) => {
     return `
       <article 
-        class="product-card group bg-white rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col justify-between"
+        class="product-card group bg-white rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col"
         onclick="openLightbox(${index})"
         role="button"
         tabindex="0"
@@ -1165,24 +1165,24 @@ function renderProductGrid() {
         </div>
 
         <!-- Product Summary Details -->
-        <div class="p-4 sm:p-5 flex items-start justify-between gap-3 bg-white">
-          <div class="min-w-0 flex-1">
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between bg-white">
+          <!-- Top Row: Cake Name & Price -->
+          <div class="flex items-start justify-between gap-2.5">
             <h3 class="font-serif text-base sm:text-lg font-medium text-[#26180F] line-clamp-1 group-hover:text-[#B87333] transition-colors" title="${product.name}">
               ${product.name}
             </h3>
-            <div class="flex flex-wrap items-center gap-1.5 mt-1.5 text-xs text-[#73655A]">
-              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[11px] font-medium text-[#6E4E37]">
-                ${product.flavour}
-              </span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[11px] text-[#73655A]">
-                ${product.size}
-              </span>
-            </div>
-          </div>
-          
-          <div class="shrink-0 text-right pt-0.5">
-            <span class="inline-block px-3 py-1 bg-[#FAF7F2] text-[#6E4E37] font-semibold text-sm sm:text-base rounded-lg border border-[#EFE8E1]">
+            <span class="shrink-0 inline-block px-2.5 py-1 bg-[#FAF7F2] text-[#6E4E37] font-semibold text-xs sm:text-sm rounded-lg border border-[#EFE8E1]">
               ${product.price}
+            </span>
+          </div>
+
+          <!-- Bottom Row: Flavour & Size Pills -->
+          <div class="flex items-center gap-1.5 mt-2.5 text-xs text-[#73655A]">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[11px] font-medium text-[#6E4E37] whitespace-nowrap">
+              ${product.flavour}
+            </span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[11px] text-[#73655A] whitespace-nowrap">
+              ${product.size}
             </span>
           </div>
         </div>
