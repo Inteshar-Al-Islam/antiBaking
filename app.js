@@ -506,7 +506,7 @@ const PRODUCTS = [
     rawPrice: "1200",
     numericPrice: 1200,
     price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Birthday cake/Oilve floral cake flavour_ chocolate size_ 1 pound price_800Tk.JPG"),
+    imageSrc: encodeURI("resources/Birthday cake/Olive floral cake flavour_ chocolate size_ 1.5 pound price_ 1200Tk.JPG"),
     details: "Subtle olive and eucalyptus greens arranged in textured palette-knife florals with delicate cream highlights. Beneath its organic aesthetic lies deep chocolate sponge layered with smooth chocolate frosting."
   },
   {
