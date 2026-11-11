@@ -1042,6 +1042,20 @@ const elements = {
   toastMessage: document.getElementById('toastMessage')
 };
 
+// Helper for short category names on compact mobile cards
+function getShortCategoryLabel(category, label) {
+  const map = {
+    'birthday': 'Birthday',
+    'floral': 'Floral',
+    'aesthetic': 'Aesthetic',
+    'theme': 'Theme',
+    'special-occasion': 'Occasion',
+    'funny': 'Funny',
+    'cookies': 'Cookies'
+  };
+  return map[category] || label.replace(/\s*Cakes?|\s*&\s*Treats?/gi, '').trim() || label;
+}
+
 // 5. Render Product Showcase Cards
 function renderProductGrid() {
   if (!elements.productGrid) return;
@@ -1106,6 +1120,7 @@ function renderProductGrid() {
 
   // Render responsive product cards
   elements.productGrid.innerHTML = currentFilteredProducts.map((product, index) => {
+    const shortCategory = getShortCategoryLabel(product.category, product.categoryLabel);
     return `
       <article 
         class="product-card group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col"
@@ -1125,18 +1140,22 @@ function renderProductGrid() {
             onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23F5ECE3\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%236E4E37\' font-family=\'sans-serif\' font-size=\'18\'%3E🎂 ${product.name}%3C/text%3E%3C/svg%3E';"
           />
           
-          <!-- Category Badge -->
-          <span class="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-medium tracking-wide bg-white/95 backdrop-blur-xs text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate max-w-[55%] sm:max-w-none">
-            ${product.categoryLabel}
-          </span>
-
-          <!-- Featured Best-Seller / Baker's Pick Badge -->
-          ${product.featured ? `
-            <span class="absolute top-2 right-2 sm:top-3 sm:right-3 px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold tracking-wide bg-[#B87333] text-white rounded-full shadow-sm flex items-center gap-0.5 sm:gap-1">
-              <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-200 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              Featured
+          <!-- Top Badges Flex Bar: Prevents Collisions on Mobile -->
+          <div class="absolute top-1.5 inset-x-1.5 sm:top-3 sm:inset-x-3 flex items-center justify-between gap-1 pointer-events-none z-10">
+            <!-- Category Badge (Short on mobile, Full on desktop) -->
+            <span class="pointer-events-auto px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-medium tracking-wide bg-white/95 backdrop-blur-xs text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate shrink">
+              <span class="sm:hidden">${shortCategory}</span>
+              <span class="hidden sm:inline">${product.categoryLabel}</span>
             </span>
-          ` : ''}
+
+            <!-- Featured Best-Seller Badge (Compact on mobile) -->
+            ${product.featured ? `
+              <span class="pointer-events-auto shrink-0 px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-semibold tracking-wide bg-[#B87333] text-white rounded-full shadow-xs flex items-center gap-0.5 sm:gap-1">
+                <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-200 fill-current shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <span>Featured</span>
+              </span>
+            ` : ''}
+          </div>
 
           <!-- Hover View Indicator -->
           <div class="absolute inset-0 bg-[#26180F]/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
