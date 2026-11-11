@@ -92,7 +92,7 @@ const PRODUCTS = [
   {
     id: "prod-2",
     name: "Black Bow Coquette Ribbon Cake",
-    featured: true,
+    featured: false,
     category: "birthday",
     categoryLabel: "Birthday Cakes",
     flavour: "Chocolate",
