@@ -996,7 +996,7 @@ const PRODUCTS = [
     rawPrice: "TBA",
     numericPrice: 450,
     price: "\u09f3450 (Est.)",
-    imageSrc: encodeURI("resources01/Tiramisu flavour_ classic size_ 250++gm price_ TBA .jpeg"),
+    imageSrc: encodeURI("resources01/Tiramisu flavour_ classic size_ 250gm price_ TBA .jpeg"),
     details: "Traditional Italian dessert crafted with authentic espresso-soaked Savoiardi ladyfingers, velvety mascarpone cream, and a generous dusting of rich Belgian cocoa powder."
   },
   {
@@ -1010,7 +1010,7 @@ const PRODUCTS = [
     rawPrice: "TBA",
     numericPrice: 550,
     price: "\u09f3550 (Est.)",
-    imageSrc: encodeURI("resources01/Tiramisu flavour_ pistachio size_ 250++gm price_ TBA .jpeg"),
+    imageSrc: encodeURI("resources01/Tiramisu flavour_ pistachio size_ 250gm price_ TBA .jpeg"),
     details: "Luxurious fusion tiramisu layered with handcrafted Sicilian pistachio paste, whipped mascarpone cream, espresso sponge, and topped with crushed roasted green pistachios."
   },
   {
