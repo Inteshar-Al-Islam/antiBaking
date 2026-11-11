@@ -61,40 +61,40 @@
   </script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
   <!-- Top Minimalist Header -->
   <header class="sticky top-0 z-40 bg-cream-100/90 backdrop-blur-md border-b border-[#EFE8E1] transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 sm:gap-4">
       
       <!-- Custom Brand Logo & Title -->
-      <a href="#" class="flex items-center gap-3.5 group focus:outline-hidden" aria-label="Frostoria Home">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3.5 group focus:outline-hidden shrink-0" aria-label="Frostoria Home">
         <!-- Official Brand Logo -->
         <div class="relative shrink-0 transition-transform duration-300 group-hover:scale-105">
-          <img src="logo.jpg" alt="Frostoria Logo" class="w-12 h-12 rounded-full object-cover shadow-xs border border-[#E6DDD4]">
+          <img src="logo.jpg" alt="Frostoria Logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover shadow-xs border border-[#E6DDD4]">
         </div>
 
         <!-- Brand Name & Tagline -->
-        <div>
-          <h1 class="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-warm-900 leading-tight">
+        <div class="shrink-0">
+          <h1 class="font-serif text-lg sm:text-2xl font-semibold tracking-tight text-warm-900 leading-tight">
             Frostoria
           </h1>
-          <p class="text-xs sm:text-[13px] font-serif italic text-mocha-600 tracking-normal font-medium">
+          <p class="text-[11px] sm:text-[13px] font-serif italic text-mocha-600 tracking-normal font-medium">
             Freshly baked memories.
           </p>
         </div>
       </a>
 
       <!-- Header Controls: Direct Socials & Inquiries + Search Toggle -->
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- Facebook Icon Button -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <!-- Facebook Icon Button (hidden on mobile, visible on sm and up) -->
         <a 
           href="https://www.facebook.com/share/1HkyGvf5Se/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex items-center justify-center w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-2 text-xs font-medium rounded-full bg-cream-50 hover:bg-white text-warm-800 border border-[#E5DCD3] hover:border-[#1877F2]/50 shadow-xs transition-all active:scale-95"
+          class="hidden sm:inline-flex items-center justify-center w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-2 text-xs font-medium rounded-full bg-cream-50 hover:bg-white text-warm-800 border border-[#E5DCD3] hover:border-[#1877F2]/50 shadow-xs transition-all active:scale-95"
           title="Visit our Facebook Page"
           aria-label="Facebook Page"
         >
@@ -104,12 +104,12 @@
           <span class="hidden md:inline ml-1.5">Facebook</span>
         </a>
 
-        <!-- Instagram Icon Button -->
+        <!-- Instagram Icon Button (hidden on mobile, visible on sm and up) -->
         <a 
           href="https://www.instagram.com/frostoria_cakes?obrf=MXB4eWhvaWpqaGlhdg==" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex items-center justify-center w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-2 text-xs font-medium rounded-full bg-cream-50 hover:bg-white text-warm-800 border border-[#E5DCD3] hover:border-[#E4405F]/50 shadow-xs transition-all active:scale-95"
+          class="hidden sm:inline-flex items-center justify-center w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-2 text-xs font-medium rounded-full bg-cream-50 hover:bg-white text-warm-800 border border-[#E5DCD3] hover:border-[#E4405F]/50 shadow-xs transition-all active:scale-95"
           title="Follow us on Instagram"
           aria-label="Instagram Profile"
         >
@@ -137,7 +137,7 @@
         <button 
           id="filterToggleBtn" 
           type="button" 
-          aria-expanded="true" 
+          aria-expanded="false" 
           aria-controls="searchFilterContainer"
           class="flex items-center gap-1 px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full bg-cream-50 hover:bg-white text-warm-800 border border-[#E5DCD3] hover:border-caramel-300 shadow-xs transition-all active:scale-95"
           title="Toggle search and filters"
@@ -153,7 +153,7 @@
   </header>
 
   <!-- Expandable Minimal Search & Filter Bar -->
-  <section id="searchFilterContainer" class="bg-[#F5ECE3]/70 border-b border-[#E6DDD4] transition-all duration-300">
+  <section id="searchFilterContainer" class="hidden bg-[#F5ECE3]/70 border-b border-[#E6DDD4] transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 space-y-3.5">
       
       <!-- Top Row: Search Input & Sort Selector -->
@@ -521,6 +521,6 @@
   </div>
 
   <!-- Application Script -->
-  <script src="app.js?v=4" defer></script>
+  <script src="app.js?v=5" defer></script>
 </body>
 </html>

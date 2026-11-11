@@ -1308,9 +1308,11 @@ function initEventListeners() {
       if (isExpanded) {
         elements.searchFilterContainer.classList.add('hidden');
         elements.filterToggleBtn.setAttribute('aria-expanded', 'false');
+        elements.filterToggleBtn.classList.remove('bg-caramel-100', 'border-caramel-400');
       } else {
         elements.searchFilterContainer.classList.remove('hidden');
         elements.filterToggleBtn.setAttribute('aria-expanded', 'true');
+        elements.filterToggleBtn.classList.add('bg-caramel-100', 'border-caramel-400');
         elements.searchInput?.focus();
       }
     });
