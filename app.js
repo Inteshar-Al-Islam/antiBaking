@@ -1727,8 +1727,31 @@ const CONFIG = {
   }
 };
 
+// Helper for unbiased random array shuffling (Fisher-Yates)
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Generate randomized product list per page visit/refresh:
+// All featured products shuffled randomly at top, followed by all normal products shuffled randomly below.
+// Original PRODUCTS data remains immutable.
+function createVisitRandomizedProducts(masterProducts) {
+  const featured = masterProducts.filter(p => p.featured === true);
+  const normal = masterProducts.filter(p => p.featured !== true);
+
+  const shuffledFeatured = shuffleArray(featured);
+  const shuffledNormal = shuffleArray(normal);
+
+  return [...shuffledFeatured, ...shuffledNormal];
+}
+
 // 3. Application State Management
-let products = [...PRODUCTS];
+let products = createVisitRandomizedProducts(PRODUCTS);
 let currentFilteredProducts = [...products];
 let currentLightboxIndex = -1;
 let activeCategory = 'all';
