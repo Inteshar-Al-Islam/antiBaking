@@ -286,20 +286,6 @@ const PRODUCTS = [
     details: "A vibrant crimson heart framed by elegant pearl borders and passionate anniversary accents. Substantial 2-pound capacity with dark chocolate ganache and cocoa sponge, ideal for proposals and anniversaries."
   },
   {
-    id: "prod-26",
-    name: "Biyebari Grand Floral Celebration Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources/Floral cake/Biyebari floral cakes flavour _ chocolate size_2 pound price_1800tk.JPG"),
-    details: "Inspired by the exuberant floral splendor of traditional Bengali wedding stages, crowned with cascading sugar blossoms. A magnificent 2-pound centerpiece with double chocolate sponge and rich cocoa ganache."
-  },
-  {
     id: "prod-1",
     name: "Brown Button Chocolate Chip Cookies",
     featured: false,
@@ -1309,15 +1295,15 @@ const PRODUCTS = [
   },
   {
     id: "prod-95",
-    name: "Grand Imperial Square Floral Cake",
+    name: "Biyebari Grand Floral Celebration Cake",
     featured: true,
     category: "floral",
     categoryLabel: "Floral Cakes",
     flavour: "Chocolate",
     size: "3 Pound",
-    rawPrice: "2500",
-    numericPrice: 2500,
-    price: "\u09f32,500",
+    rawPrice: "2800",
+    numericPrice: 2800,
+    price: "\u09f32,800",
     imageSrc: encodeURI("resources01/Floral cake/Floral square cake flavour_ chocolate size_ 3 pound price_ 2500tk .JPG"),
     details: "Statuesque 3-pound square architecture adorned with luxuriant cascading pastel garden roses, hydrangeas, and buds. Rich dark chocolate truffle layers throughout."
   },
