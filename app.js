@@ -980,8 +980,8 @@ const PRODUCTS = [
     flavour: "Classic Espresso",
     size: "250g Box",
     rawPrice: "TBA",
-    numericPrice: 450,
-    price: "\u09f3450 (Est.)",
+    numericPrice: 0,
+    price: "TBA",
     imageSrc: encodeURI("resources01/Tiramisu flavour_ classic size_ 250gm price_ TBA .jpeg"),
     details: "Traditional Italian dessert crafted with authentic espresso-soaked Savoiardi ladyfingers, velvety mascarpone cream, and a generous dusting of rich Belgian cocoa powder."
   },
@@ -994,8 +994,8 @@ const PRODUCTS = [
     flavour: "Pistachio",
     size: "250g Box",
     rawPrice: "TBA",
-    numericPrice: 550,
-    price: "\u09f3550 (Est.)",
+    numericPrice: 0,
+    price: "TBA",
     imageSrc: encodeURI("resources01/Tiramisu flavour_ pistachio size_ 250gm price_ TBA .jpeg"),
     details: "Luxurious fusion tiramisu layered with handcrafted Sicilian pistachio paste, whipped mascarpone cream, espresso sponge, and topped with crushed roasted green pistachios."
   },
@@ -1008,8 +1008,8 @@ const PRODUCTS = [
     flavour: "Lemon & Strawberry",
     size: "400g Box",
     rawPrice: "TBA",
-    numericPrice: 650,
-    price: "\u09f3650 (Est.)",
+    numericPrice: 0,
+    price: "TBA",
     imageSrc: encodeURI("resources01/cheesecake cake flavour_ lemon and strawberry size_ 400gm price_ TBA.jpg"),
     details: "Silky baked cream cheese infused with zesty lemon curd and swirled with fresh homemade strawberry fruit compote atop a buttery biscuit crust."
   },
@@ -1022,10 +1022,10 @@ const PRODUCTS = [
     flavour: "Strawberry",
     size: "1 Roll",
     rawPrice: "TBA",
-    numericPrice: 350,
-    price: "\u09f3350 (Est.)",
+    numericPrice: 0,
+    price: "TBA",
     imageSrc: encodeURI("resources01/Swiss roll flavour_ strawberry price_ TBA .jpeg"),
-    details: "Feather-light Japanese style chiffon roll cake wrapped around luscious fresh strawberry cream and sweet strawberry pur\u00e9e."
+    details: "Feather-light Japanese style chiffon roll cake wrapped around luscious fresh strawberry cream and sweet strawberry purée."
   },
   {
     id: "prod-76",
@@ -1036,8 +1036,8 @@ const PRODUCTS = [
     flavour: "Orange",
     size: "Box of 4/6",
     rawPrice: "TBA",
-    numericPrice: 300,
-    price: "\u09f3300 (Est.)",
+    numericPrice: 0,
+    price: "TBA",
     imageSrc: encodeURI("resources01/Cupcake flavour_ orange price_ TBA .JPG"),
     details: "Moist orange blossom sponge cupcakes piped with citrusy orange buttercream and garnished with candied peel."
   },
@@ -1826,9 +1826,23 @@ function renderProductGrid() {
 
   // Sort products based on user selection
   if (activeSort === 'price-low') {
-    currentFilteredProducts.sort((a, b) => a.numericPrice - b.numericPrice);
+    currentFilteredProducts.sort((a, b) => {
+      const aVal = a.numericPrice || 0;
+      const bVal = b.numericPrice || 0;
+      if (aVal === 0 && bVal === 0) return 0;
+      if (aVal === 0) return 1;
+      if (bVal === 0) return -1;
+      return aVal - bVal;
+    });
   } else if (activeSort === 'price-high') {
-    currentFilteredProducts.sort((a, b) => b.numericPrice - a.numericPrice);
+    currentFilteredProducts.sort((a, b) => {
+      const aVal = a.numericPrice || 0;
+      const bVal = b.numericPrice || 0;
+      if (aVal === 0 && bVal === 0) return 0;
+      if (aVal === 0) return 1;
+      if (bVal === 0) return -1;
+      return bVal - aVal;
+    });
   } else if (activeSort === 'name-asc') {
     currentFilteredProducts.sort((a, b) => a.name.localeCompare(b.name));
   } else if (activeSort === 'featured') {
