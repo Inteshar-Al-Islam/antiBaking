@@ -72,15 +72,15 @@ body {
 .product-image-wrap {
   position: relative;
   overflow: hidden;
-  background-color: #F5ECE3;
+  background-color: #FAF7F2;
 }
 
 .product-image {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .product-card:hover .product-image {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .line-clamp-1 {

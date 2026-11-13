@@ -381,12 +381,22 @@
       </button>
 
       <!-- Lightbox Main Image Area -->
-      <div class="relative w-full md:w-3/5 bg-[#F5ECE3] flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[380px]">
+      <div class="relative w-full md:w-3/5 bg-[#FAF7F2] flex items-center justify-center overflow-hidden min-h-[320px] sm:min-h-[420px] p-4 sm:p-6">
+        <!-- Ambient blurred backdrop to organically fill letterbox areas -->
+        <img 
+          id="lightboxBgImg" 
+          src="" 
+          alt="" 
+          aria-hidden="true" 
+          class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30 scale-125 pointer-events-none transition-all duration-300"
+        />
+
+        <!-- Centered Main Cake Image (Never Cropped) -->
         <img 
           id="lightboxImg" 
           src="" 
           alt="" 
-          class="w-full h-full object-cover object-center max-h-[60vh] md:max-h-[80vh]"
+          class="relative z-[1] max-w-full max-h-[55vh] md:max-h-[75vh] w-auto h-auto object-contain object-center rounded-xl shadow-md transition-all duration-300"
         />
 
         <!-- Navigation Buttons -->

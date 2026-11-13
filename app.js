@@ -1763,6 +1763,7 @@ const elements = {
   lightboxBackdrop: document.getElementById('lightboxBackdrop'),
   lightboxClose: document.getElementById('lightboxClose'),
   lightboxImg: document.getElementById('lightboxImg'),
+  lightboxBgImg: document.getElementById('lightboxBgImg'),
   lightboxTitle: document.getElementById('lightboxTitle'),
   lightboxPrice: document.getElementById('lightboxPrice'),
   lightboxCategory: document.getElementById('lightboxCategory'),
@@ -1882,12 +1883,21 @@ function renderProductGrid() {
         onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(${index}); }"
       >
         <!-- Product Photo Container -->
-        <div class="product-image-wrap aspect-square w-full relative overflow-hidden bg-[#FAF7F2]">
+        <div class="product-image-wrap aspect-square w-full relative overflow-hidden bg-[#FAF7F2] flex items-center justify-center">
+          <!-- Ambient blurred backdrop to seamlessly blend card edges with photo tones -->
+          <img 
+            src="${product.imageSrc}" 
+            alt="" 
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover blur-md opacity-25 scale-110 pointer-events-none"
+          />
+          <!-- Centered Product Photo (Never Cropped) -->
           <img 
             src="${product.imageSrc}" 
             alt="${product.name}" 
             loading="lazy"
-            class="product-image w-full h-full object-cover object-center"
+            style="${product.imagePosition ? `object-position: ${product.imagePosition};` : ''}"
+            class="product-image relative z-[1] w-full h-full object-contain object-center p-1.5 transition-transform duration-500"
             onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23F5ECE3\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%236E4E37\' font-family=\'sans-serif\' font-size=\'18\'%3E🎂 ${product.name}%3C/text%3E%3C/svg%3E';"
           />
           
@@ -1957,6 +1967,10 @@ function openLightbox(index) {
 
   elements.lightboxImg.src = product.imageSrc;
   elements.lightboxImg.alt = product.name;
+  if (elements.lightboxBgImg) {
+    elements.lightboxBgImg.src = product.imageSrc;
+  }
+  elements.lightboxImg.style.objectPosition = product.imagePosition || 'center center';
   elements.lightboxTitle.textContent = product.name;
   elements.lightboxPrice.textContent = product.price;
   elements.lightboxCategory.textContent = product.categoryLabel;
