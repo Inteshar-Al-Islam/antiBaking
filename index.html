@@ -360,43 +360,43 @@
   </main>
 
   <!-- Lightbox / Image Detail Modal -->
-  <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+  <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
     
     <!-- Background Dim Overlay -->
     <div id="lightboxBackdrop" class="absolute inset-0 bg-[#1F1815]/75 backdrop-blur-sm cursor-pointer"></div>
 
     <!-- Modal Dialog Content Box -->
-    <div class="modal-dialog relative w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row max-h-[82vh] md:max-h-[90vh]">
+    <div class="modal-dialog relative w-full max-w-3xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row max-h-[90vh]">
       
       <!-- Close Button -->
       <button 
         id="lightboxClose" 
         type="button" 
-        class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-all backdrop-blur-xs"
+        class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-all backdrop-blur-xs"
         aria-label="Close modal"
       >
-        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
       <!-- Lightbox Main Image Area -->
-      <div class="relative w-full md:w-3/5 bg-[#F5ECE3] flex items-center justify-center overflow-hidden shrink-0 h-48 sm:h-64 md:h-auto md:min-h-[380px]">
+      <div class="relative w-full md:w-3/5 bg-[#F5ECE3] flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[380px]">
         <img 
           id="lightboxImg" 
           src="" 
           alt="" 
-          class="w-full h-full object-cover object-center max-h-none md:max-h-[80vh]"
+          class="w-full h-full object-cover object-center max-h-[60vh] md:max-h-[80vh]"
         />
 
         <!-- Navigation Buttons -->
         <button 
           id="lightboxPrev" 
           type="button" 
-          class="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/85 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition-all"
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition-all"
           aria-label="Previous cake"
         >
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -404,67 +404,67 @@
         <button 
           id="lightboxNext" 
           type="button" 
-          class="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/85 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition-all"
+          class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition-all"
           aria-label="Next cake"
         >
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
       <!-- Lightbox Product Details Sidebar -->
-      <div class="w-full md:w-2/5 p-4 sm:p-6 md:p-8 flex flex-col justify-between bg-white overflow-y-auto">
-        <div class="space-y-3 sm:space-y-4">
+      <div class="w-full md:w-2/5 p-6 sm:p-8 flex flex-col justify-between bg-white overflow-y-auto">
+        <div class="space-y-4">
           
-          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            <span id="lightboxCategory" class="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-medium tracking-wide bg-caramel-50 text-mocha-700 rounded-full border border-caramel-200">
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="lightboxCategory" class="px-2.5 py-1 text-xs font-medium tracking-wide bg-caramel-50 text-mocha-700 rounded-full border border-caramel-200">
               Artisan Cake
             </span>
-            <span id="lightboxFlavour" class="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-medium tracking-wide bg-cream-50 text-mocha-800 rounded-full border border-[#E6DDD4]">
+            <span id="lightboxFlavour" class="px-2.5 py-1 text-xs font-medium tracking-wide bg-cream-50 text-mocha-800 rounded-full border border-[#E6DDD4]">
               Flavour
             </span>
-            <span id="lightboxSize" class="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-medium tracking-wide bg-cream-50 text-mocha-800 rounded-full border border-[#E6DDD4]">
+            <span id="lightboxSize" class="px-2.5 py-1 text-xs font-medium tracking-wide bg-cream-50 text-mocha-800 rounded-full border border-[#E6DDD4]">
               Size
             </span>
           </div>
 
           <div>
-            <h3 id="lightboxTitle" class="font-serif text-lg sm:text-2xl font-semibold text-warm-900 leading-snug">
+            <h3 id="lightboxTitle" class="font-serif text-2xl font-semibold text-warm-900 leading-snug">
               Cake Name
             </h3>
-            <p id="lightboxPrice" class="mt-1 sm:mt-2 text-lg sm:text-2xl font-bold text-caramel-600">
+            <p id="lightboxPrice" class="mt-2 text-2xl font-bold text-caramel-600">
               ৳0
             </p>
           </div>
 
-          <div class="pt-2 sm:pt-3 border-t border-[#EFE8E1]">
-            <h4 class="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-warm-400">Handcrafted Notes</h4>
-            <p id="lightboxDetails" class="mt-1 text-xs sm:text-sm text-warm-700 leading-relaxed font-sans">
+          <div class="pt-3 border-t border-[#EFE8E1]">
+            <h4 class="text-xs uppercase tracking-wider font-semibold text-warm-400">Handcrafted Notes</h4>
+            <p id="lightboxDetails" class="mt-1.5 text-xs sm:text-sm text-warm-700 leading-relaxed font-sans">
               Freshly baked to order with pure dairy butter, rich chocolate, and artisanal care.
             </p>
           </div>
 
-          <div class="pt-1.5 sm:pt-2 text-xs text-warm-600 space-y-1 sm:space-y-1.5">
+          <div class="pt-2 text-xs text-warm-600 space-y-1.5">
             <div class="flex items-center gap-2">
-              <span class="text-caramel-600 font-bold">✓</span> Freshly baked upon order confirmation
+              <span class="text-caramel-600">✓</span> Freshly baked upon order confirmation
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-caramel-600 font-bold">✓</span> 100% pure butter & premium ingredients
+              <span class="text-caramel-600">✓</span> 100% pure butter & premium ingredients
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-caramel-600 font-bold">✓</span> Custom inscriptions & flavor options available
+              <span class="text-caramel-600">✓</span> Custom inscriptions & flavor options available
             </div>
           </div>
 
         </div>
 
         <!-- Action Buttons -->
-        <div class="mt-4 sm:mt-6 pt-3 sm:pt-5 border-t border-[#EFE8E1] space-y-2">
+        <div class="mt-6 pt-5 border-t border-[#EFE8E1] space-y-2">
           <button 
             id="lightboxInquireBtn" 
             type="button" 
-            class="w-full py-2.5 sm:py-3 px-4 bg-mocha-600 hover:bg-mocha-700 text-white font-medium text-xs sm:text-sm rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2"
+            class="w-full py-3 px-4 bg-mocha-600 hover:bg-mocha-700 text-white font-medium text-sm rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2"
           >
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.909 1.458 5.518 3.738 7.21V22l3.37-1.85c.917.254 1.888.39 2.892.39 5.523 0 10-4.145 10-9.258C22 6.145 17.523 2 12 2zm1.066 12.443l-2.73-2.91-5.326 2.91 5.856-6.218 2.795 2.91 5.261-2.91-5.856 6.218z"/>
@@ -475,7 +475,7 @@
           <button 
             id="lightboxCopyBtn" 
             type="button" 
-            class="w-full py-2 sm:py-2.5 px-4 bg-cream-50 hover:bg-cream-200 text-warm-700 font-medium text-xs rounded-xl border border-[#E5DCD3] transition-colors flex items-center justify-center gap-1.5"
+            class="w-full py-2.5 px-4 bg-cream-50 hover:bg-cream-200 text-warm-700 font-medium text-xs rounded-xl border border-[#E5DCD3] transition-colors flex items-center justify-center gap-1.5"
           >
             <svg class="w-3.5 h-3.5 text-warm-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
