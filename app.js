@@ -1712,6 +1712,20 @@ const PRODUCTS = [
     price: "\u09f31,200",
     imageSrc: encodeURI("resources01/Floral cake/Blue floral plate knife cake category_ floral flavour_ vanilla size 1.5 pound price_ 1k.jpeg"),
     details: "Artistic buttercream creation sculpted with midnight-navy and azure palette knife petals, shimmering golden pearls, and delicate watercolor marbling. Soft aromatic vanilla bean sponge inside."
+  },
+  {
+    id: "prod-125",
+    name: "Square Gaye Holud Cake",
+    featured: true,
+    category: "special-occasion",
+    categoryLabel: "Special Occasion",
+    flavour: "Chocolate",
+    size: "2 Pound",
+    rawPrice: "1800",
+    numericPrice: 1800,
+    price: "\u09f31,800",
+    imageSrc: encodeURI("resources01/Special occasion/Square gaye holud cake category_ special occasion flavour_ chocolate size_ 2 pound price_ 1800 tk .jpeg"),
+    details: "Square gaye holud cake, category: special occasion, flavour: chocolate, size: 2 pound, price: 1800 tk."
   }
 ];
 
