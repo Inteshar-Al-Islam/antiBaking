@@ -1725,7 +1725,7 @@ const PRODUCTS = [
     numericPrice: 1800,
     price: "\u09f31,800",
     imageSrc: encodeURI("resources01/Special occasion/Square gaye holud cake category_ special occasion flavour_ chocolate size_ 2 pound price_ 1800 tk .jpeg"),
-    details: "Traditional square Gaye Holud celebration cake adorned with intricate white royal icing mehndi embroidery, festive marigold and ivory roses, and a celebratory 'মনির হলুদ সন্ধ্যা' banner. Layered with rich chocolate sponge."
+    details: "Traditional square Gaye Holud celebration cake adorned with intricate white royal icing mehndi embroidery, festive marigold and ivory roses, and a celebratory 'সানির হলুদ সন্ধ্যা' banner. Layered with rich chocolate sponge."
   }
 ];
 
