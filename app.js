@@ -1707,9 +1707,9 @@ const PRODUCTS = [
     categoryLabel: "Floral Cakes",
     flavour: "Vanilla",
     size: "1.5 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
+    rawPrice: "1200",
+    numericPrice: 1200,
+    price: "\u09f31,200",
     imageSrc: encodeURI("resources01/Floral cake/Blue floral plate knife cake category_ floral flavour_ vanilla size 1.5 pound price_ 1k.jpeg"),
     details: "Artistic buttercream creation sculpted with midnight-navy and azure palette knife petals, shimmering golden pearls, and delicate watercolor marbling. Soft aromatic vanilla bean sponge inside."
   }
