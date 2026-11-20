@@ -1743,8 +1743,7 @@ const PRODUCTS = [
       encodeURI("resources01/Dessert tubs/IMG_0570.JPG"),
       encodeURI("resources01/Dessert tubs/IMG_0568.JPG"),
       encodeURI("resources01/Dessert tubs/IMG_0566.JPG"),
-      encodeURI("resources01/Dessert tubs/IMG_0569.JPG"),
-      encodeURI("resources01/Dessert tubs/7FE975D1-1F3A-40A5-BADE-AB0932841966.jpg")
+      encodeURI("resources01/Dessert tubs/IMG_0569.JPG")
     ],
     details: "Indulgent layered dessert tubs featuring moist cocoa sponge, velvety cream layers, and artisanal glazes topped with crispy chocolate buttons. Includes handcrafted Pistachio Ganache and Salted Caramel Marble tubs."
   }
