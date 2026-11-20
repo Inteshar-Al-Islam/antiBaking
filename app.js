@@ -2024,7 +2024,7 @@ function openLightbox(index) {
       elements.lightboxThumbnails.innerHTML = productImages.map((imgSrc, imgIdx) => `
         <button
           type="button"
-          class="lightbox-thumb-btn w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${imgIdx === 0 ? 'border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs' : 'border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100'}"
+          class="lightbox-thumb-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${imgIdx === 0 ? 'border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs' : 'border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100'}"
           data-img-index="${imgIdx}"
           title="View photo ${imgIdx + 1}"
           aria-label="View photo ${imgIdx + 1}"
@@ -2041,9 +2041,9 @@ function openLightbox(index) {
 
           elements.lightboxThumbnails.querySelectorAll('.lightbox-thumb-btn').forEach((b, idx) => {
             if (idx === targetIdx) {
-              b.className = 'lightbox-thumb-btn w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs';
+              b.className = 'lightbox-thumb-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs';
             } else {
-              b.className = 'lightbox-thumb-btn w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100';
+              b.className = 'lightbox-thumb-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100';
             }
           });
         });
