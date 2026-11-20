@@ -1726,6 +1726,27 @@ const PRODUCTS = [
     price: "\u09f31,800",
     imageSrc: encodeURI("resources01/Special occasion/Square gaye holud cake category_ special occasion flavour_ chocolate size_ 2 pound price_ 1800 tk .jpeg"),
     details: "Traditional square Gaye Holud celebration cake adorned with intricate white royal icing mehndi embroidery, festive marigold and ivory roses, and a celebratory 'সানির হলুদ সন্ধ্যা' banner. Layered with rich chocolate sponge."
+  },
+  {
+    id: "prod-126",
+    name: "Artisan Layered Chocolate Dessert Tubs",
+    featured: true,
+    category: "cookies",
+    categoryLabel: "Cookies & Treats",
+    flavour: "Chocolate & Caramel",
+    size: "Duo Pack (2 Tubs)",
+    rawPrice: "TBA",
+    numericPrice: 0,
+    price: "TBA",
+    imageSrc: encodeURI("resources01/Dessert tubs/IMG_0570.JPG"),
+    images: [
+      encodeURI("resources01/Dessert tubs/IMG_0570.JPG"),
+      encodeURI("resources01/Dessert tubs/IMG_0568.JPG"),
+      encodeURI("resources01/Dessert tubs/IMG_0566.JPG"),
+      encodeURI("resources01/Dessert tubs/IMG_0569.JPG"),
+      encodeURI("resources01/Dessert tubs/7FE975D1-1F3A-40A5-BADE-AB0932841966.jpg")
+    ],
+    details: "Indulgent layered dessert tubs featuring moist cocoa sponge, velvety cream layers, and artisanal glazes topped with crispy chocolate buttons. Includes handcrafted Pistachio Ganache and Salted Caramel Marble tubs."
   }
 ];
 
@@ -1801,6 +1822,8 @@ const elements = {
   lightboxNext: document.getElementById('lightboxNext'),
   lightboxInquireBtn: document.getElementById('lightboxInquireBtn'),
   lightboxCopyBtn: document.getElementById('lightboxCopyBtn'),
+  lightboxThumbnailsContainer: document.getElementById('lightboxThumbnailsContainer'),
+  lightboxThumbnails: document.getElementById('lightboxThumbnails'),
 
   // Toast
   toast: document.getElementById('toast'),
@@ -1992,6 +2015,45 @@ function openLightbox(index) {
   if (elements.lightboxFlavour) elements.lightboxFlavour.textContent = product.flavour;
   if (elements.lightboxSize) elements.lightboxSize.textContent = product.size;
   elements.lightboxDetails.textContent = product.details;
+
+  // Handle Multiple Product Images / Thumbnails
+  const productImages = (product.images && product.images.length > 0) ? product.images : [product.imageSrc];
+
+  if (elements.lightboxThumbnailsContainer && elements.lightboxThumbnails) {
+    if (productImages.length > 1) {
+      elements.lightboxThumbnailsContainer.classList.remove('hidden');
+      elements.lightboxThumbnails.innerHTML = productImages.map((imgSrc, imgIdx) => `
+        <button
+          type="button"
+          class="lightbox-thumb-btn w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${imgIdx === 0 ? 'border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs' : 'border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100'}"
+          data-img-index="${imgIdx}"
+          title="View photo ${imgIdx + 1}"
+          aria-label="View photo ${imgIdx + 1}"
+        >
+          <img src="${imgSrc}" alt="${product.name} view ${imgIdx + 1}" class="w-full h-full object-cover object-center" />
+        </button>
+      `).join('');
+
+      elements.lightboxThumbnails.querySelectorAll('.lightbox-thumb-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const targetIdx = parseInt(btn.getAttribute('data-img-index'), 10);
+          elements.lightboxImg.src = productImages[targetIdx];
+
+          elements.lightboxThumbnails.querySelectorAll('.lightbox-thumb-btn').forEach((b, idx) => {
+            if (idx === targetIdx) {
+              b.className = 'lightbox-thumb-btn w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs';
+            } else {
+              b.className = 'lightbox-thumb-btn w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100';
+            }
+          });
+        });
+      });
+    } else {
+      elements.lightboxThumbnailsContainer.classList.add('hidden');
+      elements.lightboxThumbnails.innerHTML = '';
+    }
+  }
 
   // Open modal window
   elements.lightbox.classList.add('active');
