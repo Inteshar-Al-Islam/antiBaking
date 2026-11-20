@@ -1003,14 +1003,14 @@ const PRODUCTS = [
     id: "prod-74",
     name: "Lemon & Strawberry Swirl Cheesecake",
     featured: true,
-    category: "cheesecake",
-    categoryLabel: "Cheesecake",
-    flavour: "Cheesecake",
+    category: "cookies",
+    categoryLabel: "Cookies & Treats",
+    flavour: "Lemon & Strawberry",
     size: "400g Box",
     rawPrice: "TBA",
     numericPrice: 0,
     price: "TBA",
-    imageSrc: encodeURI("resources01/cheesecake flavour_ cheesecake size_ 400gm price_ TBA.jpg"),
+    imageSrc: encodeURI("resources01/cheesecake cake flavour_ lemon and strawberry size_ 400gm price_ TBA.jpg"),
     details: "Silky baked cream cheese infused with zesty lemon curd and swirled with fresh homemade strawberry fruit compote atop a buttery biscuit crust."
   },
   {
@@ -1844,8 +1844,7 @@ function getShortCategoryLabel(category, label) {
     'theme': 'Theme',
     'special-occasion': 'Occasion',
     'funny': 'Funny',
-    'cookies': 'Cookies',
-    'cheesecake': 'Cheesecake'
+    'cookies': 'Cookies'
   };
   return map[category] || label.replace(/\s*Cakes?|\s*&\s*Treats?/gi, '').trim() || label;
 }
@@ -1865,8 +1864,6 @@ function renderProductGrid() {
       const pFlavour = (product.flavour || '').toLowerCase();
       if (activeFlavour === 'butterscotch') {
         matchesFlavour = pFlavour.includes('butterscotch') || pFlavour.includes('caramel');
-      } else if (activeFlavour === 'cheesecake') {
-        matchesFlavour = pFlavour.includes('cheesecake') || product.category === 'cheesecake';
       } else {
         matchesFlavour = pFlavour.includes(activeFlavour.toLowerCase());
       }
