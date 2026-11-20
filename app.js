@@ -1003,9 +1003,9 @@ const PRODUCTS = [
     id: "prod-74",
     name: "Lemon & Strawberry Swirl Cheesecake",
     featured: true,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Lemon & Strawberry",
+    category: "cheesecake",
+    categoryLabel: "Cheesecake",
+    flavour: "Lemon",
     size: "400g Box",
     rawPrice: "TBA",
     numericPrice: 0,
@@ -1698,6 +1698,20 @@ const PRODUCTS = [
     price: "\u09f3900",
     imageSrc: encodeURI("resources01/Theme cake/Zenitsu cake flavour_ chocolate size_ 1 pound price_ 900 tk .JPG"),
     details: "Hand-painted anime portrait of Demon Slayer's Zenitsu Agatsuma wielding yellow lightning breathing strokes. Layered with rich chocolate truffle sponge."
+  },
+  {
+    id: "prod-124",
+    name: "Midnight Bloom Cake",
+    featured: true,
+    category: "floral",
+    categoryLabel: "Floral Cakes",
+    flavour: "Vanilla",
+    size: "1.5 Pound",
+    rawPrice: "1000",
+    numericPrice: 1000,
+    price: "\u09f31,000",
+    imageSrc: encodeURI("resources01/Floral cake/Blue floral plate knife cake category_ floral flavour_ vanilla size 1.5 pound price_ 1k.jpeg"),
+    details: "Artistic buttercream creation sculpted with midnight-navy and azure palette knife petals, shimmering golden pearls, and delicate watercolor marbling. Soft aromatic vanilla bean sponge inside."
   }
 ];
 
@@ -1788,7 +1802,8 @@ function getShortCategoryLabel(category, label) {
     'theme': 'Theme',
     'special-occasion': 'Occasion',
     'funny': 'Funny',
-    'cookies': 'Cookies'
+    'cookies': 'Cookies',
+    'cheesecake': 'Cheesecake'
   };
   return map[category] || label.replace(/\s*Cakes?|\s*&\s*Treats?/gi, '').trim() || label;
 }
