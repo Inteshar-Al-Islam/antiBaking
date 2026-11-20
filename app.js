@@ -1698,6 +1698,62 @@ const PRODUCTS = [
     price: "\u09f3900",
     imageSrc: encodeURI("resources01/Theme cake/Zenitsu cake flavour_ chocolate size_ 1 pound price_ 900 tk .JPG"),
     details: "Hand-painted anime portrait of Demon Slayer's Zenitsu Agatsuma wielding yellow lightning breathing strokes. Layered with rich chocolate truffle sponge."
+  },
+  {
+    id: "prod-124",
+    name: "Traditional Biye Bari Floral Wedding Cake",
+    featured: true,
+    category: "special-occasion",
+    categoryLabel: "Special Occasion",
+    flavour: "Chocolate",
+    size: "2 Pound",
+    rawPrice: "2000",
+    numericPrice: 2000,
+    price: "\u09f32,000",
+    imageSrc: encodeURI("resources01/Special occasion/Wedding photo Buttercream art category_ special occasion flavour_ chocolate size_ 2 pound price_ 2000tk.jpg"),
+    details: "Grand square wedding celebration cake adorned with handcrafted pastel pink and cream buttercream roses, forget-me-nots, and auspicious red 'বিয়ে বাড়ি' Bengali calligraphy centerpiece. Layered with rich dark chocolate fudge sponge."
+  },
+  {
+    id: "prod-125",
+    name: "Monir Gaye Shondha Intricate Lace Haldi Cake",
+    featured: true,
+    category: "special-occasion",
+    categoryLabel: "Special Occasion",
+    flavour: "Chocolate",
+    size: "2 Pound",
+    rawPrice: "1800",
+    numericPrice: 1800,
+    price: "\u09f31,800",
+    imageSrc: encodeURI("resources01/Special occasion/Square gaye holud cake category_ special occasion flavour_ chocolate size_ 2 pound price_ 1800 tk .jpeg"),
+    details: "Exquisite square Gaye Holud showpiece featuring intricate white royal icing mehndi embroidery, festive marigold and cream blossoms, and a celebratory 'মনির গায়ে সন্ধ্যা' banner. Crafted with decadent chocolate sponge."
+  },
+  {
+    id: "prod-126",
+    name: "Midnight Blue & Gold Palette Knife Floral Cake",
+    featured: true,
+    category: "floral",
+    categoryLabel: "Floral Cakes",
+    flavour: "Vanilla",
+    size: "1.5 Pound",
+    rawPrice: "1000",
+    numericPrice: 1000,
+    price: "\u09f31,000",
+    imageSrc: encodeURI("resources01/Floral cake/Blue floral plate knife cake category_ floral flavour_ vanilla size 1.5 pound price_ 1k.jpeg"),
+    details: "Artistic textured watercolor cake frosted with sweeping palette knife strokes in midnight navy, cerulean blue, and shimmering gold pearls. Soft aromatic vanilla bean sponge inside."
+  },
+  {
+    id: "prod-127",
+    name: "Artisan Red Velvet Cream Cheese Cupcakes",
+    featured: true,
+    category: "cookies",
+    categoryLabel: "Cookies & Treats",
+    flavour: "Red Velvet",
+    size: "Box of 6",
+    rawPrice: "TBA",
+    numericPrice: 0,
+    price: "TBA",
+    imageSrc: encodeURI("resources01/Red velvet cupcake with cream cheese frosting .JPG"),
+    details: "Velvety crimson cocoa cupcakes crowned with towering swirls of rich tangy cream cheese frosting, fine red velvet cake crumbs, and glistening ruby heart confections."
   }
 ];
 
