@@ -2037,6 +2037,8 @@ function renderProductGrid() {
 }
 
 // 6. Lightbox Modal Controls
+let savedBodyScrollY = 0;
+
 function openLightbox(index) {
   if (index < 0 || index >= currentFilteredProducts.length) return;
   currentLightboxIndex = index;
@@ -2117,7 +2119,20 @@ function openLightbox(index) {
 
   // Open modal window
   modal.classList.add('active');
+
+  // Freeze background webpage scroll position (prevents background scrolling on mobile)
+  savedBodyScrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.classList.add('modal-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${savedBodyScrollY}px`;
+  document.body.style.width = '100%';
   document.body.style.overflow = 'hidden';
+
+  // Reset modal scroll position to top
+  const dialog = modal.querySelector('.modal-dialog');
+  if (dialog) dialog.scrollTop = 0;
+  const sidebarScroll = modal.querySelector('.modal-sidebar-scroll');
+  if (sidebarScroll) sidebarScroll.scrollTop = 0;
 
   // Update navigation button states
   const prevBtn = elements.lightboxPrev || document.getElementById('lightboxPrev');
@@ -2135,7 +2150,15 @@ function openLightbox(index) {
 function closeLightbox() {
   const modal = elements.lightbox || document.getElementById('lightboxModal');
   if (modal) modal.classList.remove('active');
+
+  // Restore background webpage scroll position
+  document.body.classList.remove('modal-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
   document.body.style.overflow = '';
+  window.scrollTo(0, savedBodyScrollY);
+
   currentLightboxIndex = -1;
 }
 
@@ -2346,6 +2369,45 @@ function initEventListeners() {
         }
       }
     });
+  }
+
+  // Touch-drag on lightbox image area scrolls the modal content instead of background webpage
+  const imageArea = document.querySelector('.lightbox-image-area') || elements.lightboxImg?.parentElement;
+  if (imageArea) {
+    let touchStartY = 0;
+    imageArea.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    imageArea.addEventListener('touchmove', (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      const currentY = e.touches[0].clientY;
+      const deltaY = touchStartY - currentY;
+      touchStartY = currentY;
+
+      // Scroll the modal dialog or sidebar
+      const dialog = document.querySelector('.modal-dialog');
+      const sidebar = document.querySelector('.modal-sidebar-scroll');
+      const scrollTarget = window.innerWidth < 768 ? dialog : sidebar;
+
+      if (scrollTarget) {
+        scrollTarget.scrollTop += deltaY;
+      }
+
+      // Stop the touch from bubbling to the background webpage
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
+
+  // Prevent touchmove on backdrop from leaking to page
+  if (elements.lightboxBackdrop) {
+    elements.lightboxBackdrop.addEventListener('touchmove', (e) => {
+      if (e.cancelable) e.preventDefault();
+    }, { passive: false });
   }
 
   // Lightbox Modal Controls

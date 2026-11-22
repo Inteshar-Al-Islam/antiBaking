@@ -375,6 +375,7 @@ header.header-scrolled {
   align-items: center;
   justify-content: center;
   transition: opacity 0.28s ease, visibility 0.28s ease;
+  overscroll-behavior: contain;
 }
 
 .modal-backdrop.active {
@@ -390,11 +391,32 @@ header.header-scrolled {
   will-change: transform, opacity;
   max-width: 920px;
   width: 100%;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-backdrop.active .modal-dialog {
   opacity: 1 !important;
   transform: scale(1) translateY(0) !important;
+}
+
+/* Background Page Scroll Lock When Modal is Open */
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none;
+}
+
+body.modal-open #lightboxModal {
+  touch-action: pan-y;
+}
+
+body.modal-open .modal-dialog {
+  touch-action: pan-y;
+}
+
+.lightbox-image-area {
+  touch-action: pan-y;
 }
 
 /* Image swap cross-fade inside lightbox */
