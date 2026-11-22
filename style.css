@@ -48,55 +48,59 @@ header.header-scrolled {
   border-top: 2px dashed #E5DCD3;
 }
 
-/* Ambient Bakery Glow Orbs in Hero */
+/* Ambient Bakery Glow in Hero - Seamless, Centered & Symmetrical */
 .ambient-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(65px);
   pointer-events: none;
   will-change: transform;
 }
 
-.ambient-glow-1 {
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(232, 212, 191, 0.75) 0%, rgba(244, 234, 223, 0) 70%);
-  top: -20px;
-  left: 15%;
-  animation: floatSlow1 14s ease-in-out infinite alternate;
+/* Master Centered Ambient Halo - Soft bakery warmth right behind the title */
+.ambient-glow-center {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 460px;
+  max-width: 92%;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(232, 212, 191, 0.6) 0%, rgba(244, 234, 223, 0.3) 40%, rgba(184, 115, 51, 0.08) 60%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
 }
 
-.ambient-glow-2 {
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle, rgba(184, 115, 51, 0.16) 0%, rgba(184, 115, 51, 0) 70%);
-  top: 40px;
-  right: 12%;
-  animation: floatSlow2 16s ease-in-out infinite alternate;
+/* Left Accent Glow Orb */
+.ambient-glow-left {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(232, 212, 191, 0.5) 0%, rgba(184, 115, 51, 0.12) 40%, transparent 70%);
+  top: 20px;
+  left: 8%;
+  filter: blur(50px);
+  animation: floatSlow1 12s ease-in-out infinite alternate;
 }
 
-.ambient-glow-3 {
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(219, 203, 187, 0.45) 0%, rgba(250, 247, 242, 0) 70%);
-  top: 100px;
-  left: 42%;
-  animation: floatSlow3 11s ease-in-out infinite alternate;
+/* Right Accent Glow Orb - Symmetrically balanced with Left Orb */
+.ambient-glow-right {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(232, 212, 191, 0.5) 0%, rgba(184, 115, 51, 0.12) 40%, transparent 70%);
+  top: 20px;
+  right: 8%;
+  filter: blur(50px);
+  animation: floatSlow2 12s ease-in-out infinite alternate;
 }
 
 @keyframes floatSlow1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(25px, 15px) scale(1.1); }
+  100% { transform: translate(12px, 10px) scale(1.06); }
 }
 
 @keyframes floatSlow2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-22px, -15px) scale(1.08); }
-}
-
-@keyframes floatSlow3 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(15px, -20px) scale(1.12); }
+  100% { transform: translate(-12px, -10px) scale(1.06); }
 }
 
 /* Floating Bakery Sparkles (Safe margins to avoid horizontal scroll) */
