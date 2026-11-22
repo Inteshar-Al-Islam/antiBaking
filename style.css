@@ -17,6 +17,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -27,6 +29,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
 /* Header Scrolled Elevation */
@@ -54,8 +58,8 @@ header.header-scrolled {
 }
 
 .ambient-glow-1 {
-  width: 320px;
-  height: 320px;
+  width: 280px;
+  height: 280px;
   background: radial-gradient(circle, rgba(232, 212, 191, 0.75) 0%, rgba(244, 234, 223, 0) 70%);
   top: -20px;
   left: 15%;
@@ -63,8 +67,8 @@ header.header-scrolled {
 }
 
 .ambient-glow-2 {
-  width: 280px;
-  height: 280px;
+  width: 260px;
+  height: 260px;
   background: radial-gradient(circle, rgba(184, 115, 51, 0.16) 0%, rgba(184, 115, 51, 0) 70%);
   top: 40px;
   right: 12%;
@@ -72,8 +76,8 @@ header.header-scrolled {
 }
 
 .ambient-glow-3 {
-  width: 230px;
-  height: 230px;
+  width: 200px;
+  height: 200px;
   background: radial-gradient(circle, rgba(219, 203, 187, 0.45) 0%, rgba(250, 247, 242, 0) 70%);
   top: 100px;
   left: 42%;
@@ -82,20 +86,20 @@ header.header-scrolled {
 
 @keyframes floatSlow1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(32px, 18px) scale(1.12); }
+  100% { transform: translate(25px, 15px) scale(1.1); }
 }
 
 @keyframes floatSlow2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-28px, -18px) scale(1.08); }
+  100% { transform: translate(-22px, -15px) scale(1.08); }
 }
 
 @keyframes floatSlow3 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(18px, -24px) scale(1.14); }
+  100% { transform: translate(15px, -20px) scale(1.12); }
 }
 
-/* Floating Bakery Sparkles */
+/* Floating Bakery Sparkles (Safe margins to avoid horizontal scroll) */
 .floating-sparkle {
   position: absolute;
   color: #B87333;
@@ -107,21 +111,21 @@ header.header-scrolled {
 
 .sparkle-left {
   top: 20%;
-  left: -4%;
+  left: 1%;
   font-size: 1.15rem;
   animation-delay: 0s;
 }
 
 .sparkle-right {
   top: 45%;
-  right: -3%;
+  right: 1%;
   font-size: 1rem;
   animation-delay: 1.6s;
 }
 
 .sparkle-top-right {
   top: 5%;
-  right: 14%;
+  right: 10%;
   font-size: 0.85rem;
   animation-delay: 2.7s;
 }
@@ -132,7 +136,7 @@ header.header-scrolled {
     opacity: 0.35;
   }
   50% {
-    transform: translateY(-9px) rotate(16deg) scale(1.22);
+    transform: translateY(-9px) rotate(16deg) scale(1.2);
     opacity: 0.85;
   }
 }
@@ -176,8 +180,13 @@ header.header-scrolled {
   }
 }
 
-/* Animated Artisan Marquee Ticker Ribbon */
+/* Animated Artisan Marquee Ticker Ribbon - Strictly Contained */
 .marquee-wrapper {
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  contain: paint;
+  box-sizing: border-box;
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
@@ -221,18 +230,21 @@ header.header-scrolled {
 
 /* Product Card Transitions & Staggered Entrance */
 .product-card {
-  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--card-delay, 0ms);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.25s ease;
   will-change: transform, box-shadow;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 @keyframes cardEntrance {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.96);
+    transform: translateY(16px) scale(0.97);
   }
   100% {
     opacity: 1;
@@ -241,8 +253,8 @@ header.header-scrolled {
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 36px -8px rgba(61, 35, 20, 0.14), 0 6px 16px -4px rgba(184, 115, 51, 0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 32px -8px rgba(61, 35, 20, 0.14), 0 6px 14px -4px rgba(184, 115, 51, 0.08);
   border-color: #DABDA0;
 }
 
@@ -252,37 +264,39 @@ header.header-scrolled {
   background-color: #F5ECE3;
 }
 
-/* Glossy Sheen Sweep Effect on Card Hover */
-.product-image-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -130%;
-  width: 70%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.32) 50%,
-    transparent 100%
-  );
-  transform: skewX(-25deg);
-  pointer-events: none;
-  z-index: 5;
-  transition: left 0s;
-}
+/* Glossy Sheen Sweep Effect on Card Hover (Fine pointers only to avoid mobile tap flicker) */
+@media (hover: hover) and (pointer: fine) {
+  .product-image-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.32) 50%,
+      transparent 100%
+    );
+    transform: skewX(-25deg);
+    pointer-events: none;
+    z-index: 5;
+    transition: left 0s;
+  }
 
-.product-card:hover .product-image-wrap::after {
-  left: 170%;
-  transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  .product-card:hover .product-image-wrap::after {
+    left: 170%;
+    transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.06);
+  }
 }
 
 .product-image {
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.product-card:hover .product-image {
-  transform: scale(1.07);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .line-clamp-1 {
@@ -337,6 +351,7 @@ header.header-scrolled {
 .filter-pill {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, box-shadow;
+  touch-action: manipulation;
 }
 
 .filter-pill:hover {
@@ -375,37 +390,48 @@ header.header-scrolled {
   100% { transform: scale(1); }
 }
 
-/* Lightbox Modal Animation Enhancement */
+/* Lightbox Modal Animation Enhancement - Resilient & Mobile Centered */
 .modal-backdrop {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
 }
 
 .modal-backdrop.active {
-  opacity: 1;
-  visibility: visible;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .modal-dialog {
   opacity: 0;
-  transform: scale(0.94) translateY(16px);
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.96) translateY(12px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  max-width: 920px;
+  width: 100%;
 }
 
 .modal-backdrop.active .modal-dialog {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
 }
 
 /* Image swap cross-fade inside lightbox */
 .lightbox-img-enter {
-  animation: imgFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: imgFadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes imgFadeIn {
   0% {
-    opacity: 0.35;
+    opacity: 0.4;
     transform: scale(0.985);
   }
   100% {
@@ -490,6 +516,7 @@ header.header-scrolled {
               transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.2s ease,
               box-shadow 0.2s ease;
+  touch-action: manipulation;
 }
 
 #backToTopBtn:hover {

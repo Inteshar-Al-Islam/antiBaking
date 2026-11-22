@@ -61,7 +61,7 @@
   </script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
@@ -270,18 +270,18 @@
   <main class="flex-1 max-w-7xl mx-auto w-full px-3.5 sm:px-6 lg:px-8 py-8 sm:py-14">
     
     <!-- Hero Text with Ambient Bakery Glow & Floating Sparkles -->
-    <section class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 relative">
+    <section class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 relative overflow-visible">
       <!-- Ambient Glow Orbs in Background -->
-      <div class="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-3xl h-72 overflow-hidden -z-10" aria-hidden="true">
+      <div class="pointer-events-none absolute -top-12 inset-x-0 w-full h-72 overflow-hidden -z-10" aria-hidden="true">
         <div class="ambient-glow ambient-glow-1"></div>
         <div class="ambient-glow ambient-glow-2"></div>
         <div class="ambient-glow ambient-glow-3"></div>
       </div>
 
-      <!-- Floating Bakery Sparkles -->
-      <span class="floating-sparkle sparkle-left" aria-hidden="true">✦</span>
-      <span class="floating-sparkle sparkle-right" aria-hidden="true">✧</span>
-      <span class="floating-sparkle sparkle-top-right" aria-hidden="true">✦</span>
+      <!-- Floating Bakery Sparkles (Visible on larger screens to avoid mobile overflow) -->
+      <span class="floating-sparkle sparkle-left hidden sm:inline" aria-hidden="true">✦</span>
+      <span class="floating-sparkle sparkle-right hidden sm:inline" aria-hidden="true">✧</span>
+      <span class="floating-sparkle sparkle-top-right hidden sm:inline" aria-hidden="true">✦</span>
 
       <div class="hero-badge-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-caramel-100 text-mocha-800 text-xs font-medium mb-4 border border-caramel-200 shadow-2xs">
         <span class="w-2 h-2 rounded-full bg-caramel-500 animate-pulse"></span>
@@ -348,8 +348,8 @@
       </div>
     </section>
 
-    <!-- Animated Bakery Features Ticker Ribbon -->
-    <div class="marquee-wrapper mb-8 sm:mb-12 -mx-3.5 sm:mx-0 py-2.5 bg-gradient-to-r from-cream-100 via-caramel-50/70 to-cream-100 border-y border-[#EAE0D5] relative select-none">
+    <!-- Animated Bakery Features Ticker Ribbon - Contained & Overflow Hidden -->
+    <div class="marquee-wrapper overflow-hidden w-full max-w-full mb-8 sm:mb-12 py-2.5 bg-gradient-to-r from-cream-100 via-caramel-50/70 to-cream-100 border-y border-[#EAE0D5] relative select-none">
       <div class="marquee-track flex gap-8 whitespace-nowrap text-xs font-serif tracking-wide text-mocha-700">
         <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> 100% Pure Dairy Butter & Premium Cocoa</span>
         <span class="inline-flex items-center gap-2"><span class="text-caramel-500">🌸</span> Intricate Wildflower & Lambeth Artistry</span>
@@ -591,6 +591,6 @@
   </div>
 
   <!-- Application Script -->
-  <script src="app.js?v=23" defer></script>
+  <script src="app.js?v=24" defer></script>
 </body>
 </html>

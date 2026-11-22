@@ -1959,7 +1959,8 @@ function renderProductGrid() {
     const animDelay = Math.min(index * 35, 420);
     return `
       <article 
-        class="product-card group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col"
+        class="product-card group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col select-none"
+        data-index="${index}"
         style="--card-delay: ${animDelay}ms;"
         onclick="openLightbox(${index})"
         role="button"
@@ -1973,21 +1974,21 @@ function renderProductGrid() {
             src="${product.imageSrc}" 
             alt="${product.name}" 
             loading="lazy"
-            class="product-image w-full h-full object-cover object-center"
+            class="product-image w-full h-full object-cover object-center pointer-events-none"
             onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23F5ECE3\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%236E4E37\' font-family=\'sans-serif\' font-size=\'18\'%3E🎂 ${product.name}%3C/text%3E%3C/svg%3E';"
           />
           
           <!-- Top Badges Flex Bar: Prevents Collisions on Mobile -->
           <div class="absolute top-1.5 inset-x-1.5 sm:top-3 sm:inset-x-3 flex items-center justify-between gap-1 pointer-events-none z-10">
             <!-- Category Badge (Short on mobile, Full on desktop) -->
-            <span class="pointer-events-auto px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-medium tracking-wide bg-white/95 backdrop-blur-xs text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate shrink">
+            <span class="pointer-events-none px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-medium tracking-wide bg-white/95 backdrop-blur-xs text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate shrink">
               <span class="sm:hidden">${shortCategory}</span>
               <span class="hidden sm:inline">${product.categoryLabel}</span>
             </span>
 
             <!-- Featured Best-Seller Badge (Compact on mobile) -->
             ${product.featured ? `
-              <span class="pointer-events-auto shrink-0 px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-semibold tracking-wide bg-[#B87333] text-white rounded-full shadow-xs flex items-center gap-0.5 sm:gap-1">
+              <span class="pointer-events-none shrink-0 px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-semibold tracking-wide bg-[#B87333] text-white rounded-full shadow-xs flex items-center gap-0.5 sm:gap-1">
                 <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-200 fill-current shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                 <span>Featured</span>
               </span>
@@ -1995,7 +1996,7 @@ function renderProductGrid() {
           </div>
 
           <!-- Hover View Indicator -->
-          <div class="absolute inset-0 bg-[#26180F]/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div class="pointer-events-none absolute inset-0 bg-[#26180F]/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span class="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/95 text-[#26180F] rounded-full text-[11px] sm:text-xs font-semibold tracking-wider uppercase shadow-md transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5 text-[#B87333]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -2040,27 +2041,43 @@ function openLightbox(index) {
   if (index < 0 || index >= currentFilteredProducts.length) return;
   currentLightboxIndex = index;
   const product = currentFilteredProducts[currentLightboxIndex];
+  if (!product) return;
 
-  elements.lightboxImg.src = product.imageSrc;
-  elements.lightboxImg.alt = product.name;
-  elements.lightboxImg.classList.remove('lightbox-img-enter');
-  void elements.lightboxImg.offsetWidth;
-  elements.lightboxImg.classList.add('lightbox-img-enter');
+  const modal = elements.lightbox || document.getElementById('lightboxModal');
+  if (!modal) return;
 
-  elements.lightboxTitle.textContent = product.name;
-  elements.lightboxPrice.textContent = product.price;
-  elements.lightboxCategory.textContent = product.categoryLabel;
-  if (elements.lightboxFlavour) elements.lightboxFlavour.textContent = product.flavour;
-  if (elements.lightboxSize) elements.lightboxSize.textContent = product.size;
-  elements.lightboxDetails.textContent = product.details;
+  const img = elements.lightboxImg || document.getElementById('lightboxImg');
+  const title = elements.lightboxTitle || document.getElementById('lightboxTitle');
+  const price = elements.lightboxPrice || document.getElementById('lightboxPrice');
+  const category = elements.lightboxCategory || document.getElementById('lightboxCategory');
+  const flavour = elements.lightboxFlavour || document.getElementById('lightboxFlavour');
+  const size = elements.lightboxSize || document.getElementById('lightboxSize');
+  const details = elements.lightboxDetails || document.getElementById('lightboxDetails');
+
+  if (img) {
+    img.src = product.imageSrc;
+    img.alt = product.name;
+    img.classList.remove('lightbox-img-enter');
+    void img.offsetWidth;
+    img.classList.add('lightbox-img-enter');
+  }
+
+  if (title) title.textContent = product.name;
+  if (price) price.textContent = product.price;
+  if (category) category.textContent = product.categoryLabel;
+  if (flavour) flavour.textContent = product.flavour || '';
+  if (size) size.textContent = product.size || '';
+  if (details) details.textContent = product.details || '';
 
   // Handle Multiple Product Images / Thumbnails
   const productImages = (product.images && product.images.length > 0) ? product.images : [product.imageSrc];
+  const thumbsContainer = elements.lightboxThumbnailsContainer || document.getElementById('lightboxThumbnailsContainer');
+  const thumbs = elements.lightboxThumbnails || document.getElementById('lightboxThumbnails');
 
-  if (elements.lightboxThumbnailsContainer && elements.lightboxThumbnails) {
+  if (thumbsContainer && thumbs) {
     if (productImages.length > 1) {
-      elements.lightboxThumbnailsContainer.classList.remove('hidden');
-      elements.lightboxThumbnails.innerHTML = productImages.map((imgSrc, imgIdx) => `
+      thumbsContainer.classList.remove('hidden');
+      thumbs.innerHTML = productImages.map((imgSrc, imgIdx) => `
         <button
           type="button"
           class="lightbox-thumb-btn w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${imgIdx === 0 ? 'border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs' : 'border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100'}"
@@ -2072,16 +2089,18 @@ function openLightbox(index) {
         </button>
       `).join('');
 
-      elements.lightboxThumbnails.querySelectorAll('.lightbox-thumb-btn').forEach(btn => {
+      thumbs.querySelectorAll('.lightbox-thumb-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
           const targetIdx = parseInt(btn.getAttribute('data-img-index'), 10);
-          elements.lightboxImg.src = productImages[targetIdx];
-          elements.lightboxImg.classList.remove('lightbox-img-enter');
-          void elements.lightboxImg.offsetWidth;
-          elements.lightboxImg.classList.add('lightbox-img-enter');
+          if (img) {
+            img.src = productImages[targetIdx];
+            img.classList.remove('lightbox-img-enter');
+            void img.offsetWidth;
+            img.classList.add('lightbox-img-enter');
+          }
 
-          elements.lightboxThumbnails.querySelectorAll('.lightbox-thumb-btn').forEach((b, idx) => {
+          thumbs.querySelectorAll('.lightbox-thumb-btn').forEach((b, idx) => {
             if (idx === targetIdx) {
               b.className = 'lightbox-thumb-btn w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs';
             } else {
@@ -2091,27 +2110,37 @@ function openLightbox(index) {
         });
       });
     } else {
-      elements.lightboxThumbnailsContainer.classList.add('hidden');
-      elements.lightboxThumbnails.innerHTML = '';
+      thumbsContainer.classList.add('hidden');
+      thumbs.innerHTML = '';
     }
   }
 
   // Open modal window
-  elements.lightbox.classList.add('active');
+  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 
   // Update navigation button states
-  elements.lightboxPrev.disabled = currentLightboxIndex === 0;
-  elements.lightboxNext.disabled = currentLightboxIndex === currentFilteredProducts.length - 1;
-  elements.lightboxPrev.classList.toggle('opacity-30', currentLightboxIndex === 0);
-  elements.lightboxNext.classList.toggle('opacity-30', currentLightboxIndex === currentFilteredProducts.length - 1);
+  const prevBtn = elements.lightboxPrev || document.getElementById('lightboxPrev');
+  const nextBtn = elements.lightboxNext || document.getElementById('lightboxNext');
+  if (prevBtn) {
+    prevBtn.disabled = currentLightboxIndex === 0;
+    prevBtn.classList.toggle('opacity-30', currentLightboxIndex === 0);
+  }
+  if (nextBtn) {
+    nextBtn.disabled = currentLightboxIndex === currentFilteredProducts.length - 1;
+    nextBtn.classList.toggle('opacity-30', currentLightboxIndex === currentFilteredProducts.length - 1);
+  }
 }
 
 function closeLightbox() {
-  elements.lightbox.classList.remove('active');
+  const modal = elements.lightbox || document.getElementById('lightboxModal');
+  if (modal) modal.classList.remove('active');
   document.body.style.overflow = '';
   currentLightboxIndex = -1;
 }
+
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
 
 function nextLightboxImage() {
   if (currentLightboxIndex < currentFilteredProducts.length - 1) {
@@ -2302,6 +2331,20 @@ function initEventListeners() {
     elements.sortSelect.addEventListener('change', (e) => {
       activeSort = e.target.value;
       renderProductGrid();
+    });
+  }
+
+  // Delegated click listener on product grid for reliable mobile touch & click support
+  const grid = elements.productGrid || document.getElementById('productGrid');
+  if (grid) {
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.product-card');
+      if (card) {
+        const idx = card.getAttribute('data-index');
+        if (idx !== null && !isNaN(parseInt(idx, 10))) {
+          openLightbox(parseInt(idx, 10));
+        }
+      }
     });
   }
 
