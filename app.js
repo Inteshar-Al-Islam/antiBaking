@@ -1760,6 +1760,20 @@ const PRODUCTS = [
     price: "TBA",
     imageSrc: encodeURI("resources01/Cupcake flavour_ red velvet price_ TBA .JPG"),
     details: "Velvety, moist red velvet sponge cupcakes crowned with luscious swirls of whipped cream cheese frosting, fine red velvet cake crumbs, and charming red heart confections."
+  },
+  {
+    id: "prod-128",
+    name: "Wedding Photo Buttercream Art Cake",
+    featured: true,
+    category: "birthday",
+    categoryLabel: "Birthday Cakes",
+    flavour: "Chocolate",
+    size: "2 Pound",
+    rawPrice: "2400",
+    numericPrice: 2400,
+    price: "\u09f32,400",
+    imageSrc: encodeURI("resources01/Birthday cake/Wedding photo Buttercream art category_ birthday flavour_ chocolate size_ 2 pound price_ 2400tk.jpg"),
+    details: "Exquisite custom freehand buttercream portraiture recreating a traditional wedding photo in ornate celebratory attire with personalized birthday calligraphy. Sized at 2 pounds with rich chocolate sponge and velvety cocoa cream."
   }
 ];
 
