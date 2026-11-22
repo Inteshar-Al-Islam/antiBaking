@@ -1511,10 +1511,10 @@ const PRODUCTS = [
     categoryLabel: "Minimal & Aesthetic",
     flavour: "Blueberry",
     size: "2 Pound",
-    rawPrice: "2000",
-    numericPrice: 2000,
-    price: "\u09f32,000",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Vintage cage cake flavour_ blueberry size_ 2 pound price_ 2000 tk .JPG"),
+    rawPrice: "2200",
+    numericPrice: 2200,
+    price: "\u09f32,200",
+    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Vintage cage cake flavour_ blueberry size_ 2 pound price_ 2200 tk .JPG"),
     details: "Breathtaking 2-pound dome sculpted to resemble an antique gilded birdcage intertwined with garden blossoms and songbird motifs. Blueberry compote sponge."
   },
   {
