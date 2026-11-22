@@ -1746,6 +1746,20 @@ const PRODUCTS = [
       encodeURI("resources01/Dessert tubs/IMG_0569.JPG")
     ],
     details: "Indulgent layered dessert tubs featuring moist cocoa sponge, velvety cream layers, and artisanal glazes topped with crispy chocolate buttons. Includes handcrafted Pistachio Ganache and Salted Caramel Marble tubs."
+  },
+  {
+    id: "prod-127",
+    name: "Red Velvet Cream Cheese Cupcakes",
+    featured: true,
+    category: "cookies",
+    categoryLabel: "Cookies & Treats",
+    flavour: "Red Velvet",
+    size: "Box of 4/6",
+    rawPrice: "TBA",
+    numericPrice: 0,
+    price: "TBA",
+    imageSrc: encodeURI("resources01/Cupcake flavour_ red velvet price_ TBA .JPG"),
+    details: "Velvety, moist red velvet sponge cupcakes crowned with luscious swirls of whipped cream cheese frosting, fine red velvet cake crumbs, and charming red heart confections."
   }
 ];
 
