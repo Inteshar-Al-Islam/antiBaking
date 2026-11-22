@@ -316,51 +316,77 @@ header.header-scrolled {
 }
 
 #searchFilterContainer.open {
-  max-height: 600px;
+  max-height: 850px;
   opacity: 1;
 }
 
 /* Filter Tag Pills Micro-Interactions */
 .filter-pill {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease;
   will-change: transform, box-shadow;
   touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
 }
 
 .filter-pill:hover {
   transform: translateY(-1.5px);
-  box-shadow: 0 4px 10px rgba(110, 78, 55, 0.08);
-}
-
-.filter-pill:active {
-  transform: scale(0.95);
-}
-
-.filter-pill.active {
-  background-color: #6E4E37;
-  color: #FFFFFF;
-  border-color: #6E4E37;
-  box-shadow: 0 3px 12px rgba(110, 78, 55, 0.32);
-  transform: translateY(-1px);
-}
-
-.flavour-btn.active {
-  background-color: #B87333;
-  color: #FFFFFF;
   border-color: #B87333;
-  box-shadow: 0 3px 12px rgba(184, 115, 51, 0.35);
-  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.15);
 }
 
-/* Badge Pop Animation on Filter Updates */
+/* Distinct tactile press feedback on click / tap */
+.filter-pill:active {
+  transform: scale(0.92) !important;
+  transition-duration: 0.06s;
+}
+
+/* Category Filter Active State: Warm Espresso with noticeable caramel halo */
+.category-btn.filter-pill.active {
+  background-color: #5C3D2E !important;
+  color: #FFFFFF !important;
+  border-color: #5C3D2E !important;
+  box-shadow: 0 0 0 2px rgba(184, 115, 51, 0.35), 0 6px 18px rgba(92, 61, 46, 0.35) !important;
+  transform: translateY(-1px) scale(1.03);
+  font-weight: 600;
+}
+
+/* Flavour Filter Active State: Vibrant Baked Caramel with luminous warm glow */
+.flavour-btn.filter-pill.active {
+  background-color: #B87333 !important;
+  color: #FFFFFF !important;
+  border-color: #965B24 !important;
+  box-shadow: 0 0 0 2px rgba(184, 115, 51, 0.45), 0 6px 20px rgba(184, 115, 51, 0.45) !important;
+  transform: translateY(-1px) scale(1.03);
+  font-weight: 600;
+}
+
+/* Live Counter Badge Pop Animation on Filter Updates */
 .badge-pop {
-  animation: badgePopAnim 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: badgePopAnim 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both !important;
+  will-change: transform, box-shadow, background-color;
 }
 
 @keyframes badgePopAnim {
-  0% { transform: scale(0.92); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0.92);
+    background-color: #FAF5EF;
+  }
+  45% {
+    transform: scale(1.15);
+    background-color: #F4EADF;
+    border-color: #B87333;
+    color: #6E4E37;
+    box-shadow: 0 0 16px rgba(184, 115, 51, 0.45);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
 }
 
 /* Lightbox Modal Animation Enhancement - Resilient & Mobile Centered */

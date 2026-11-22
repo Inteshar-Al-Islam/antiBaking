@@ -1825,6 +1825,7 @@ let activeSort = 'featured';
 const elements = {
   productGrid: document.getElementById('productGrid'),
   itemCount: document.getElementById('itemCount'),
+  drawerItemCount: document.getElementById('drawerItemCount'),
   searchInput: document.getElementById('searchInput'),
   clearSearchBtn: document.getElementById('clearSearchBtn'),
   filterToggleBtn: document.getElementById('filterToggleBtn'),
@@ -1935,14 +1936,17 @@ function renderProductGrid() {
     });
   }
 
-  // Update live item counter with pop animation
-  if (elements.itemCount) {
-    const count = currentFilteredProducts.length;
-    elements.itemCount.textContent = `${count} ${count === 1 ? 'Creation' : 'Creations'} Available`;
-    elements.itemCount.classList.remove('badge-pop');
-    void elements.itemCount.offsetWidth;
-    elements.itemCount.classList.add('badge-pop');
-  }
+  // Update live item counter badges with pop animation
+  const count = currentFilteredProducts.length;
+  const countText = `${count} ${count === 1 ? 'Creation' : 'Creations'} Available`;
+  const countBadges = [elements.itemCount, elements.drawerItemCount].filter(Boolean);
+
+  countBadges.forEach(badge => {
+    badge.textContent = countText;
+    badge.classList.remove('badge-pop');
+    void badge.offsetWidth;
+    badge.classList.add('badge-pop');
+  });
 
   // Toggle Empty State view
   if (currentFilteredProducts.length === 0) {
