@@ -180,33 +180,6 @@ header.header-scrolled {
   }
 }
 
-/* Animated Artisan Marquee Ticker Ribbon - Strictly Contained */
-.marquee-wrapper {
-  overflow: hidden !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  contain: paint;
-  box-sizing: border-box;
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeScroll 32s linear infinite;
-  will-change: transform;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 /* Responsive Product Grid */
 #productGrid {
   display: grid !important;
@@ -562,9 +535,6 @@ header.header-scrolled {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-  .marquee-track {
-    animation: none !important;
   }
   .ambient-glow {
     animation: none !important;
