@@ -1133,10 +1133,10 @@ const PRODUCTS = [
     categoryLabel: "Birthday Cakes",
     flavour: "Chocolate",
     size: "2 Pound",
-    rawPrice: "2000",
-    numericPrice: 2000,
-    price: "\u09f32,000",
-    imageSrc: encodeURI("resources01/Birthday cake/Bunny in garden flavour_ chocolate size_ 2 pound price_ 2k .JPG"),
+    rawPrice: "2400",
+    numericPrice: 2400,
+    price: "\u09f32,400",
+    imageSrc: encodeURI("resources01/Birthday cake/Bunny in garden flavour_ chocolate size_ 2 pound price_ 2400 tk .JPG"),
     details: "Generous 2-pound garden wonderland with hand-piped bunny figurines exploring butter blossoms and trailing greenery. Rich double chocolate truffle sponge."
   },
   {
@@ -1511,10 +1511,10 @@ const PRODUCTS = [
     categoryLabel: "Minimal & Aesthetic",
     flavour: "Blueberry",
     size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Vintage cage cake flavour_ blueberry size_ 2 pound price_ 1800 tk .JPG"),
+    rawPrice: "2000",
+    numericPrice: 2000,
+    price: "\u09f32,000",
+    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Vintage cage cake flavour_ blueberry size_ 2 pound price_ 2000 tk .JPG"),
     details: "Breathtaking 2-pound dome sculpted to resemble an antique gilded birdcage intertwined with garden blossoms and songbird motifs. Blueberry compote sponge."
   },
   {
