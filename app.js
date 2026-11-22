@@ -1852,9 +1852,11 @@ const elements = {
   lightboxThumbnailsContainer: document.getElementById('lightboxThumbnailsContainer'),
   lightboxThumbnails: document.getElementById('lightboxThumbnails'),
 
-  // Toast
+  // Toast & Utilities
   toast: document.getElementById('toast'),
-  toastMessage: document.getElementById('toastMessage')
+  toastMessage: document.getElementById('toastMessage'),
+  toastProgressBar: document.getElementById('toastProgressBar'),
+  backToTopBtn: document.getElementById('backToTopBtn')
 };
 
 // Helper for short category names on compact mobile cards
@@ -1933,10 +1935,13 @@ function renderProductGrid() {
     });
   }
 
-  // Update live item counter
+  // Update live item counter with pop animation
   if (elements.itemCount) {
     const count = currentFilteredProducts.length;
     elements.itemCount.textContent = `${count} ${count === 1 ? 'Creation' : 'Creations'} Available`;
+    elements.itemCount.classList.remove('badge-pop');
+    void elements.itemCount.offsetWidth;
+    elements.itemCount.classList.add('badge-pop');
   }
 
   // Toggle Empty State view
@@ -1948,12 +1953,14 @@ function renderProductGrid() {
     elements.emptyState?.classList.add('hidden');
   }
 
-  // Render responsive product cards
+  // Render responsive product cards with staggered entrance
   elements.productGrid.innerHTML = currentFilteredProducts.map((product, index) => {
     const shortCategory = getShortCategoryLabel(product.category, product.categoryLabel);
+    const animDelay = Math.min(index * 35, 420);
     return `
       <article 
         class="product-card group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col"
+        style="--card-delay: ${animDelay}ms;"
         onclick="openLightbox(${index})"
         role="button"
         tabindex="0"
@@ -2036,6 +2043,10 @@ function openLightbox(index) {
 
   elements.lightboxImg.src = product.imageSrc;
   elements.lightboxImg.alt = product.name;
+  elements.lightboxImg.classList.remove('lightbox-img-enter');
+  void elements.lightboxImg.offsetWidth;
+  elements.lightboxImg.classList.add('lightbox-img-enter');
+
   elements.lightboxTitle.textContent = product.name;
   elements.lightboxPrice.textContent = product.price;
   elements.lightboxCategory.textContent = product.categoryLabel;
@@ -2066,6 +2077,9 @@ function openLightbox(index) {
           e.stopPropagation();
           const targetIdx = parseInt(btn.getAttribute('data-img-index'), 10);
           elements.lightboxImg.src = productImages[targetIdx];
+          elements.lightboxImg.classList.remove('lightbox-img-enter');
+          void elements.lightboxImg.offsetWidth;
+          elements.lightboxImg.classList.add('lightbox-img-enter');
 
           elements.lightboxThumbnails.querySelectorAll('.lightbox-thumb-btn').forEach((b, idx) => {
             if (idx === targetIdx) {
@@ -2111,19 +2125,73 @@ function prevLightboxImage() {
   }
 }
 
-// Toast helper
+// Delightful Sparkle Particle Burst for Interactive Buttons
+function triggerSparkleBurst(x, y) {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const container = document.createElement('div');
+  container.className = 'sparkle-burst-container';
+  container.style.left = `${x != null ? x : window.innerWidth / 2}px`;
+  container.style.top = `${y != null ? y : window.innerHeight / 2}px`;
+  document.body.appendChild(container);
+
+  const colors = ['#B87333', '#DABDA0', '#F5ECE3', '#6E4E37', '#E8D4BF', '#FFA726'];
+  const symbols = ['✦', '✧', '•', '★'];
+
+  for (let i = 0; i < 14; i++) {
+    const p = document.createElement('span');
+    p.className = 'sparkle-burst-particle';
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 35 + Math.random() * 55;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance - 20;
+    const duration = 0.65 + Math.random() * 0.35;
+    const scale = 0.8 + Math.random() * 0.5;
+
+    p.style.setProperty('--dx', `${dx}px`);
+    p.style.setProperty('--dy', `${dy}px`);
+    p.style.setProperty('--scale', scale);
+    p.style.animationDuration = `${duration}s`;
+
+    container.appendChild(p);
+  }
+
+  setTimeout(() => {
+    container.remove();
+  }, 1100);
+}
+
+// Toast helper with countdown progress bar
+let toastTimer = null;
 function showToast(message) {
   if (!elements.toast || !elements.toastMessage) return;
   elements.toastMessage.textContent = message;
+
+  // Reset toast and progress animation
+  elements.toast.classList.remove('show');
+  if (elements.toastProgressBar) {
+    elements.toastProgressBar.style.animation = 'none';
+    void elements.toastProgressBar.offsetWidth;
+    elements.toastProgressBar.style.animation = '';
+  }
+
+  clearTimeout(toastTimer);
+  void elements.toast.offsetWidth;
   elements.toast.classList.add('show');
-  setTimeout(() => {
+
+  toastTimer = setTimeout(() => {
     elements.toast.classList.remove('show');
   }, 2600);
 }
 
 // Inquire / Order via Facebook Messenger
-function handleInquiry() {
+function handleInquiry(e) {
   if (currentLightboxIndex < 0) return;
+  if (e && e.clientX) {
+    triggerSparkleBurst(e.clientX, e.clientY);
+  }
   const product = currentFilteredProducts[currentLightboxIndex];
   const orderMessage = `Hello Frostoria! I would like to inquire about ordering "${product.name}" (${product.flavour}, ${product.size}, ${product.price}).`;
 
@@ -2142,8 +2210,11 @@ function handleInquiry() {
 }
 
 // Copy Product Details to Clipboard
-function copyProductDetails() {
+function copyProductDetails(e) {
   if (currentLightboxIndex < 0) return;
+  if (e && e.clientX) {
+    triggerSparkleBurst(e.clientX, e.clientY);
+  }
   const product = currentFilteredProducts[currentLightboxIndex];
   const text = `Frostoria ("Freshly baked memories.") - ${product.name} | Flavour: ${product.flavour} | Size: ${product.size} | Price: ${product.price}`;
 
@@ -2189,16 +2260,16 @@ function initEventListeners() {
     });
   }
 
-  // Header Filter Bar Toggle
+  // Header Filter Bar Toggle with Smooth Sliding Drawer
   if (elements.filterToggleBtn && elements.searchFilterContainer) {
     elements.filterToggleBtn.addEventListener('click', () => {
-      const isExpanded = !elements.searchFilterContainer.classList.contains('hidden');
+      const isExpanded = elements.searchFilterContainer.classList.contains('open');
       if (isExpanded) {
-        elements.searchFilterContainer.classList.add('hidden');
+        elements.searchFilterContainer.classList.remove('open');
         elements.filterToggleBtn.setAttribute('aria-expanded', 'false');
         elements.filterToggleBtn.classList.remove('bg-caramel-100', 'border-caramel-400');
       } else {
-        elements.searchFilterContainer.classList.remove('hidden');
+        elements.searchFilterContainer.classList.add('open');
         elements.filterToggleBtn.setAttribute('aria-expanded', 'true');
         elements.filterToggleBtn.classList.add('bg-caramel-100', 'border-caramel-400');
         elements.searchInput?.focus();
@@ -2252,11 +2323,40 @@ function initEventListeners() {
   }
 
   if (elements.lightboxInquireBtn) {
-    elements.lightboxInquireBtn.addEventListener('click', handleInquiry);
+    elements.lightboxInquireBtn.addEventListener('click', (e) => handleInquiry(e));
   }
 
   if (elements.lightboxCopyBtn) {
-    elements.lightboxCopyBtn.addEventListener('click', copyProductDetails);
+    elements.lightboxCopyBtn.addEventListener('click', (e) => copyProductDetails(e));
+  }
+
+  // Header Scroll Elevation & Back to Top Visibility
+  const header = document.getElementById('mainHeader') || document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (header) {
+      if (window.scrollY > 20) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    }
+
+    if (elements.backToTopBtn) {
+      if (window.scrollY > 350) {
+        elements.backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+        elements.backToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        elements.backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+        elements.backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
+    }
+  }, { passive: true });
+
+  // Back to Top Click
+  if (elements.backToTopBtn) {
+    elements.backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   // Global Keyboard Shortcuts

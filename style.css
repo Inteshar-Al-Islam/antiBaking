@@ -26,6 +26,13 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Header Scrolled Elevation */
+header.header-scrolled {
+  box-shadow: 0 4px 20px -2px rgba(61, 35, 20, 0.08);
+  border-bottom-color: rgba(223, 212, 199, 0.85);
 }
 
 /* Subtle bakery dashed border effect */
@@ -37,7 +44,161 @@ body {
   border-top: 2px dashed #E5DCD3;
 }
 
-/* Responsive Product Grid: Guarantees at least 2 columns on mobile devices */
+/* Ambient Bakery Glow Orbs in Hero */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(65px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ambient-glow-1 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(232, 212, 191, 0.75) 0%, rgba(244, 234, 223, 0) 70%);
+  top: -20px;
+  left: 15%;
+  animation: floatSlow1 14s ease-in-out infinite alternate;
+}
+
+.ambient-glow-2 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(184, 115, 51, 0.16) 0%, rgba(184, 115, 51, 0) 70%);
+  top: 40px;
+  right: 12%;
+  animation: floatSlow2 16s ease-in-out infinite alternate;
+}
+
+.ambient-glow-3 {
+  width: 230px;
+  height: 230px;
+  background: radial-gradient(circle, rgba(219, 203, 187, 0.45) 0%, rgba(250, 247, 242, 0) 70%);
+  top: 100px;
+  left: 42%;
+  animation: floatSlow3 11s ease-in-out infinite alternate;
+}
+
+@keyframes floatSlow1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(32px, 18px) scale(1.12); }
+}
+
+@keyframes floatSlow2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-28px, -18px) scale(1.08); }
+}
+
+@keyframes floatSlow3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(18px, -24px) scale(1.14); }
+}
+
+/* Floating Bakery Sparkles */
+.floating-sparkle {
+  position: absolute;
+  color: #B87333;
+  opacity: 0.55;
+  animation: sparkleBob 5s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sparkle-left {
+  top: 20%;
+  left: -4%;
+  font-size: 1.15rem;
+  animation-delay: 0s;
+}
+
+.sparkle-right {
+  top: 45%;
+  right: -3%;
+  font-size: 1rem;
+  animation-delay: 1.6s;
+}
+
+.sparkle-top-right {
+  top: 5%;
+  right: 14%;
+  font-size: 0.85rem;
+  animation-delay: 2.7s;
+}
+
+@keyframes sparkleBob {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-9px) rotate(16deg) scale(1.22);
+    opacity: 0.85;
+  }
+}
+
+/* Hero Staggered Entrance Animations */
+.hero-badge-anim {
+  animation: heroFadeInDown 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-title-anim {
+  animation: heroFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+.hero-desc-anim {
+  animation: heroFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.hero-actions-anim {
+  animation: heroFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+.hero-counter-anim {
+  animation: heroFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+@keyframes heroFadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated Artisan Marquee Ticker Ribbon */
+.marquee-wrapper {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Responsive Product Grid */
 #productGrid {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -58,15 +219,31 @@ body {
   }
 }
 
-/* Product Card Transitions */
+/* Product Card Transitions & Staggered Entrance */
 .product-card {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--card-delay, 0ms);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s ease;
+  will-change: transform, box-shadow;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px -8px rgba(61, 35, 20, 0.1), 0 4px 12px -2px rgba(61, 35, 20, 0.05);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 36px -8px rgba(61, 35, 20, 0.14), 0 6px 16px -4px rgba(184, 115, 51, 0.08);
+  border-color: #DABDA0;
 }
 
 .product-image-wrap {
@@ -75,12 +252,37 @@ body {
   background-color: #F5ECE3;
 }
 
+/* Glossy Sheen Sweep Effect on Card Hover */
+.product-image-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 5;
+  transition: left 0s;
+}
+
+.product-card:hover .product-image-wrap::after {
+  left: 170%;
+  transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .product-image {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .product-card:hover .product-image {
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
 .line-clamp-1 {
@@ -117,11 +319,67 @@ body {
   background: #B87333;
 }
 
-/* Lightbox Modal Animation */
+/* Smooth Search & Filter Accordion Drawer */
+#searchFilterContainer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  will-change: max-height, opacity;
+}
+
+#searchFilterContainer.open {
+  max-height: 600px;
+  opacity: 1;
+}
+
+/* Filter Tag Pills Micro-Interactions */
+.filter-pill {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.filter-pill:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 10px rgba(110, 78, 55, 0.08);
+}
+
+.filter-pill:active {
+  transform: scale(0.95);
+}
+
+.filter-pill.active {
+  background-color: #6E4E37;
+  color: #FFFFFF;
+  border-color: #6E4E37;
+  box-shadow: 0 3px 12px rgba(110, 78, 55, 0.32);
+  transform: translateY(-1px);
+}
+
+.flavour-btn.active {
+  background-color: #B87333;
+  color: #FFFFFF;
+  border-color: #B87333;
+  box-shadow: 0 3px 12px rgba(184, 115, 51, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Badge Pop Animation on Filter Updates */
+.badge-pop {
+  animation: badgePopAnim 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes badgePopAnim {
+  0% { transform: scale(0.92); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Lightbox Modal Animation Enhancement */
 .modal-backdrop {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.28s ease, visibility 0.28s ease;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
 }
 
 .modal-backdrop.active {
@@ -131,13 +389,29 @@ body {
 
 .modal-dialog {
   opacity: 0;
-  transform: scale(0.96) translateY(12px);
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.94) translateY(16px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-backdrop.active .modal-dialog {
   opacity: 1;
   transform: scale(1) translateY(0);
+}
+
+/* Image swap cross-fade inside lightbox */
+.lightbox-img-enter {
+  animation: imgFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes imgFadeIn {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Lightbox modal sidebar scrollbar */
@@ -164,25 +438,6 @@ body {
   background: #B87333;
 }
 
-/* Filter Tag Pills */
-.filter-pill {
-  transition: all 0.2s ease;
-}
-
-.filter-pill.active {
-  background-color: #6E4E37;
-  color: #FFFFFF;
-  border-color: #6E4E37;
-  box-shadow: 0 2px 8px rgba(110, 78, 55, 0.3);
-}
-
-.flavour-btn.active {
-  background-color: #B87333;
-  color: #FFFFFF;
-  border-color: #B87333;
-  box-shadow: 0 2px 8px rgba(184, 115, 51, 0.3);
-}
-
 /* Subtle image loading shimmer */
 .img-skeleton {
   background: linear-gradient(90deg, #F5ECE3 0%, #FAF7F2 50%, #F5ECE3 100%);
@@ -199,14 +454,95 @@ body {
   }
 }
 
-/* Subtle Toast Notification */
+/* Subtle Toast Notification with Countdown Progress Bar */
 #toast {
   transform: translateY(100px);
   opacity: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 #toast.show {
   transform: translateY(0);
   opacity: 1;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #B87333, #E8D4BF);
+  width: 100%;
+}
+
+#toast.show .toast-progress {
+  animation: toastCountdown 2.6s linear forwards;
+}
+
+@keyframes toastCountdown {
+  0% { width: 100%; }
+  100% { width: 0%; }
+}
+
+/* Floating Back to Top Button */
+#backToTopBtn {
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+#backToTopBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -3px rgba(61, 35, 20, 0.16);
+}
+
+/* Delightful Click Sparkle Burst */
+.sparkle-burst-container {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.sparkle-burst-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  user-select: none;
+  animation: burstParticle cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes burstParticle {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.4) rotate(0deg);
+  }
+  60% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(var(--scale)) rotate(180deg);
+  }
+}
+
+/* Accessibility: Honor User's Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+  .ambient-glow {
+    animation: none !important;
+  }
+  .floating-sparkle {
+    animation: none !important;
+  }
 }

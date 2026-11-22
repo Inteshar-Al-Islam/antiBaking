@@ -61,12 +61,12 @@
   </script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
   <!-- Top Minimalist Header -->
-  <header class="sticky top-0 z-40 bg-cream-100/90 backdrop-blur-md border-b border-[#EFE8E1] transition-all">
+  <header id="mainHeader" class="sticky top-0 z-40 bg-cream-100/90 backdrop-blur-md border-b border-[#EFE8E1] transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 sm:gap-4">
       
       <!-- Custom Brand Logo & Title -->
@@ -153,7 +153,7 @@
   </header>
 
   <!-- Expandable Minimal Search & Filter Bar -->
-  <section id="searchFilterContainer" class="hidden bg-[#F5ECE3]/70 border-b border-[#E6DDD4] transition-all duration-300">
+  <section id="searchFilterContainer" class="bg-[#F5ECE3]/70 border-b border-[#E6DDD4]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 space-y-3.5">
       
       <!-- Top Row: Search Input & Sort Selector -->
@@ -269,30 +269,42 @@
   <!-- Hero Section -->
   <main class="flex-1 max-w-7xl mx-auto w-full px-3.5 sm:px-6 lg:px-8 py-8 sm:py-14">
     
-    <!-- Hero Text -->
-    <section class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-caramel-100 text-mocha-800 text-xs font-medium mb-4 border border-caramel-200">
+    <!-- Hero Text with Ambient Bakery Glow & Floating Sparkles -->
+    <section class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 relative">
+      <!-- Ambient Glow Orbs in Background -->
+      <div class="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-3xl h-72 overflow-hidden -z-10" aria-hidden="true">
+        <div class="ambient-glow ambient-glow-1"></div>
+        <div class="ambient-glow ambient-glow-2"></div>
+        <div class="ambient-glow ambient-glow-3"></div>
+      </div>
+
+      <!-- Floating Bakery Sparkles -->
+      <span class="floating-sparkle sparkle-left" aria-hidden="true">✦</span>
+      <span class="floating-sparkle sparkle-right" aria-hidden="true">✧</span>
+      <span class="floating-sparkle sparkle-top-right" aria-hidden="true">✦</span>
+
+      <div class="hero-badge-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-caramel-100 text-mocha-800 text-xs font-medium mb-4 border border-caramel-200 shadow-2xs">
         <span class="w-2 h-2 rounded-full bg-caramel-500 animate-pulse"></span>
         <span class="font-serif italic text-mocha-900 font-semibold tracking-wide">"Freshly baked memories."</span>
         <span class="text-caramel-400">•</span>
         <span>100% Handcrafted</span>
       </div>
       
-      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-warm-900 tracking-tight leading-tight">
+      <h2 class="hero-title-anim font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-warm-900 tracking-tight leading-tight">
         Artisan Cake Collection
       </h2>
       
-      <p class="mt-3 sm:mt-4 text-sm sm:text-base text-warm-600 leading-relaxed max-w-xl mx-auto">
+      <p class="hero-desc-anim mt-3 sm:mt-4 text-sm sm:text-base text-warm-600 leading-relaxed max-w-xl mx-auto">
         Handcrafted birthday cakes, floral celebration designs, aesthetic vintage tiers, bespoke theme centerpieces, and freshly baked artisan treats.
       </p>
 
       <!-- Direct Contact & Social Options at the Top -->
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
+      <div class="hero-actions-anim mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
         <a 
           href="https://m.me/delightsbysuraiya" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-mocha-600 hover:bg-mocha-700 text-white text-xs sm:text-sm font-medium shadow-xs transition-all active:scale-95"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-mocha-600 hover:bg-mocha-700 text-white text-xs sm:text-sm font-medium shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
           title="Direct Messenger Chat"
         >
           <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
@@ -305,7 +317,7 @@
           href="https://www.facebook.com/share/1HkyGvf5Se/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-xs sm:text-sm font-medium border border-[#DFD4C7] shadow-xs transition-all active:scale-95"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-xs sm:text-sm font-medium border border-[#DFD4C7] shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
           title="Official Facebook Page"
         >
           <svg class="w-4 h-4 fill-current text-[#1877F2] shrink-0" viewBox="0 0 24 24">
@@ -318,7 +330,7 @@
           href="https://www.instagram.com/frostoria_cakes?obrf=MXB4eWhvaWpqaGlhdg==" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-xs sm:text-sm font-medium border border-[#DFD4C7] shadow-xs transition-all active:scale-95"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-xs sm:text-sm font-medium border border-[#DFD4C7] shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
           title="Official Instagram Profile"
         >
           <svg class="w-4 h-4 fill-current text-[#E4405F] shrink-0" viewBox="0 0 24 24">
@@ -329,12 +341,31 @@
       </div>
 
       <!-- Active Counter Badge -->
-      <div class="mt-5 flex items-center justify-center gap-2 text-xs text-warm-600 font-medium">
-        <span id="itemCount" class="px-3 py-1 bg-cream-50 rounded-full border border-[#E5DCD3]">
+      <div class="hero-counter-anim mt-5 flex items-center justify-center gap-2 text-xs text-warm-600 font-medium">
+        <span id="itemCount" class="px-3.5 py-1 bg-cream-50 rounded-full border border-[#E5DCD3] shadow-2xs">
           Loading cakes...
         </span>
       </div>
     </section>
+
+    <!-- Animated Bakery Features Ticker Ribbon -->
+    <div class="marquee-wrapper mb-8 sm:mb-12 -mx-3.5 sm:mx-0 py-2.5 bg-gradient-to-r from-cream-100 via-caramel-50/70 to-cream-100 border-y border-[#EAE0D5] relative select-none">
+      <div class="marquee-track flex gap-8 whitespace-nowrap text-xs font-serif tracking-wide text-mocha-700">
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> 100% Pure Dairy Butter & Premium Cocoa</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">🌸</span> Intricate Wildflower & Lambeth Artistry</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> Freshly Baked to Order</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">🎂</span> Custom Birthday & Celebration Cakes</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> Direct Consultation via Messenger</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✨</span> "Freshly baked memories."</span>
+
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> 100% Pure Dairy Butter & Premium Cocoa</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">🌸</span> Intricate Wildflower & Lambeth Artistry</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> Freshly Baked to Order</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">🎂</span> Custom Birthday & Celebration Cakes</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✦</span> Direct Consultation via Messenger</span>
+        <span class="inline-flex items-center gap-2"><span class="text-caramel-500">✨</span> "Freshly baked memories."</span>
+      </div>
+    </div>
 
     <!-- Product Showcase Gallery Grid -->
     <section id="gallerySection" aria-label="Product Showcase Gallery">
@@ -537,15 +568,29 @@
     </div>
   </footer>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-warm-900 text-white text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-lg border border-warm-800 flex items-center gap-2 pointer-events-none">
-    <svg class="w-4 h-4 text-caramel-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <!-- Floating Back-to-Top Button -->
+  <button 
+    id="backToTopBtn" 
+    type="button" 
+    aria-label="Back to top" 
+    title="Back to top" 
+    class="fixed bottom-6 right-6 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-mocha-700 hover:text-caramel-600 shadow-md hover:shadow-lg border border-[#E5DCD3] flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer backdrop-blur-xs group"
+  >
+    <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- Toast Notification with Progress Bar -->
+  <div id="toast" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-warm-900 text-white text-xs sm:text-sm px-4 py-3 rounded-xl shadow-xl border border-warm-800 flex items-center gap-2.5 pointer-events-none overflow-hidden">
+    <svg class="w-4 h-4 text-caramel-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
     </svg>
     <span id="toastMessage">Cake details copied!</span>
+    <div id="toastProgressBar" class="toast-progress"></div>
   </div>
 
   <!-- Application Script -->
-  <script src="app.js?v=22" defer></script>
+  <script src="app.js?v=23" defer></script>
 </body>
 </html>
