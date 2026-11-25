@@ -373,7 +373,7 @@
         </div>
         <h3 class="font-serif text-xl font-medium text-warm-800">No cakes found</h3>
         <p class="text-sm text-warm-600 mt-1 max-w-xs mx-auto">Try searching with different keywords or reset your category filters.</p>
-        <button onclick="document.getElementById('clearSearchBtn').click();" class="mt-4 px-4 py-2 text-xs font-medium text-mocha-700 bg-caramel-100 hover:bg-caramel-200 rounded-full transition-colors">
+        <button id="resetFiltersBtn" type="button" class="mt-4 px-4 py-2 text-xs font-medium text-mocha-700 bg-caramel-100 hover:bg-caramel-200 rounded-full transition-colors cursor-pointer">
           Reset Filters
         </button>
       </div>
@@ -580,7 +580,7 @@
     <div id="toastProgressBar" class="toast-progress"></div>
   </div>
 
-  <!-- Application Script -->
-  <script src="app.js?v=29" defer></script>
+  <!-- Application Entry Module -->
+  <script type="module" src="js/main.js?v=1"></script>
 </body>
 </html>
