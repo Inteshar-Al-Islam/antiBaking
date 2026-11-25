@@ -13,7 +13,10 @@ Live site: [https://frostoria.vercel.app](https://frostoria.vercel.app)
 ```text
 antiBaking/
 ├── index.html          # Page layout, filter drawer, gallery container, and lightbox modal
+├── input.css           # Tailwind CSS v4 source entry and custom bakery theme tokens
+├── output.css          # Precompiled minified Tailwind CSS (generated via npm run build:css)
 ├── style.css           # Custom bakery styling, animations, and modal/grid layout
+├── package.json        # Dev dependencies and Tailwind CLI build script
 ├── products.json       # Structured product catalog (all cakes & treats)
 ├── logo.jpg            # Brand logo and favicon
 ├── js/
@@ -52,6 +55,15 @@ npx serve .
 ```
 
 Then open [http://localhost:8000](http://localhost:8000) (or the port printed by `serve`) in your browser. You can also use the **Live Server** extension in VS Code.
+
+### Rebuilding Tailwind CSS
+
+If you add or change Tailwind utility classes in `index.html` or `js/*.js`, recompile `output.css`:
+
+```bash
+npm install
+npm run build:css
+```
 
 ---
 
