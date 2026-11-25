@@ -1,2 +1,19 @@
+# Vercel & Environment
 .vercel
 .env*
+
+# OS Clutter
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor & IDE Folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs & Dependencies
+*.log
+node_modules/
