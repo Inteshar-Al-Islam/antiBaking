@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 
   <!-- Compiled Tailwind CSS & Custom CSS -->
-  <link rel="stylesheet" href="output.css?v=1">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="output.css?v=2">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
@@ -336,19 +336,19 @@
   </main>
 
   <!-- Lightbox / Image Detail Modal -->
-  <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+  <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxTitle">
     
     <!-- Background Dim Overlay -->
     <div id="lightboxBackdrop" class="absolute inset-0 bg-[#1F1815]/75 backdrop-blur-sm cursor-pointer"></div>
 
     <!-- Modal Dialog Content Box -->
-    <div class="modal-dialog relative w-full max-w-3xl md:max-w-4xl lg:max-w-[920px] bg-white rounded-3xl shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row md:h-[600px] lg:h-[620px] max-h-[90vh] overflow-y-auto md:overflow-hidden overscroll-contain">
+    <div tabindex="-1" class="modal-dialog relative w-full max-w-3xl md:max-w-4xl lg:max-w-[920px] bg-white rounded-3xl shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row md:h-[600px] lg:h-[620px] max-h-[90vh] overflow-y-auto md:overflow-hidden overscroll-contain focus:outline-hidden">
       
       <!-- Close Button -->
       <button 
         id="lightboxClose" 
         type="button" 
-        class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-all backdrop-blur-xs cursor-pointer"
+        class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition backdrop-blur-xs cursor-pointer"
         aria-label="Close modal"
       >
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -370,7 +370,7 @@
         <button 
           id="lightboxPrev" 
           type="button" 
-          class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition-all cursor-pointer"
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition cursor-pointer"
           aria-label="Previous cake"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -381,7 +381,7 @@
         <button 
           id="lightboxNext" 
           type="button" 
-          class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition-all cursor-pointer"
+          class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-warm-900 shadow-md flex items-center justify-center transition cursor-pointer"
           aria-label="Next cake"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -534,6 +534,6 @@
   </div>
 
   <!-- Application Entry Module -->
-  <script type="module" src="js/main.js?v=1"></script>
+  <script type="module" src="js/main.js?v=3"></script>
 </body>
 </html>

@@ -403,7 +403,7 @@ header.header-scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.28s ease, visibility 0.28s ease;
+  transition: opacity 0.28s ease, visibility 0s linear 0.28s;
   overscroll-behavior: contain;
 }
 
@@ -411,6 +411,7 @@ header.header-scrolled {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
+  transition: opacity 0.28s ease, visibility 0s linear 0s;
 }
 
 .modal-dialog {
