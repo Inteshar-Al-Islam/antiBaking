@@ -7,7 +7,7 @@
     "flavor": "Chocolate",
     "size": "2.5 Pound",
     "price": 2000,
-    "imagePath": "images/floral/enchanted-floral-storybook-cake.jpg",
+    "imagePath": "images/floral/enchanted-floral-storybook-cake.webp",
     "details": "Meticulously carved to resemble an antique open book adorned with cascading wildflowers and gilded page trims. A majestic 2.5-pound chocolate masterpiece created for weddings, convocations, and milestone chapters."
   },
   {
@@ -18,7 +18,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/theme/emerald-moon-and-golden-butterfly-cake.jpg",
+    "imagePath": "images/theme/emerald-moon-and-golden-butterfly-cake.webp",
     "details": "A sculptural 3D crescent moon in delicate pistachio green, graced by an oversized hand-textured emerald butterfly, soft garden roses, and wild florets. Layered with rich chocolate truffle sponge and bathed in natural sunlight elegance."
   },
   {
@@ -29,7 +29,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/soft-pink-and-white-lambeth-vintage-cake.jpg",
+    "imagePath": "images/aesthetic/soft-pink-and-white-lambeth-vintage-cake.webp",
     "details": "Ornate Victorian Lambeth piping with intricate shell garlands, ruffles, and soft blush buttercream accents. Inside, moist chocolate truffle sponge layers ensure deep chocolate decadence."
   },
   {
@@ -40,7 +40,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/pink-drip-pookie-vintage-cake.jpg",
+    "imagePath": "images/aesthetic/pink-drip-pookie-vintage-cake.webp",
     "details": "Trending aesthetic Korean-style cake featuring luscious pink chocolate drip, vintage shell borders, and playful retro lettering. Rich cocoa sponge layers inside make it as delicious to eat as it is to photograph."
   },
   {
@@ -51,7 +51,7 @@
     "flavor": "Butterscotch",
     "size": "1.5 Pound",
     "price": 1500,
-    "imagePath": "images/floral/wildflower-meadow-blossom-cake.jpg",
+    "imagePath": "images/floral/wildflower-meadow-blossom-cake.webp",
     "details": "An abundant tapestry of multicolored butter blossoms densely piped across the top in breathtaking harmony. Paired with aromatic butterscotch crunch sponge and golden brown sugar buttercream."
   },
   {
@@ -62,7 +62,7 @@
     "flavor": "Black Forest",
     "size": "1 Pound (Two Tier)",
     "price": 1000,
-    "imagePath": "images/aesthetic/two-tier-cherry-vintage-cake.jpg",
+    "imagePath": "images/aesthetic/two-tier-cherry-vintage-cake.webp",
     "details": "Two-tier vintage piped cake crowned with bright ruby maraschino cherries, scalloped borders, and delicate frills. Authentic Black Forest sponge soaked in cherry syrup with whipped cream layers."
   },
   {
@@ -73,7 +73,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/black-bow-coquette-ribbon-cake.jpg",
+    "imagePath": "images/birthday/black-bow-coquette-ribbon-cake.webp",
     "details": "A chic minimalist celebration cake featuring hand-tied noir ribbon bows gracefully draped across silky ivory frosting. Inside, moist chocolate sponge layers are generously filled with smooth chocolate buttercream."
   },
   {
@@ -84,7 +84,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 2200,
-    "imagePath": "images/theme/raiden-shogun-anime-buttercream-portrait-cake.jpg",
+    "imagePath": "images/theme/raiden-shogun-anime-buttercream-portrait-cake.webp",
     "details": "A masterwork of freehand buttercream portraiture depicting Genshin's Raiden Shogun with her electro blade and braided hair. Sized at 2 pounds with double chocolate truffle layers, an unforgettable centerpiece for anime lovers."
   },
   {
@@ -95,7 +95,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/theme/bookworm-doll-and-library-cake.jpg",
+    "imagePath": "images/theme/bookworm-doll-and-library-cake.webp",
     "details": "Delightful illustration of an avid reader doll surrounded by miniature stacked books and a warm tea mug. Layered with tender chocolate sponge and silky cocoa frosting for passionate readers."
   },
   {
@@ -106,7 +106,7 @@
     "flavor": "Strawberry",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/aesthetic/watermelon-cat-kawaii-cake.jpg",
+    "imagePath": "images/aesthetic/watermelon-cat-kawaii-cake.webp",
     "details": "An adorable pastel illustration of a sleepy kitten cuddled up with a juicy slice of ripe watermelon. Fluffy strawberry sponge layered with strawberry fruit compote and light vanilla cream."
   },
   {
@@ -117,7 +117,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1500,
-    "imagePath": "images/theme/starry-night-celestial-moon-and-sun-cake.jpg",
+    "imagePath": "images/theme/starry-night-celestial-moon-and-sun-cake.webp",
     "details": "Swirling blues and yellows inspired by Van Gogh's masterpiece, uniting celestial sun and crescent moon motifs. Moist chocolate sponge layers filled with whipped chocolate cream for lovers of cosmic art."
   },
   {
@@ -128,7 +128,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/special-occasion/kath-golap-and-morning-cha-cake.jpg",
+    "imagePath": "images/special-occasion/kath-golap-and-morning-cha-cake.webp",
     "details": "A poetic Bengali homage featuring hand-painted fragrant Kath Golap (Plumeria) blossoms beside a steaming cup of tea. Moist chocolate sponge with silky chocolate cream, evoking cozy rainy day addas."
   },
   {
@@ -139,7 +139,7 @@
     "flavor": "Strawberry",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/aesthetic/dainty-ribbon-bow-strawberry-cake.jpg",
+    "imagePath": "images/aesthetic/dainty-ribbon-bow-strawberry-cake.webp",
     "details": "A pristine minimalist cake crowned with a single handcrafted pink ribbon bow and delicate pearl shell border. Soft strawberry chiffon sponge layered with strawberry compote and whipped cream."
   },
   {
@@ -150,7 +150,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/architectural-top-forward-arch-cake.jpg",
+    "imagePath": "images/birthday/architectural-top-forward-arch-cake.webp",
     "details": "Modern sculptural cake standing vertically on its edge with a stunning floral archway showcased front and center. Packed with moist chocolate sponge and ganache, offering a striking profile from every angle."
   },
   {
@@ -161,7 +161,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1800,
-    "imagePath": "images/special-occasion/bengali-pitha-utshob-celebration-cake.jpg",
+    "imagePath": "images/special-occasion/bengali-pitha-utshob-celebration-cake.webp",
     "details": "A unique cultural centerpiece celebrating winter Pitha festivals with sculpted edible sweets atop an artisan tier. Grand 2-pound size baked with dark chocolate sponge and rich cocoa filling for family feasts."
   },
   {
@@ -172,7 +172,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/birthday/cuddly-teddy-bear-birthday-cake.jpg",
+    "imagePath": "images/birthday/cuddly-teddy-bear-birthday-cake.webp",
     "details": "Heartwarming three-dimensional teddy bear piped in textured buttercream with tiny celebration party hat accents. Built on 1.5 pounds of moist chocolate fudge sponge, guaranteed to be adored by toddlers."
   },
   {
@@ -183,7 +183,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1500,
-    "imagePath": "images/floral/royal-orchid-and-salted-caramel-cake.jpg",
+    "imagePath": "images/floral/royal-orchid-and-salted-caramel-cake.webp",
     "details": "Featuring graceful hand-sculpted orchid petals resting against a softly textured ivory tier. Infused with rich cocoa sponge and house-made salted caramel filling for an exquisite harmony of flavors."
   },
   {
@@ -194,7 +194,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1500,
-    "imagePath": "images/theme/traditional-mukhe-bhaat-ceremony-cake.jpg",
+    "imagePath": "images/theme/traditional-mukhe-bhaat-ceremony-cake.webp",
     "details": "Special cultural celebration cake commemorating baby's first rice ceremony, decorated with sacred alpana motifs. Moist chocolate sponge with rich chocolate buttercream to mark this auspicious milestone."
   },
   {
@@ -205,7 +205,7 @@
     "flavor": "Lemon",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/bright-sunflower-sunshine-cake.jpg",
+    "imagePath": "images/birthday/bright-sunflower-sunshine-cake.webp",
     "details": "Radiant golden sunflower petals piped with dark chocolate seed centers, bringing vibrant warmth to the table. Baked with fresh lemon zest infused sponge layered with silky citrus buttercream."
   },
   {
@@ -216,7 +216,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1600,
-    "imagePath": "images/special-occasion/heartbeat-scarlet-romance-cake.jpg",
+    "imagePath": "images/special-occasion/heartbeat-scarlet-romance-cake.webp",
     "details": "A vibrant crimson heart framed by elegant pearl borders and passionate anniversary accents. Substantial 2-pound capacity with dark chocolate ganache and cocoa sponge, ideal for proposals and anniversaries."
   },
   {
@@ -227,7 +227,7 @@
     "flavor": "Chocolate",
     "size": "Freshly Baked",
     "price": 80,
-    "imagePath": "images/cookies/brown-button-chocolate-chip-cookies.jpg",
+    "imagePath": "images/cookies/brown-button-chocolate-chip-cookies.webp",
     "details": "Freshly baked to golden perfection using browned French dairy butter and overflowing with decadent Belgian chocolate buttons. Crisp caramelized edges give way to a chewy, melt-in-your-mouth center."
   },
   {
@@ -238,7 +238,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/artisan-oil-painting-canvas-cake.jpg",
+    "imagePath": "images/birthday/artisan-oil-painting-canvas-cake.webp",
     "details": "Designed like an impressionist fine art canvas with textured palette knife strokes in serene pastel shades. Decadent cocoa sponge layered with whipped chocolate cream makes this as delightful to eat as it is to admire."
   },
   {
@@ -249,7 +249,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/birthday/cars-and-fluffy-clouds-birthday-cake.jpg",
+    "imagePath": "images/birthday/cars-and-fluffy-clouds-birthday-cake.webp",
     "details": "Fluffy hand-piped buttercream clouds drifting against gentle blue skies with vibrant sports cars cruising along the base. Generously sized at 1.5 pounds with moist chocolate cake layers that kids and parents will love."
   },
   {
@@ -260,7 +260,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/cool-guy-in-sunglasses-cake.jpg",
+    "imagePath": "images/birthday/cool-guy-in-sunglasses-cake.webp",
     "details": "Radiates effortless swagger with an expressive illustrated cartoon dude rocking dark shades. Layered with soft chocolate sponge and luscious chocolate buttercream, perfect for best friends and brothers."
   },
   {
@@ -271,7 +271,7 @@
     "flavor": "Vanilla",
     "size": "1.5 Pound",
     "price": 1100,
-    "imagePath": "images/birthday/colourful-floral-moon-cake-azure-blue.jpg",
+    "imagePath": "images/birthday/colourful-floral-moon-cake-azure-blue.webp",
     "details": "A celestial crescent garland of delicate baby blue, lilac, and buttercup blossoms encircling half the cake. Baked with fragrant vanilla bean sponge and velvety vanilla cream frosting for a light, dreamy bite."
   },
   {
@@ -282,7 +282,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1300,
-    "imagePath": "images/birthday/colourful-floral-moon-cake-blush-pink.jpg",
+    "imagePath": "images/birthday/colourful-floral-moon-cake-blush-pink.webp",
     "details": "Romantic crescent arrangement of hand-piped pink rosettes, buds, and delicate foliage curving across the surface. Underneath is a rich chocolate sponge brushed with cocoa syrup and layered with chocolate ganache."
   },
   {
@@ -293,7 +293,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/freehand-vintage-car-sketch-cake.jpg",
+    "imagePath": "images/birthday/freehand-vintage-car-sketch-cake.webp",
     "details": "Showcasing bespoke freehand automobile line art sketched directly in chocolate buttercream over a silky cream canvas. Tender chocolate sponge layers make it an unforgettable tribute for car enthusiasts."
   },
   {
@@ -304,7 +304,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/friendly-green-dragon-birthday-cake.jpg",
+    "imagePath": "images/birthday/friendly-green-dragon-birthday-cake.webp",
     "details": "An adorable piped green dragon complete with cute scales, playful horns, and friendly cartoon eyes. Soft chocolate cake crumb layered with light cocoa frosting makes this a fantasy treat for birthday boys and girls."
   },
   {
@@ -315,7 +315,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/warm-embrace-holding-cake.jpg",
+    "imagePath": "images/birthday/warm-embrace-holding-cake.webp",
     "details": "Artistic minimalist line drawing of hands gently cradling a birthday cake with an emotional warmth that speaks for itself. Layered with moist chocolate sponge and silky smooth buttercream."
   },
   {
@@ -326,7 +326,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/citrus-zest-and-botanical-green-cake.jpg",
+    "imagePath": "images/birthday/citrus-zest-and-botanical-green-cake.webp",
     "details": "Earthy sage greens meet bright lemon-yellow palette strokes for a breezy, contemporary garden vibe. Filled with luscious chocolate sponge and smooth buttercream for rich cocoa satisfaction."
   },
   {
@@ -337,7 +337,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1700,
-    "imagePath": "images/birthday/flying-with-balloons-storybook-cake.jpg",
+    "imagePath": "images/birthday/flying-with-balloons-storybook-cake.webp",
     "details": "A dreamy storybook illustration of young girls lifted high by a colorful cluster of floating balloons. Sized at a grand 2 pounds with double chocolate sponge layers, crafted for memorable family gatherings."
   },
   {
@@ -348,7 +348,7 @@
     "flavor": "Vanilla",
     "size": "1 Pound",
     "price": 700,
-    "imagePath": "images/birthday/petite-red-beetle-birthday-cake.jpg",
+    "imagePath": "images/birthday/petite-red-beetle-birthday-cake.webp",
     "details": "Cute cartoon red car merrily cruising across sweet snowy vanilla frosting with tiny piped road accents. Fluffy, melt-in-your-mouth vanilla chiffon sponge layered with whipped dairy cream."
   },
   {
@@ -359,7 +359,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/mini-white-daisy-meadow-cake.jpg",
+    "imagePath": "images/birthday/mini-white-daisy-meadow-cake.webp",
     "details": "Sprinkled with delicate white daisy florets and golden pistil centers over smooth bakery frosting. The moist chocolate sponge core is paired with cocoa filling for an effortless, charming birthday cake."
   },
   {
@@ -370,7 +370,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/birthday/midnight-skies-and-dream-clouds-cake.jpg",
+    "imagePath": "images/birthday/midnight-skies-and-dream-clouds-cake.webp",
     "details": "Atmospheric midnight navy shades blended with sculpted white cumulus clouds and starlight gold flecks. Built with 1.5 pounds of dark chocolate sponge and rich cocoa ganache for late-night celebrations."
   },
   {
@@ -381,7 +381,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/birthday/olive-wreath-botanical-cake.jpg",
+    "imagePath": "images/birthday/olive-wreath-botanical-cake.webp",
     "details": "Subtle olive and eucalyptus greens arranged in textured palette-knife florals with delicate cream highlights. Beneath its organic aesthetic lies deep chocolate sponge layered with smooth chocolate frosting."
   },
   {
@@ -392,7 +392,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/pink-ribbon-coquette-birthday-cake.jpg",
+    "imagePath": "images/birthday/pink-ribbon-coquette-birthday-cake.webp",
     "details": "Delicate pastel pink sugar ribbons draped gracefully across the top with vintage beaded shell borders. Tender chocolate sponge filled with velvety chocolate cream makes this a birthday favorite."
   },
   {
@@ -403,7 +403,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/pink-butterfly-whimsy-cake.jpg",
+    "imagePath": "images/birthday/pink-butterfly-whimsy-cake.webp",
     "details": "Lifelike sugarcraft pink butterflies resting upon creamy rosettes and shimmering candy pearls. Rich chocolate sponge and smooth buttercream provide a heavenly melt-in-the-mouth texture."
   },
   {
@@ -414,7 +414,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/crimson-and-ivory-palette-knife-cake.jpg",
+    "imagePath": "images/birthday/crimson-and-ivory-palette-knife-cake.webp",
     "details": "Bold crimson red and pure white painterly strokes swept across a silky smooth backdrop like modern gallery art. Filled with moist chocolate sponge and rich cocoa cream for refined birthday indulgence."
   },
   {
@@ -425,7 +425,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/vintage-red-bicycle-cake.jpg",
+    "imagePath": "images/birthday/vintage-red-bicycle-cake.webp",
     "details": "A nostalgic retro red cruiser bicycle hand-piped with charming basket details over smooth ivory frosting. Moist chocolate cake inside offers comforting cocoa richness for bike lovers of all ages."
   },
   {
@@ -436,7 +436,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/scarlet-ribbon-bow-celebration-cake.jpg",
+    "imagePath": "images/birthday/scarlet-ribbon-bow-celebration-cake.webp",
     "details": "Striking scarlet red ribbons hand-tied over snowy ruffled buttercream borders for high-contrast drama. Delicious chocolate sponge layered with cocoa ganache ensures every slice is rich and memorable."
   },
   {
@@ -447,7 +447,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/english-rose-garden-birthday-cake.jpg",
+    "imagePath": "images/birthday/english-rose-garden-birthday-cake.webp",
     "details": "Blooming hand-piped pink and crimson English roses nestled atop delicately textured buttercream swirls. Features decadent chocolate sponge with chocolate cream that melts luxuriously on the palate."
   },
   {
@@ -458,7 +458,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/floral/pink-floral-and-butterfly-dream-cake.jpg",
+    "imagePath": "images/floral/pink-floral-and-butterfly-dream-cake.webp",
     "details": "Lush blush-pink piped florals paired with a shimmering sugar butterfly alighting on a pristine cream tier. Light chocolate sponge layered with smooth chocolate frosting creates an irresistible slice."
   },
   {
@@ -469,7 +469,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/floral/tiny-pink-blossom-garland-cake.jpg",
+    "imagePath": "images/floral/tiny-pink-blossom-garland-cake.webp",
     "details": "A tender wreath of miniature pink florets and soft green sprigs encircling the rim of a silky frosted cake. Fluffy chocolate sponge inside keeps each forkful moist, light, and wonderfully satisfying."
   },
   {
@@ -480,7 +480,7 @@
     "flavor": "Butterscotch",
     "size": "1 Pound (Two Tier)",
     "price": 900,
-    "imagePath": "images/floral/two-tier-petite-butterscotch-floral-cake.jpg",
+    "imagePath": "images/floral/two-tier-petite-butterscotch-floral-cake.webp",
     "details": "An exquisite stacked two-tier miniature cake embellished with delicate floral piping and golden sugar beads. Layered with butterscotch praline sponge, bringing grand tiered elegance to smaller celebrations."
   },
   {
@@ -491,7 +491,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/funny/playful-emoji-meme-bento-cake.jpg",
+    "imagePath": "images/funny/playful-emoji-meme-bento-cake.webp",
     "details": "A witty, lighthearted cake featuring a hilarious meme expression that breaks the ice at any birthday party. Underneath the comedy is moist chocolate sponge with cocoa frosting, delivering top-tier laughter and taste."
   },
   {
@@ -502,7 +502,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/funny/derpy-smile-celebration-meme-cake.jpg",
+    "imagePath": "images/funny/derpy-smile-celebration-meme-cake.webp",
     "details": "Hilariously goofy smiling character drawn in expressive black buttercream on a bright pastel background. Baked with rich dark chocolate sponge and smooth buttercream filling for guaranteed laughs."
   },
   {
@@ -513,7 +513,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/funny/silly-face-expression-bento-cake.jpg",
+    "imagePath": "images/funny/silly-face-expression-bento-cake.webp",
     "details": "An unforgettable hand-piped silly cartoon face designed to have everyone laughing and snapping photos instantly. Delicious chocolate sponge layered with smooth chocolate ganache ensures the cake tastes as great as it looks."
   },
   {
@@ -524,7 +524,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/aesthetic/sculpted-floral-bouquet-gift-cake.jpg",
+    "imagePath": "images/aesthetic/sculpted-floral-bouquet-gift-cake.webp",
     "details": "Artfully sculpted to look like a fresh posy of hand-tied flowers wrapped in bakery parchment with blooming buds. Filled with luscious chocolate sponge and chocolate buttercream, doubling as flowers and dessert."
   },
   {
@@ -535,7 +535,7 @@
     "flavor": "Chocolate",
     "size": "Mini Cake",
     "price": 150,
-    "imagePath": "images/aesthetic/melting-ice-cream-cone-bento-mini.jpg",
+    "imagePath": "images/aesthetic/melting-ice-cream-cone-bento-mini.webp",
     "details": "An adorable mini bento treat topped with an inverted waffle cone and dripping chocolate ice cream illusion. Perfect for single servings or cute party favors, packed with rich chocolate sponge."
   },
   {
@@ -546,7 +546,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/oval-rose-wreath-aesthetic-cake.jpg",
+    "imagePath": "images/aesthetic/oval-rose-wreath-aesthetic-cake.webp",
     "details": "An elegant oval silhouette framed with a delicate wreath of hand-piped blush and ivory rose blossoms. Soft chocolate velvet sponge with whipped cocoa cream provides a sophisticated dessert experience."
   },
   {
@@ -557,7 +557,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/aesthetic/ruby-velvet-bow-aesthetic-cake.jpg",
+    "imagePath": "images/aesthetic/ruby-velvet-bow-aesthetic-cake.webp",
     "details": "Pure minimalist elegance featuring an understated snowy white tier accented by a single sculpted scarlet ribbon bow. Rich dark chocolate sponge inside gives an intense, luxurious cocoa note."
   },
   {
@@ -568,7 +568,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/petite-posy-wildflower-cake.jpg",
+    "imagePath": "images/aesthetic/petite-posy-wildflower-cake.webp",
     "details": "A sweet, gentle design showcasing a tiny hand-piped bundle of pastel meadow flowers bound by sugar twine. Moist chocolate sponge with whipped chocolate buttercream provides quiet, refined luxury."
   },
   {
@@ -579,7 +579,7 @@
     "flavor": "Orange",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/aesthetic/vintage-orange-blossom-cake.jpg",
+    "imagePath": "images/aesthetic/vintage-orange-blossom-cake.webp",
     "details": "Detailed retro piping in warm apricot and cream tones with botanical scrollwork reminiscent of antique teaware. Aromatic orange sponge infused with citrus syrup and layered with orange cream."
   },
   {
@@ -590,7 +590,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/periwinkle-blue-vintage-cake.jpg",
+    "imagePath": "images/aesthetic/periwinkle-blue-vintage-cake.webp",
     "details": "Finished in dreamy powder blue with intricate French piping swags, shell frills, and delicate pearl drops. Rich chocolate sponge layered with cocoa ganache gives a delicious contrast to the cool exterior."
   },
   {
@@ -601,7 +601,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1400,
-    "imagePath": "images/aesthetic/grand-victorian-ruffled-vintage-cake.jpg",
+    "imagePath": "images/aesthetic/grand-victorian-ruffled-vintage-cake.webp",
     "details": "Heavily draped in elaborate Victorian piping swags, shell cornices, and elegant scrolled garlands. Sized at 1.5 pounds with dense chocolate cake layers, embodying timeless vintage romance."
   },
   {
@@ -612,7 +612,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/special-occasion/regal-black-and-white-tiara-crown-cake.jpg",
+    "imagePath": "images/special-occasion/regal-black-and-white-tiara-crown-cake.webp",
     "details": "Crowned with a sparkling tiara against a monochromatic backdrop of dramatic black and ivory piping. Built with 1.5 pounds of moist chocolate fudge cake, fitting for kings, queens, and milestone birthdays."
   },
   {
@@ -623,7 +623,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/theme/dhaka-to-kuala-lumpur-farewell-cake.jpg",
+    "imagePath": "images/theme/dhaka-to-kuala-lumpur-farewell-cake.webp",
     "details": "An emotional long-distance departure cake mapping a scenic flight trail from Bangladesh to Malaysia. Filled with rich chocolate sponge and cocoa cream to sweeten bittersweet farewells."
   },
   {
@@ -634,7 +634,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1100,
-    "imagePath": "images/theme/blackpink-born-pink-k-pop-theme-cake.jpg",
+    "imagePath": "images/theme/blackpink-born-pink-k-pop-theme-cake.webp",
     "details": "Bold dark chocolate frosting paired with vibrant pink drip and signature K-Pop styling for true BLINKs. Layers of dark chocolate sponge with berry-infused chocolate filling."
   },
   {
@@ -645,7 +645,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1200,
-    "imagePath": "images/theme/midnight-witch-and-potion-bottle-cake.jpg",
+    "imagePath": "images/theme/midnight-witch-and-potion-bottle-cake.webp",
     "details": "Gothic fantasy artwork depicting a stylish witch brewing starry magical potions under moonlight. Moist cocoa sponge layered with rich dark chocolate ganache for bewitching celebrations."
   },
   {
@@ -656,7 +656,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1800,
-    "imagePath": "images/theme/football-championship-match-day-cake.jpg",
+    "imagePath": "images/theme/football-championship-match-day-cake.webp",
     "details": "Vibrant emerald grass turf piping complete with goal lines, football details, and victory crests. Substantial 2-pound double chocolate mud cake to fuel the entire squad on match day."
   },
   {
@@ -667,7 +667,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/theme/pastel-balloon-dreams-cake.jpg",
+    "imagePath": "images/theme/pastel-balloon-dreams-cake.webp",
     "details": "Gentle illustration of young girls carried away by a giant bunch of shimmering pastel balloons. Soft chocolate sponge layers with whipped chocolate buttercream to celebrate youthful dreams."
   },
   {
@@ -678,7 +678,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 2000,
-    "imagePath": "images/theme/convocation-honors-graduation-mud-cake.jpg",
+    "imagePath": "images/theme/convocation-honors-graduation-mud-cake.webp",
     "details": "Topped with an elegant handcrafted graduation cap, golden tassel, and rolled certificate scroll. Rich, dense chocolate mud cake with fudgy ganache, crafted for convocation triumphs."
   },
   {
@@ -689,7 +689,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/theme/baby-girls-pink-shoes-keepsake-cake.jpg",
+    "imagePath": "images/theme/baby-girls-pink-shoes-keepsake-cake.webp",
     "details": "Sweetly piped pair of tiny pink baby shoes with delicate ribbon bows and floral borders. Soft chocolate sponge layered with smooth chocolate frosting, perfect for first birthdays and baby showers."
   },
   {
@@ -700,7 +700,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/theme/five-little-yellow-ducklings-cake.jpg",
+    "imagePath": "images/theme/five-little-yellow-ducklings-cake.webp",
     "details": "Five cheerful sunny-yellow ducklings swimming peacefully along a bright blue ripple-textured pond. Moist chocolate sponge with milk chocolate buttercream, guaranteed to delight little toddlers."
   },
   {
@@ -711,7 +711,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1500,
-    "imagePath": "images/theme/pubg-battleground-gaming-cake.jpg",
+    "imagePath": "images/theme/pubg-battleground-gaming-cake.webp",
     "details": "Action-packed gaming cake featuring iconic PUBG airdrop crate, helmet details, and battleground motifs. Packed with dense chocolate truffle cake and rich ganache to celebrate game night victories."
   },
   {
@@ -722,7 +722,7 @@
     "flavor": "Vanilla",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/theme/tropical-sea-beach-and-sandy-shores-cake.jpg",
+    "imagePath": "images/theme/tropical-sea-beach-and-sandy-shores-cake.webp",
     "details": "Piped turquoise ocean waves crashing onto realistic biscuit 'sand' with tiny seashells and beach parasols. Fluffy vanilla sponge soaked in light vanilla syrup and filled with whipped fresh cream."
   },
   {
@@ -733,7 +733,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1700,
-    "imagePath": "images/theme/vintage-sewing-machine-artisan-cake.jpg",
+    "imagePath": "images/theme/vintage-sewing-machine-artisan-cake.webp",
     "details": "Handcrafted tribute featuring a vintage Singer-style sewing machine with spool, needle, and stitched measuring tape details. Substantial 2-pound chocolate sponge with velvety ganache, honoring gifted creators."
   },
   {
@@ -744,7 +744,7 @@
     "flavor": "Black Forest",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/theme/fresh-strawberry-and-black-forest-gateau.jpg",
+    "imagePath": "images/theme/fresh-strawberry-and-black-forest-gateau.webp",
     "details": "Dark cocoa sponge infused with sour cherry syrup, crowned with fresh crimson strawberries and dark chocolate curls. Light whipped cream frosting provides the classic balance to deep chocolate sponge."
   },
   {
@@ -755,7 +755,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1200,
-    "imagePath": "images/theme/the-holy-and-the-hole-custom-concept-cake.jpg",
+    "imagePath": "images/theme/the-holy-and-the-hole-custom-concept-cake.webp",
     "details": "A bold conceptual centerpiece designed with sculptural hollowed geometry and mystical golden halo accents. Rich Belgian chocolate sponge layered with smooth chocolate ganache, crafted for truly bespoke themed celebrations."
   },
   {
@@ -766,7 +766,7 @@
     "flavor": "Classic Espresso",
     "size": "250g Box",
     "price": null,
-    "imagePath": "images/cookies/classic-italian-espresso-tiramisu.jpg",
+    "imagePath": "images/cookies/classic-italian-espresso-tiramisu.webp",
     "details": "Traditional Italian dessert crafted with authentic espresso-soaked Savoiardi ladyfingers, velvety mascarpone cream, and a generous dusting of rich Belgian cocoa powder."
   },
   {
@@ -777,7 +777,7 @@
     "flavor": "Pistachio",
     "size": "250g Box",
     "price": null,
-    "imagePath": "images/cookies/royal-pistachio-tiramisu-box.jpg",
+    "imagePath": "images/cookies/royal-pistachio-tiramisu-box.webp",
     "details": "Luxurious fusion tiramisu layered with handcrafted Sicilian pistachio paste, whipped mascarpone cream, espresso sponge, and topped with crushed roasted green pistachios."
   },
   {
@@ -788,7 +788,7 @@
     "flavor": "Lemon",
     "size": "400g Box",
     "price": null,
-    "imagePath": "images/cheesecake/lemon-and-strawberry-swirl-cheesecake.jpg",
+    "imagePath": "images/cheesecake/lemon-and-strawberry-swirl-cheesecake.webp",
     "details": "Silky baked cream cheese infused with zesty lemon curd and swirled with fresh homemade strawberry fruit compote atop a buttery biscuit crust."
   },
   {
@@ -799,7 +799,7 @@
     "flavor": "Strawberry",
     "size": "1 Roll",
     "price": null,
-    "imagePath": "images/cookies/fresh-strawberry-cream-swiss-roll.jpg",
+    "imagePath": "images/cookies/fresh-strawberry-cream-swiss-roll.webp",
     "details": "Feather-light Japanese style chiffon roll cake wrapped around luscious fresh strawberry cream and sweet strawberry purée."
   },
   {
@@ -810,7 +810,7 @@
     "flavor": "Orange",
     "size": "Box of 4/6",
     "price": null,
-    "imagePath": "images/cookies/zesty-orange-buttercream-cupcakes.jpg",
+    "imagePath": "images/cookies/zesty-orange-buttercream-cupcakes.webp",
     "details": "Moist orange blossom sponge cupcakes piped with citrusy orange buttercream and garnished with candied peel."
   },
   {
@@ -821,7 +821,7 @@
     "flavor": "Chocolate & Vanilla",
     "size": "5 Pound (3 Tiers)",
     "price": 6000,
-    "imagePath": "images/birthday/grand-3-tier-castle-and-cotton-cloud-celebration-cake.jpg",
+    "imagePath": "images/birthday/grand-3-tier-castle-and-cotton-cloud-celebration-cake.webp",
     "details": "An awe-inspiring 5-pound fairytale centerpiece featuring 3 majestic tiers (Tier 1 & 3 Belgian Chocolate, Tier 2 Madagascar Vanilla), sculpted castle turrets, and billowing dreamy cotton clouds. Designed for monumental milestone birthdays and grand galas."
   },
   {
@@ -832,7 +832,7 @@
     "flavor": "Strawberry",
     "size": "2 Pound (2 Tiers)",
     "price": 1800,
-    "imagePath": "images/birthday/whimsical-two-tier-princess-castle-cake.jpg",
+    "imagePath": "images/birthday/whimsical-two-tier-princess-castle-cake.webp",
     "details": "Enchanting two-tier castle cake decorated with pastel strawberry towers, pearlescent frosting, and delicate floral piping. Baked with fragrant strawberry sponge and strawberry compote."
   },
   {
@@ -843,7 +843,7 @@
     "flavor": "Blueberry",
     "size": "1.5 Pound",
     "price": 1500,
-    "imagePath": "images/birthday/enchanted-sleeping-baby-dragon-cake.jpg",
+    "imagePath": "images/birthday/enchanted-sleeping-baby-dragon-cake.webp",
     "details": "A sculptural masterpiece featuring a sweet baby dragon curled asleep atop a mossy stone garden. Moist wild blueberry sponge layered with real blueberry buttercream."
   },
   {
@@ -854,7 +854,7 @@
     "flavor": "Chocolate Caramel",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/birthday/sapphire-dragon-and-gold-caramel-cake.jpg",
+    "imagePath": "images/birthday/sapphire-dragon-and-gold-caramel-cake.webp",
     "details": "Stunning azure dragon curling around textured buttercream with gilded horns and scales. Layered with rich chocolate sponge and house-made salted caramel."
   },
   {
@@ -865,7 +865,7 @@
     "flavor": "Black Forest",
     "size": "1.5 Pound",
     "price": 1600,
-    "imagePath": "images/birthday/playful-blue-duck-celebration-cake.jpg",
+    "imagePath": "images/birthday/playful-blue-duck-celebration-cake.webp",
     "details": "Delightful sky-blue birthday cake crowned with a sculpted duckling floating amidst gentle buttercream ripples. Authentic Black Forest sponge with dark cherries and whipped cream."
   },
   {
@@ -876,7 +876,7 @@
     "flavor": "Vanilla",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/vintage-brown-and-ivory-floral-cake.jpg",
+    "imagePath": "images/birthday/vintage-brown-and-ivory-floral-cake.webp",
     "details": "Warm earthy vintage tones featuring mocha-brown border piping and ivory wildflowers. Delicate vanilla bean sponge with velvety buttercream."
   },
   {
@@ -887,7 +887,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 2400,
-    "imagePath": "images/birthday/bunny-in-blossom-garden-cake.jpg",
+    "imagePath": "images/birthday/bunny-in-blossom-garden-cake.webp",
     "details": "Generous 2-pound garden wonderland with hand-piped bunny figurines exploring butter blossoms and trailing greenery. Rich double chocolate truffle sponge."
   },
   {
@@ -898,7 +898,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/party-frog-birthday-celebration-cake.jpg",
+    "imagePath": "images/birthday/party-frog-birthday-celebration-cake.webp",
     "details": "Adorable viral frog celebrating with its own miniature birthday cake and festive party hat. Moist chocolate sponge with smooth chocolate filling."
   },
   {
@@ -909,7 +909,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1500,
-    "imagePath": "images/birthday/mashas-cozy-woodland-house-cake.jpg",
+    "imagePath": "images/birthday/mashas-cozy-woodland-house-cake.webp",
     "details": "Detailed 3D woodland cottage inspired by Masha & the Bear with edible fences, sunflower borders, and log cabin textures. Decadent chocolate truffle layers."
   },
   {
@@ -920,7 +920,7 @@
     "flavor": "Butterscotch",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/birthday/fairytale-woodland-mushroom-cake.jpg",
+    "imagePath": "images/birthday/fairytale-woodland-mushroom-cake.webp",
     "details": "Charming red-and-white spotted toadstool mushroom perched atop a grassy tier. Sweet butterscotch sponge with caramel crunch."
   },
   {
@@ -931,7 +931,7 @@
     "flavor": "Rashmalai",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/moments-with-maa-tribute-cake.jpg",
+    "imagePath": "images/birthday/moments-with-maa-tribute-cake.webp",
     "details": "A deeply heartfelt tribute showcasing a mother carrying her child painted in delicate silhouette art. Infused with aromatic cardamom, saffron milk, and real rashmalai bites."
   },
   {
@@ -942,7 +942,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/crimson-heart-red-love-cake.jpg",
+    "imagePath": "images/birthday/crimson-heart-red-love-cake.webp",
     "details": "Vibrant scarlet heart cake with delicate vintage borders and romantic script. Deep dark chocolate fudge sponge."
   },
   {
@@ -953,7 +953,7 @@
     "flavor": "Orange",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/birthday/roblox-rivals-battle-arena-theme-cake.jpg",
+    "imagePath": "images/birthday/roblox-rivals-battle-arena-theme-cake.webp",
     "details": "Action-packed gaming centerpiece styled for Roblox fans with game logo art and gaming palette. Light citrus orange sponge."
   },
   {
@@ -964,7 +964,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/birthday/sunny-sea-beach-and-parasol-cake.jpg",
+    "imagePath": "images/birthday/sunny-sea-beach-and-parasol-cake.webp",
     "details": "Miniature seaside escape with biscuit-crumb sandy beach, blue turquoise waves, and a tiny beach parasol. Soft chocolate sponge."
   },
   {
@@ -975,7 +975,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 2000,
-    "imagePath": "images/birthday/spider-man-web-slinger-theme-cake.jpg",
+    "imagePath": "images/birthday/spider-man-web-slinger-theme-cake.webp",
     "details": "Bold 2-pound superhero creation with handcrafted Spider-Man mask, web piping, and city silhouette. Moist chocolate sponge with dark cocoa ganache."
   },
   {
@@ -986,7 +986,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/birthday/the-math-magic-geometric-cake.jpg",
+    "imagePath": "images/birthday/the-math-magic-geometric-cake.webp",
     "details": "Smart educational design decorated with mathematical equations, geometric rulers, and abacus motifs. Chocolate sponge with buttercream filling."
   },
   {
@@ -997,7 +997,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1200,
-    "imagePath": "images/birthday/safari-tiger-theme-celebration-cake.jpg",
+    "imagePath": "images/birthday/safari-tiger-theme-celebration-cake.webp",
     "details": "Fierce yet adorable tiger stripes and jungle greenery hand-piped around golden amber frosting. Chocolate fudge cake."
   },
   {
@@ -1008,7 +1008,7 @@
     "flavor": "Chocolate Ganache",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/birthday/ocean-blue-and-ivory-coquette-ribbon-cake.jpg",
+    "imagePath": "images/birthday/ocean-blue-and-ivory-coquette-ribbon-cake.webp",
     "details": "Chic Parisian aesthetics featuring silky chocolate cake with rich ganache frosting draped in elegant powder-blue bows."
   },
   {
@@ -1019,7 +1019,7 @@
     "flavor": "Chocolate",
     "size": "3 Pound",
     "price": 2800,
-    "imagePath": "images/floral/biyebari-grand-floral-celebration-cake.jpg",
+    "imagePath": "images/floral/biyebari-grand-floral-celebration-cake.webp",
     "details": "Statuesque 3-pound square architecture adorned with luxuriant cascading pastel garden roses, hydrangeas, and buds. Rich dark chocolate truffle layers throughout."
   },
   {
@@ -1030,7 +1030,7 @@
     "flavor": "Vanilla",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/floral/woven-flower-basket-celebration-cake.jpg",
+    "imagePath": "images/floral/woven-flower-basket-celebration-cake.webp",
     "details": "Artisanal basketweave piping around the sides overflowing with vibrant multicolored wildflowers. Pure vanilla sponge."
   },
   {
@@ -1041,7 +1041,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/floral/girl-in-the-flower-garden-art-cake.jpg",
+    "imagePath": "images/floral/girl-in-the-flower-garden-art-cake.webp",
     "details": "Dreamy illustration of a flower maiden surrounded by hand-piped blossom textures and fluttering petals. Moist chocolate sponge."
   },
   {
@@ -1052,7 +1052,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/floral/minimalist-botanical-floral-arch-cake.jpg",
+    "imagePath": "images/floral/minimalist-botanical-floral-arch-cake.webp",
     "details": "Understated Scandinavian simplicity with delicate single-stem floral wreath piping against smooth ivory cream."
   },
   {
@@ -1063,7 +1063,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/floral/pink-and-white-blossom-garden-cake.jpg",
+    "imagePath": "images/floral/pink-and-white-blossom-garden-cake.webp",
     "details": "Sweet pastel pink and white wild roses scattered across ivory buttercream with delicate leaves. Chocolate fudge sponge."
   },
   {
@@ -1074,7 +1074,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/floral/dutch-spring-tulip-garden-cake.jpg",
+    "imagePath": "images/floral/dutch-spring-tulip-garden-cake.webp",
     "details": "Graceful hand-piped upright tulips in soft spring shades of blush and coral. Moist chocolate sponge with cocoa filling."
   },
   {
@@ -1085,7 +1085,7 @@
     "flavor": "Mocha",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/boba-milk-tea-aesthetic-cake.jpg",
+    "imagePath": "images/aesthetic/boba-milk-tea-aesthetic-cake.webp",
     "details": "Playful Korean cafe aesthetic inspired by brown sugar pearl milk tea. Aromatic mocha espresso sponge with creamy frosting."
   },
   {
@@ -1096,7 +1096,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/cute-little-bunny-pastel-cake.jpg",
+    "imagePath": "images/aesthetic/cute-little-bunny-pastel-cake.webp",
     "details": "Minimalist Japanese kawaii bunny face with blushing cheeks and tiny flower crowns. Chocolate sponge inside."
   },
   {
@@ -1107,7 +1107,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/fluffy-white-bunny-meadow-cake.jpg",
+    "imagePath": "images/aesthetic/fluffy-white-bunny-meadow-cake.webp",
     "details": "Sweet pastel green lawn with a fluffy sculpted bunny nibbling sweet garden greens. Moist chocolate layers."
   },
   {
@@ -1118,7 +1118,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/ducklings-in-pond-serene-cake.jpg",
+    "imagePath": "images/aesthetic/ducklings-in-pond-serene-cake.webp",
     "details": "Calming blue water ripple textures with miniature yellow ducks and water lilies. Chocolate fudge sponge."
   },
   {
@@ -1129,7 +1129,7 @@
     "flavor": "Chocolate",
     "size": "2.5 Pound",
     "price": 3000,
-    "imagePath": "images/aesthetic/floating-moon-and-butterfly-tier-cake.jpg",
+    "imagePath": "images/aesthetic/floating-moon-and-butterfly-tier-cake.webp",
     "details": "A show-stopping 2.5-pound celestial dream featuring a floating golden crescent moon, fluttering 3D butterflies, and celestial pearl clouds over smooth buttercream."
   },
   {
@@ -1140,7 +1140,7 @@
     "flavor": "Rashmalai",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/lotus-water-lily-pond-cake.jpg",
+    "imagePath": "images/aesthetic/lotus-water-lily-pond-cake.webp",
     "details": "Poetic Bengali nature art with sculpted pink lotus blossoms and emerald lily pads. Cardamom-scented rashmalai milk sponge."
   },
   {
@@ -1151,7 +1151,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/aesthetic/pastel-pink-and-blue-vintage-lambeth-cake.jpg",
+    "imagePath": "images/aesthetic/pastel-pink-and-blue-vintage-lambeth-cake.webp",
     "details": "Trending retro piping featuring delicate scallops, swags, and dual pastel pink and periwinkle frosting accents."
   },
   {
@@ -1162,7 +1162,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/aesthetic/blush-pink-and-white-chocolate-blossom-cake.jpg",
+    "imagePath": "images/aesthetic/blush-pink-and-white-chocolate-blossom-cake.webp",
     "details": "Silky pink tier topped with handcrafted white chocolate flower petals and pearl shell rims. Rich chocolate filling."
   },
   {
@@ -1173,7 +1173,7 @@
     "flavor": "Red Velvet",
     "size": "1.5 Pound",
     "price": 1500,
-    "imagePath": "images/aesthetic/red-velvet-and-cream-cheese-lambeth-cake.jpg",
+    "imagePath": "images/aesthetic/red-velvet-and-cream-cheese-lambeth-cake.webp",
     "details": "Intricate Victorian Lambeth piping with deep crimson accents. Authentic southern red velvet sponge with silky cream cheese frosting."
   },
   {
@@ -1184,7 +1184,7 @@
     "flavor": "Blueberry",
     "size": "2 Pound",
     "price": 2200,
-    "imagePath": "images/aesthetic/ornate-victorian-birdcage-cake.jpg",
+    "imagePath": "images/aesthetic/ornate-victorian-birdcage-cake.webp",
     "details": "Breathtaking 2-pound dome sculpted to resemble an antique gilded birdcage intertwined with garden blossoms and songbird motifs. Blueberry compote sponge."
   },
   {
@@ -1195,7 +1195,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/aesthetic/sunny-yellow-vintage-scallop-cake.jpg",
+    "imagePath": "images/aesthetic/sunny-yellow-vintage-scallop-cake.webp",
     "details": "Cheerful sunshine yellow vintage piping with delicate shell ruffles and pearl accents. Chocolate truffle sponge inside."
   },
   {
@@ -1206,7 +1206,7 @@
     "flavor": "Orange",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/special-occasion/gaye-holud-marigold-celebration-cake.jpg",
+    "imagePath": "images/special-occasion/gaye-holud-marigold-celebration-cake.webp",
     "details": "Traditional Gaye Holud centerpiece vibrant with golden turmeric and marigold hues, Dala motifs, and celebratory Bengali wedding spirit. Citrus orange sponge."
   },
   {
@@ -1217,7 +1217,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/special-occasion/half-way-to-one-milestone-cake.jpg",
+    "imagePath": "images/special-occasion/half-way-to-one-milestone-cake.webp",
     "details": "Celebrates baby's first 6 months with custom semi-circle / half-cake architecture and pastel party accents."
   },
   {
@@ -1228,7 +1228,7 @@
     "flavor": "Chocolate",
     "size": "1.5 Pound",
     "price": 1500,
-    "imagePath": "images/special-occasion/irfas-mukhe-bhaat-ceremony-cake.jpg",
+    "imagePath": "images/special-occasion/irfas-mukhe-bhaat-ceremony-cake.webp",
     "details": "Commemorates the traditional Annaprashan / Mukhe Bhaat ceremony with auspicious rice bowl illustration, alpana borders, and personalized baby name."
   },
   {
@@ -1239,7 +1239,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/special-occasion/acoustic-guitar-and-floral-heart-cake.jpg",
+    "imagePath": "images/special-occasion/acoustic-guitar-and-floral-heart-cake.webp",
     "details": "Heart-shaped celebration cake featuring a sculpted acoustic guitar and romantic wild roses. Baked for musicians and music lovers."
   },
   {
@@ -1250,7 +1250,7 @@
     "flavor": "Chocolate Caramel",
     "size": "1.5 Pound",
     "price": 1400,
-    "imagePath": "images/special-occasion/olive-wreath-botanical-caramel-cake.jpg",
+    "imagePath": "images/special-occasion/olive-wreath-botanical-caramel-cake.webp",
     "details": "Serene olive green ombré frosted tier adorned with delicate golden olive branches. Chocolate sponge with caramel filling."
   },
   {
@@ -1261,7 +1261,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 800,
-    "imagePath": "images/special-occasion/special-celebration-slice-cake.jpg",
+    "imagePath": "images/special-occasion/special-celebration-slice-cake.webp",
     "details": "Clever cake-slice presentation style with exposed chocolate sponge crumb and silky ganache drizzle."
   },
   {
@@ -1272,7 +1272,7 @@
     "flavor": "Vanilla",
     "size": "1 Pound",
     "price": 1000,
-    "imagePath": "images/theme/midnight-noir-and-maroon-rose-cake.jpg",
+    "imagePath": "images/theme/midnight-noir-and-maroon-rose-cake.webp",
     "details": "Dramatic all-black noir buttercream contrasted with deep velvety maroon sugar roses and golden flecks. Vanilla sponge."
   },
   {
@@ -1283,7 +1283,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1800,
-    "imagePath": "images/theme/friend-group-squad-portrait-cake.jpg",
+    "imagePath": "images/theme/friend-group-squad-portrait-cake.webp",
     "details": "Custom freehand buttercream illustration capturing best friends hanging out together. Generous 2-pound chocolate truffle size."
   },
   {
@@ -1294,7 +1294,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1800,
-    "imagePath": "images/theme/minecraft-pixel-pool-and-creeper-cake.jpg",
+    "imagePath": "images/theme/minecraft-pixel-pool-and-creeper-cake.webp",
     "details": "Block-by-block isometric Minecraft world with voxel pool water, grass blocks, and mini pixel figurines. 2 pounds of dark chocolate sponge."
   },
   {
@@ -1305,7 +1305,7 @@
     "flavor": "Chocolate",
     "size": "2.5 Pound",
     "price": 2200,
-    "imagePath": "images/theme/mathematicians-open-book-and-rose-cake.jpg",
+    "imagePath": "images/theme/mathematicians-open-book-and-rose-cake.webp",
     "details": "Sculpted 2.5-pound antique leather-bound book decorated with complex calculus formulas and delicate sugar roses."
   },
   {
@@ -1316,7 +1316,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/theme/winter-frost-snowman-and-drift-cake.jpg",
+    "imagePath": "images/theme/winter-frost-snowman-and-drift-cake.webp",
     "details": "Jolly winter snowman bundled in scarf with coconut-flake snowdrifts and pastel snowflakes. Moist chocolate fudge sponge."
   },
   {
@@ -1327,7 +1327,7 @@
     "flavor": "Chocolate",
     "size": "1 Pound",
     "price": 900,
-    "imagePath": "images/theme/zenitsu-thunderclap-anime-buttercream-art-cake.jpg",
+    "imagePath": "images/theme/zenitsu-thunderclap-anime-buttercream-art-cake.webp",
     "details": "Hand-painted anime portrait of Demon Slayer's Zenitsu Agatsuma wielding yellow lightning breathing strokes. Layered with rich chocolate truffle sponge."
   },
   {
@@ -1338,7 +1338,7 @@
     "flavor": "Vanilla",
     "size": "1.5 Pound",
     "price": 1200,
-    "imagePath": "images/floral/midnight-bloom-cake.jpg",
+    "imagePath": "images/floral/midnight-bloom-cake.webp",
     "details": "Artistic buttercream creation sculpted with midnight-navy and azure palette knife petals, shimmering golden pearls, and delicate watercolor marbling. Soft aromatic vanilla bean sponge inside."
   },
   {
@@ -1349,7 +1349,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 1800,
-    "imagePath": "images/special-occasion/square-gaye-holud-cake.jpg",
+    "imagePath": "images/special-occasion/square-gaye-holud-cake.webp",
     "details": "Traditional square Gaye Holud celebration cake adorned with intricate white royal icing mehndi embroidery, festive marigold and ivory roses, and a celebratory 'সানির হলুদ সন্ধ্যা' banner. Layered with rich chocolate sponge."
   },
   {
@@ -1360,12 +1360,12 @@
     "flavor": "Chocolate & Caramel",
     "size": "Duo Pack (2 Tubs)",
     "price": null,
-    "imagePath": "images/cookies/artisan-layered-chocolate-dessert-tubs.jpg",
+    "imagePath": "images/cookies/artisan-layered-chocolate-dessert-tubs.webp",
     "images": [
-      "images/cookies/artisan-layered-chocolate-dessert-tubs.jpg",
-      "images/cookies/artisan-layered-chocolate-dessert-tubs-2.jpg",
-      "images/cookies/artisan-layered-chocolate-dessert-tubs-3.jpg",
-      "images/cookies/artisan-layered-chocolate-dessert-tubs-4.jpg"
+      "images/cookies/artisan-layered-chocolate-dessert-tubs.webp",
+      "images/cookies/artisan-layered-chocolate-dessert-tubs-2.webp",
+      "images/cookies/artisan-layered-chocolate-dessert-tubs-3.webp",
+      "images/cookies/artisan-layered-chocolate-dessert-tubs-4.webp"
     ],
     "details": "Indulgent layered dessert tubs featuring moist cocoa sponge, velvety cream layers, and artisanal glazes topped with crispy chocolate buttons. Includes handcrafted Pistachio Ganache and Salted Caramel Marble tubs."
   },
@@ -1377,7 +1377,7 @@
     "flavor": "Red Velvet",
     "size": "Box of 4/6",
     "price": null,
-    "imagePath": "images/cookies/red-velvet-cream-cheese-cupcakes.jpg",
+    "imagePath": "images/cookies/red-velvet-cream-cheese-cupcakes.webp",
     "details": "Velvety, moist red velvet sponge cupcakes crowned with luscious swirls of whipped cream cheese frosting, fine red velvet cake crumbs, and charming red heart confections."
   },
   {
@@ -1388,7 +1388,7 @@
     "flavor": "Chocolate",
     "size": "2 Pound",
     "price": 2400,
-    "imagePath": "images/birthday/wedding-photo-buttercream-art-cake.jpg",
+    "imagePath": "images/birthday/wedding-photo-buttercream-art-cake.webp",
     "details": "Exquisite custom freehand buttercream portraiture recreating a traditional wedding photo in ornate celebratory attire with personalized birthday calligraphy. Sized at 2 pounds with rich chocolate sponge and velvety cocoa cream."
   }
 ]

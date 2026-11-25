@@ -303,6 +303,7 @@ function renderProductGrid() {
             src="${safeImagePath}" 
             alt="${safeName}" 
             loading="lazy"
+            decoding="async"
             data-fallback="${fallbackSrc}"
             class="product-image w-full h-full object-cover object-center pointer-events-none"
             onerror="this.onerror=null; this.src=this.dataset.fallback;"
@@ -418,7 +419,7 @@ function openLightbox(index) {
           title="View photo ${imgIdx + 1}"
           aria-label="View photo ${imgIdx + 1}"
         >
-          <img src="${escapeHtml(imgPath)}" alt="${safeName} view ${imgIdx + 1}" class="w-full h-full object-cover object-center" />
+          <img src="${escapeHtml(imgPath)}" alt="${safeName} view ${imgIdx + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover object-center" />
         </button>
       `).join('');
 

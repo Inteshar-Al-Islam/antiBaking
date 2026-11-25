@@ -409,6 +409,7 @@
           id="lightboxImg" 
           src="" 
           alt="" 
+          decoding="async"
           class="w-full h-full object-cover object-center pointer-events-none"
         />
 
@@ -527,7 +528,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-warm-600">
       
       <div class="flex items-center gap-2.5">
-        <img src="logo.jpg" alt="Frostoria" class="w-6 h-6 rounded-full object-cover border border-[#E6DDD4]">
+        <img src="logo.jpg" alt="Frostoria" loading="lazy" decoding="async" class="w-6 h-6 rounded-full object-cover border border-[#E6DDD4]">
         <span>© 2026 Frostoria.</span>
         <span>•</span>
         <span class="font-serif italic text-warm-700">"Freshly baked memories."</span>
@@ -580,6 +581,6 @@
   </div>
 
   <!-- Application Script -->
-  <script src="app.js?v=28" defer></script>
+  <script src="app.js?v=29" defer></script>
 </body>
 </html>
