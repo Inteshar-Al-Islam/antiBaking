@@ -32,8 +32,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 
   <!-- Compiled Tailwind CSS & Custom CSS -->
-  <link rel="stylesheet" href="output.css?v=2">
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="output.css?v=3">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
@@ -246,13 +246,13 @@
     </div>
   </section>
 
-  <!-- Hero Section -->
-  <main class="flex-1 max-w-7xl mx-auto w-full px-3.5 sm:px-6 lg:px-8 py-8 sm:py-14">
-    
-    <!-- Hero Text with Ambient Bakery Glow & Floating Sparkles -->
-    <section class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 relative overflow-visible">
-      <!-- Ambient Glow in Background (Centered, Seamless & Symmetrical) -->
-      <div class="pointer-events-none absolute -top-10 inset-x-0 w-full h-72 overflow-hidden -z-10" aria-hidden="true">
+  <!-- Hero & Gallery Main Content -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-3.5 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
+
+    <!-- Split-Screen Editorial Hero with Featured Showcase -->
+    <section class="relative overflow-visible mb-10 sm:mb-14 lg:mb-16">
+      <!-- Ambient Glow in Background -->
+      <div class="pointer-events-none absolute -top-10 inset-x-0 w-full h-80 overflow-hidden -z-10" aria-hidden="true">
         <div class="ambient-glow-center"></div>
         <div class="ambient-glow ambient-glow-left"></div>
         <div class="ambient-glow ambient-glow-right"></div>
@@ -263,73 +263,192 @@
       <span class="floating-sparkle sparkle-right hidden sm:inline" aria-hidden="true">✧</span>
       <span class="floating-sparkle sparkle-top-right hidden sm:inline" aria-hidden="true">✦</span>
 
-      <div class="hero-badge-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-caramel-100 text-mocha-800 text-xs font-medium mb-4 border border-caramel-200 shadow-2xs">
-        <span class="w-2 h-2 rounded-full bg-caramel-500 animate-pulse"></span>
-        <span class="font-serif italic text-mocha-900 font-semibold tracking-wide">"Freshly baked memories."</span>
-        <span class="text-caramel-400">•</span>
-        <span>100% Handcrafted</span>
-      </div>
-      
-      <h2 class="hero-title-anim font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-warm-900 tracking-tight leading-tight">
-        Artisan Cake Collection
-      </h2>
-      
-      <p class="hero-desc-anim mt-3 sm:mt-4 text-sm sm:text-base text-warm-600 leading-relaxed max-w-xl mx-auto">
-        Handcrafted birthday cakes, floral celebration designs, aesthetic vintage tiers, bespoke theme centerpieces, and freshly baked artisan treats.
-      </p>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
 
-      <!-- Direct Contact & Social Options at the Top -->
-      <div class="hero-actions-anim mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
-        <a 
-          href="https://m.me/delightsbysuraiya" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-mocha-600 hover:bg-mocha-700 text-white text-xs sm:text-sm font-medium shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
-          title="Direct Messenger Chat"
-        >
-          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
-            <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.909 1.458 5.518 3.738 7.21V22l3.37-1.85c.917.254 1.888.39 2.892.39 5.523 0 10-4.145 10-9.258C22 6.145 17.523 2 12 2zm1.066 12.443l-2.73-2.91-5.326 2.91 5.856-6.218 2.795 2.91 5.261-2.91-5.856 6.218z"/>
-          </svg>
-          <span>Message on Messenger</span>
-        </a>
+        <!-- Left Column: Serif Headline, Tagline, Custom Cake CTA & Trust Pills -->
+        <div class="lg:col-span-6 text-center lg:text-left space-y-5">
+          <!-- Tagline Badge -->
+          <div class="hero-badge-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-caramel-100/90 text-mocha-800 text-xs font-medium border border-caramel-200 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-caramel-500 animate-pulse"></span>
+            <span class="font-serif italic text-mocha-900 font-semibold tracking-wide">"Freshly baked memories."</span>
+            <span class="text-caramel-400">•</span>
+            <span>100% Handcrafted</span>
+          </div>
 
-        <a 
-          href="https://www.facebook.com/share/1HkyGvf5Se/" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-xs sm:text-sm font-medium border border-[#DFD4C7] shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
-          title="Official Facebook Page"
-        >
-          <svg class="w-4 h-4 fill-current text-[#1877F2] shrink-0" viewBox="0 0 24 24">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-          <span>Facebook Page</span>
-        </a>
+          <!-- Editorial Headline & Lead Copy -->
+          <div class="hero-title-anim space-y-3">
+            <h2 class="font-serif text-4xl sm:text-5xl lg:text-[3.25rem] font-normal text-warm-900 tracking-tight leading-[1.08]">
+              Artisan Cake
+              <span class="italic text-mocha-700 font-medium">Collection</span>
+            </h2>
+            <p class="hero-desc-anim text-sm sm:text-base text-warm-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Handcrafted birthday cakes, floral celebration designs, aesthetic vintage tiers, bespoke theme centerpieces, and freshly baked artisan treats.
+            </p>
+          </div>
 
-        <a 
-          href="https://www.instagram.com/frostoria_cakes?obrf=MXB4eWhvaWpqaGlhdg==" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-xs sm:text-sm font-medium border border-[#DFD4C7] shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
-          title="Official Instagram Profile"
-        >
-          <svg class="w-4 h-4 fill-current text-[#E4405F] shrink-0" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-          <span>Instagram</span>
-        </a>
-      </div>
+          <!-- Primary & Secondary Action Buttons -->
+          <div class="hero-actions-anim flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+            <button
+              id="buildCustomCakeBtn"
+              type="button"
+              class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-mocha-600 hover:bg-mocha-700 text-white text-sm font-semibold shadow-sm hover:shadow-md border border-mocha-700/20 transition-all active:scale-95 hover:-translate-y-0.5 cursor-pointer"
+            >
+              <svg class="w-4 h-4 text-caramel-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              <span>Build a Custom Cake</span>
+            </button>
 
-      <!-- Active Counter Badge -->
-      <div class="hero-counter-anim mt-5 flex items-center justify-center gap-2 text-xs text-warm-600 font-medium">
-        <span id="itemCount" class="live-item-count px-4 py-1.5 bg-cream-50 rounded-full border border-caramel-200 shadow-2xs font-semibold text-mocha-900 inline-block">
-          Loading cakes...
-        </span>
+            <a
+              href="https://m.me/delightsbysuraiya"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-cream-50 text-warm-800 text-sm font-medium border border-[#DFD4C7] hover:border-caramel-300 shadow-xs transition-all active:scale-95 hover:-translate-y-0.5"
+              title="Direct Messenger Chat"
+            >
+              <svg class="w-4 h-4 text-caramel-600 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.909 1.458 5.518 3.738 7.21V22l3.37-1.85c.917.254 1.888.39 2.892.39 5.523 0 10-4.145 10-9.258C22 6.145 17.523 2 12 2zm1.066 12.443l-2.73-2.91-5.326 2.91 5.856-6.218 2.795 2.91 5.261-2.91-5.856 6.218z"/>
+              </svg>
+              <span>Message on Messenger</span>
+            </a>
+          </div>
+
+          <!-- Trust Pills -->
+          <div class="hero-counter-anim flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1" aria-label="Bakery quality promises">
+            <span class="trust-pill inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/85 border border-[#E6DDD4] text-xs font-medium text-warm-700 shadow-2xs">
+              <svg class="w-3.5 h-3.5 text-caramel-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              100% Pure Dairy Butter
+            </span>
+            <span class="trust-pill inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/85 border border-[#E6DDD4] text-xs font-medium text-warm-700 shadow-2xs">
+              <svg class="w-3.5 h-3.5 text-caramel-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Baked Fresh to Order
+            </span>
+            <span class="trust-pill inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/85 border border-[#E6DDD4] text-xs font-medium text-warm-700 shadow-2xs">
+              <svg class="w-3.5 h-3.5 text-caramel-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+              </svg>
+              Custom Themes
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Column: Signature Creations Overlapping 3-Photo Collage Card -->
+        <div class="lg:col-span-6 hero-showcase-anim">
+          <div class="relative max-w-lg mx-auto lg:ml-auto lg:mr-0">
+            <!-- Offset gold/caramel outer border frame -->
+            <div class="hidden sm:block absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-[1.75rem] border border-caramel-400/55 bg-caramel-100/35 -z-10 pointer-events-none" aria-hidden="true"></div>
+
+            <!-- Main Framed Collage Card -->
+            <div id="heroShowcaseCard" class="hero-collage-frame relative rounded-3xl p-4 sm:p-5 lg:p-6">
+              <!-- Card Header -->
+              <div class="flex items-center justify-between gap-2 pb-2.5 border-b border-caramel-200/70">
+                <div>
+                  <p class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] text-caramel-700 flex items-center gap-1.5">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-caramel-500"></span>
+                    Signature Creations
+                  </p>
+                  <p class="font-serif italic text-xs sm:text-sm text-mocha-700 mt-0.5">
+                    Curated highlights from our kitchen
+                  </p>
+                </div>
+                <button
+                  id="shuffleShowcaseBtn"
+                  type="button"
+                  class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 hover:bg-white text-[11px] font-medium text-mocha-700 border border-caramel-200 hover:border-caramel-400 shadow-2xs transition-all active:scale-95 cursor-pointer shrink-0"
+                  title="Show 3 more featured creations"
+                  aria-label="Shuffle featured creations"
+                >
+                  <svg class="w-3 h-3 text-caramel-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <span>Shuffle</span>
+                </button>
+              </div>
+
+              <!-- Overlapping 3-Photo Stage & Floating Price Tag Badge -->
+              <div class="relative my-3 sm:my-4">
+                <!-- Floating Price Tag Badge -->
+                <div
+                  id="heroPriceBadge"
+                  class="floating-price-badge absolute top-2 left-0 sm:-left-2 z-40 inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-mocha-900/95 text-cream-50 border border-caramel-400/80 shadow-lg backdrop-blur-xs pointer-events-none"
+                >
+                  <span class="w-5 h-5 rounded-full bg-caramel-500/25 border border-caramel-400/50 flex items-center justify-center text-caramel-200 text-[10px]" aria-hidden="true">★</span>
+                  <div class="leading-tight">
+                    <span id="heroBadgeCategory" class="block text-[9px] uppercase tracking-wider text-caramel-200 font-semibold">Featured</span>
+                    <span id="heroBadgePrice" class="block text-sm sm:text-base font-bold text-white tracking-tight">৳—</span>
+                  </div>
+                </div>
+
+                <!-- 3 Overlapping Collage Photo Cards -->
+                <div id="heroShowcaseStage" class="collage-stage relative w-full">
+                  <div class="collage-photo-card collage-slot-primary pointer-events-none">
+                    <div class="w-full h-full rounded-xl img-skeleton"></div>
+                  </div>
+                  <div class="collage-photo-card collage-slot-top pointer-events-none">
+                    <div class="w-full h-full rounded-xl img-skeleton"></div>
+                  </div>
+                  <div class="collage-photo-card collage-slot-bottom pointer-events-none">
+                    <div class="w-full h-full rounded-xl img-skeleton"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Spotlight Caption Footer -->
+              <div class="flex items-center justify-between gap-3 pt-2.5 border-t border-caramel-200/70">
+                <div class="min-w-0">
+                  <h3 id="heroSpotlightTitle" class="font-serif text-sm sm:text-base font-semibold text-warm-900 truncate">
+                    Loading featured cakes...
+                  </h3>
+                  <p id="heroSpotlightMeta" class="text-[11px] sm:text-xs text-warm-600 truncate mt-0.5">
+                    Handcrafted with pure dairy butter
+                  </p>
+                </div>
+                <button
+                  id="heroInspectBtn"
+                  type="button"
+                  class="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white hover:bg-caramel-50 text-mocha-800 text-xs font-semibold border border-caramel-300 shadow-2xs transition-all active:scale-95 cursor-pointer"
+                >
+                  <span>View</span>
+                  <svg class="w-3.5 h-3.5 text-caramel-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Product Showcase Gallery Grid -->
     <section id="gallerySection" aria-label="Product Showcase Gallery">
+      <!-- Collection Section Header Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 sm:mb-7 border-b border-[#EAE0D5]">
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <h3 class="font-serif text-xl sm:text-2xl font-medium text-warm-900 tracking-tight">
+            All Cakes &amp; Treats
+          </h3>
+          <span id="itemCount" class="live-item-count px-3 py-1 bg-cream-50 rounded-full border border-caramel-200 shadow-2xs text-xs font-semibold text-mocha-900 inline-block">
+            Loading cakes...
+          </span>
+        </div>
+
+        <button
+          id="galleryFilterTriggerBtn"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-caramel-50 text-xs font-medium text-mocha-800 border border-[#DFD4C7] hover:border-caramel-300 shadow-2xs transition-all cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5 text-caramel-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+          </svg>
+          <span>Search &amp; Filter</span>
+        </button>
+      </div>
       
       <!-- Responsive Cards Grid -->
       <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-7">
@@ -552,7 +671,121 @@
     <div id="toastProgressBar" class="toast-progress"></div>
   </div>
 
+  <!-- Custom Cake Builder Modal -->
+  <div id="customCakeModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="customCakeModalTitle">
+    <div id="customCakeBackdrop" class="absolute inset-0 bg-[#1F1815]/75 backdrop-blur-sm cursor-pointer"></div>
+
+    <div tabindex="-1" class="modal-dialog relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-caramel-200/80 z-10 max-h-[90vh] overflow-y-auto overscroll-contain focus:outline-hidden p-5 sm:p-7">
+      <button
+        id="customCakeClose"
+        type="button"
+        class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-cream-100 hover:bg-cream-200 text-warm-700 flex items-center justify-center transition cursor-pointer"
+        aria-label="Close custom cake builder"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="pr-10">
+        <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-caramel-700">Bespoke Bakery Order</p>
+        <h3 id="customCakeModalTitle" class="font-serif text-2xl sm:text-[1.75rem] font-semibold text-warm-900 mt-1">
+          Build Your Custom Cake
+        </h3>
+        <p class="text-xs sm:text-sm text-warm-600 mt-1">
+          Choose your style, flavour, and weight — we'll craft it fresh to order.
+        </p>
+      </div>
+
+      <div class="mt-5 space-y-4">
+        <!-- Style -->
+        <div>
+          <span class="block text-[11px] font-bold uppercase tracking-wider text-mocha-700 mb-2">1. Cake Style</span>
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
+            <button type="button" class="custom-style-btn custom-option-pill active px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Birthday" aria-pressed="true">Birthday</button>
+            <button type="button" class="custom-style-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Floral" aria-pressed="false">Floral</button>
+            <button type="button" class="custom-style-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Minimal &amp; Vintage" aria-pressed="false">Minimal &amp; Vintage</button>
+            <button type="button" class="custom-style-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Theme / Character" aria-pressed="false">Theme / Character</button>
+            <button type="button" class="custom-style-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Special Occasion" aria-pressed="false">Special Occasion</button>
+          </div>
+        </div>
+
+        <!-- Flavour -->
+        <div>
+          <span class="block text-[11px] font-bold uppercase tracking-wider text-mocha-700 mb-2">2. Flavour</span>
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
+            <button type="button" class="custom-flavor-btn custom-option-pill active px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Chocolate" aria-pressed="true">Chocolate</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Vanilla" aria-pressed="false">Vanilla</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Black Forest" aria-pressed="false">Black Forest</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Butterscotch" aria-pressed="false">Butterscotch</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Strawberry" aria-pressed="false">Strawberry</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Red Velvet" aria-pressed="false">Red Velvet</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Lemon" aria-pressed="false">Lemon</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Rashmalai" aria-pressed="false">Rashmalai</button>
+            <button type="button" class="custom-flavor-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="Pistachio" aria-pressed="false">Pistachio</button>
+          </div>
+        </div>
+
+        <!-- Size / Weight -->
+        <div>
+          <span class="block text-[11px] font-bold uppercase tracking-wider text-mocha-700 mb-2">3. Weight / Size</span>
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
+            <button type="button" class="custom-size-btn custom-option-pill active px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="1 Pound" aria-pressed="true">1 Pound</button>
+            <button type="button" class="custom-size-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="1.5 Pound" aria-pressed="false">1.5 Pound</button>
+            <button type="button" class="custom-size-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="2 Pound" aria-pressed="false">2 Pound</button>
+            <button type="button" class="custom-size-btn custom-option-pill px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800" data-value="2.5+ Pound / Tiered" aria-pressed="false">2.5+ Pound / Tiered</button>
+          </div>
+        </div>
+
+        <!-- Custom Theme / Inscription -->
+        <div>
+          <label for="customCakeNotes" class="block text-[11px] font-bold uppercase tracking-wider text-mocha-700 mb-1.5">
+            4. Theme Idea, Colours &amp; Message (Optional)
+          </label>
+          <textarea
+            id="customCakeNotes"
+            rows="2"
+            placeholder="e.g. Sage green &amp; gold florals, 'Happy Birthday Samira', delivery on Friday..."
+            class="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-cream-50 rounded-xl border border-[#DFD4C7] focus:outline-hidden focus:border-caramel-500 focus:ring-2 focus:ring-caramel-200 text-warm-900 placeholder-warm-400 resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Live Preview Strip -->
+        <div class="p-3 rounded-xl bg-caramel-50/80 border border-caramel-200/90">
+          <span class="block text-[10px] font-bold uppercase tracking-wider text-caramel-700">Your Custom Brief</span>
+          <p id="customCakePreview" class="text-xs font-medium text-mocha-900 mt-0.5 leading-relaxed">
+            Custom Birthday Cake | Flavour: Chocolate | Size: 1 Pound
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-4 border-t border-[#EFE8E1] flex flex-col sm:flex-row gap-2.5">
+        <button
+          id="customCakeSendBtn"
+          type="button"
+          class="flex-1 py-2.5 sm:py-3 px-4 bg-mocha-600 hover:bg-mocha-700 text-white font-medium text-xs sm:text-sm rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.909 1.458 5.518 3.738 7.21V22l3.37-1.85c.917.254 1.888.39 2.892.39 5.523 0 10-4.145 10-9.258C22 6.145 17.523 2 12 2zm1.066 12.443l-2.73-2.91-5.326 2.91 5.856-6.218 2.795 2.91 5.261-2.91-5.856 6.218z"/>
+          </svg>
+          <span>Send Order via Messenger</span>
+        </button>
+
+        <button
+          id="customCakeCopyBtn"
+          type="button"
+          class="sm:w-auto py-2.5 sm:py-3 px-4 bg-cream-50 hover:bg-cream-200 text-warm-700 font-medium text-xs rounded-xl border border-[#E5DCD3] transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5 text-warm-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <span>Copy Brief</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Application Entry Module -->
-  <script type="module" src="js/main.js?v=3"></script>
+  <script type="module" src="js/main.js?v=4"></script>
 </body>
 </html>

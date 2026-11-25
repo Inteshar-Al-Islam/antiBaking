@@ -1,22 +1,41 @@
-import { filterAndSortProducts, loadProducts } from './catalog.js';
+import { filterAndSortProducts, loadProducts, selectHeroShowcaseProducts } from './catalog.js';
 import {
+  closeCustomCakeModal,
   closeLightbox,
+  openCustomCakeModal,
   openLightbox,
+  renderHeroShowcase,
   renderProductGrid,
   showCatalogLoadError,
-  trapLightboxFocus
+  trapModalFocus,
+  updateHeroSpotlight
 } from './render.js';
-import { copyProductDetails, handleInquiry } from './actions.js';
+import {
+  copyCustomOrderDetails,
+  copyProductDetails,
+  formatCustomCakeBrief,
+  handleCustomOrderInquiry,
+  handleInquiry
+} from './actions.js';
 
 const state = {
   products: [],
   filteredProducts: [],
+  heroShowcase: [],
+  heroSpotlightIndex: 0,
+  lightboxProducts: [],
   lightboxIndex: -1,
   isCatalogLoaded: false,
   activeCategory: 'all',
   activeFlavour: 'all',
   searchQuery: '',
-  activeSort: 'featured'
+  activeSort: 'featured',
+  customCake: {
+    style: 'Birthday',
+    flavor: 'Chocolate',
+    size: '1 Pound',
+    notes: ''
+  }
 };
 
 function getElements() {
@@ -28,11 +47,32 @@ function getElements() {
     clearSearchBtn: document.getElementById('clearSearchBtn'),
     resetFiltersBtn: document.getElementById('resetFiltersBtn'),
     filterToggleBtn: document.getElementById('filterToggleBtn'),
+    galleryFilterTriggerBtn: document.getElementById('galleryFilterTriggerBtn'),
     searchFilterContainer: document.getElementById('searchFilterContainer'),
     categoryPills: document.querySelectorAll('.category-btn'),
     flavourPills: document.querySelectorAll('.flavour-btn'),
     sortSelect: document.getElementById('sortSelect'),
     emptyState: document.getElementById('emptyState'),
+
+    heroShowcaseStage: document.getElementById('heroShowcaseStage'),
+    heroBadgePrice: document.getElementById('heroBadgePrice'),
+    heroBadgeCategory: document.getElementById('heroBadgeCategory'),
+    heroSpotlightTitle: document.getElementById('heroSpotlightTitle'),
+    heroSpotlightMeta: document.getElementById('heroSpotlightMeta'),
+    heroInspectBtn: document.getElementById('heroInspectBtn'),
+    shuffleShowcaseBtn: document.getElementById('shuffleShowcaseBtn'),
+
+    buildCustomCakeBtn: document.getElementById('buildCustomCakeBtn'),
+    customCakeModal: document.getElementById('customCakeModal'),
+    customCakeBackdrop: document.getElementById('customCakeBackdrop'),
+    customCakeClose: document.getElementById('customCakeClose'),
+    customStylePills: document.querySelectorAll('.custom-style-btn'),
+    customFlavorPills: document.querySelectorAll('.custom-flavor-btn'),
+    customSizePills: document.querySelectorAll('.custom-size-btn'),
+    customCakeNotes: document.getElementById('customCakeNotes'),
+    customCakePreview: document.getElementById('customCakePreview'),
+    customCakeSendBtn: document.getElementById('customCakeSendBtn'),
+    customCakeCopyBtn: document.getElementById('customCakeCopyBtn'),
 
     lightbox: document.getElementById('lightboxModal'),
     lightboxBackdrop: document.getElementById('lightboxBackdrop'),
@@ -64,15 +104,59 @@ function updateView(elements) {
   renderProductGrid(elements, state.filteredProducts);
 }
 
-function showLightboxAt(elements, index, triggerElement = null) {
-  if (openLightbox(elements, state.filteredProducts, index, triggerElement)) {
+function showLightboxAt(elements, index, triggerElement = null, sourceList = state.filteredProducts) {
+  state.lightboxProducts = sourceList;
+  if (openLightbox(elements, sourceList, index, triggerElement)) {
     state.lightboxIndex = index;
+  }
+}
+
+function openProductInLightbox(elements, product, triggerElement = null) {
+  if (!product) return;
+  const filteredIndex = state.filteredProducts.findIndex(p => p.id === product.id);
+  if (filteredIndex !== -1) {
+    showLightboxAt(elements, filteredIndex, triggerElement, state.filteredProducts);
+    return;
+  }
+  const showcaseIndex = state.heroShowcase.findIndex(p => p.id === product.id);
+  if (showcaseIndex !== -1) {
+    showLightboxAt(elements, showcaseIndex, triggerElement, state.heroShowcase);
   }
 }
 
 function hideLightbox(elements) {
   closeLightbox(elements);
   state.lightboxIndex = -1;
+}
+
+function setSearchDrawerOpen(elements, shouldOpen) {
+  if (!elements.searchFilterContainer || !elements.filterToggleBtn) return;
+  elements.searchFilterContainer.classList.toggle('open', shouldOpen);
+  elements.filterToggleBtn.setAttribute('aria-expanded', String(shouldOpen));
+  elements.filterToggleBtn.classList.toggle('bg-caramel-100', shouldOpen);
+  elements.filterToggleBtn.classList.toggle('border-caramel-400', shouldOpen);
+  if (shouldOpen) elements.searchInput?.focus();
+}
+
+function updateCustomCakePreview(elements) {
+  if (elements.customCakePreview) {
+    elements.customCakePreview.textContent = formatCustomCakeBrief(state.customCake);
+  }
+}
+
+function bindOptionPills(pills, stateKey, elements) {
+  pills?.forEach(btn => {
+    btn.addEventListener('click', () => {
+      pills.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      state.customCake[stateKey] = btn.getAttribute('data-value') || state.customCake[stateKey];
+      updateCustomCakePreview(elements);
+    });
+  });
 }
 
 function resetAllFilters(elements) {
@@ -108,13 +192,72 @@ function initEventListeners(elements) {
   if (elements.filterToggleBtn && elements.searchFilterContainer) {
     elements.filterToggleBtn.addEventListener('click', () => {
       const isExpanded = elements.searchFilterContainer.classList.contains('open');
-      elements.searchFilterContainer.classList.toggle('open', !isExpanded);
-      elements.filterToggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-      elements.filterToggleBtn.classList.toggle('bg-caramel-100', !isExpanded);
-      elements.filterToggleBtn.classList.toggle('border-caramel-400', !isExpanded);
-      if (!isExpanded) elements.searchInput?.focus();
+      setSearchDrawerOpen(elements, !isExpanded);
     });
   }
+
+  elements.galleryFilterTriggerBtn?.addEventListener('click', () => {
+    setSearchDrawerOpen(elements, true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  if (elements.heroShowcaseStage) {
+    const activateSpotlight = target => {
+      const card = target.closest('.collage-photo-card');
+      if (!card) return;
+      const idx = parseInt(card.getAttribute('data-hero-index'), 10);
+      if (!Number.isNaN(idx) && state.heroShowcase[idx]) {
+        state.heroSpotlightIndex = idx;
+        updateHeroSpotlight(elements, state.heroShowcase[idx], idx);
+      }
+    };
+
+    elements.heroShowcaseStage.addEventListener('mouseover', e => activateSpotlight(e.target));
+    elements.heroShowcaseStage.addEventListener('focusin', e => activateSpotlight(e.target));
+    elements.heroShowcaseStage.addEventListener('click', e => {
+      const card = e.target.closest('.collage-photo-card');
+      if (!card) return;
+      const idx = parseInt(card.getAttribute('data-hero-index'), 10);
+      if (!Number.isNaN(idx) && state.heroShowcase[idx]) {
+        openProductInLightbox(elements, state.heroShowcase[idx], card);
+      }
+    });
+  }
+
+  elements.heroInspectBtn?.addEventListener('click', () => {
+    const product = state.heroShowcase[state.heroSpotlightIndex] || state.heroShowcase[0];
+    openProductInLightbox(elements, product, elements.heroInspectBtn);
+  });
+
+  elements.shuffleShowcaseBtn?.addEventListener('click', () => {
+    if (!state.isCatalogLoaded) return;
+    state.heroShowcase = selectHeroShowcaseProducts(state.products, 3, true);
+    state.heroSpotlightIndex = 0;
+    renderHeroShowcase(elements, state.heroShowcase);
+  });
+
+  elements.buildCustomCakeBtn?.addEventListener('click', () => {
+    updateCustomCakePreview(elements);
+    openCustomCakeModal(elements, elements.buildCustomCakeBtn);
+  });
+  elements.customCakeClose?.addEventListener('click', () => closeCustomCakeModal(elements));
+  elements.customCakeBackdrop?.addEventListener('click', () => closeCustomCakeModal(elements));
+
+  bindOptionPills(elements.customStylePills, 'style', elements);
+  bindOptionPills(elements.customFlavorPills, 'flavor', elements);
+  bindOptionPills(elements.customSizePills, 'size', elements);
+
+  elements.customCakeNotes?.addEventListener('input', e => {
+    state.customCake.notes = e.target.value;
+    updateCustomCakePreview(elements);
+  });
+
+  elements.customCakeSendBtn?.addEventListener('click', e => {
+    handleCustomOrderInquiry(e, elements, state.customCake);
+  });
+  elements.customCakeCopyBtn?.addEventListener('click', e => {
+    copyCustomOrderDetails(e, elements, state.customCake);
+  });
 
   elements.categoryPills.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -145,7 +288,7 @@ function initEventListeners(elements) {
       if (!card) return;
       const idx = parseInt(card.getAttribute('data-index'), 10);
       if (!Number.isNaN(idx)) {
-        showLightboxAt(elements, idx, card);
+        showLightboxAt(elements, idx, card, state.filteredProducts);
       }
     };
 
@@ -183,8 +326,8 @@ function initEventListeners(elements) {
         const deltaY = touchStartY - currentY;
         touchStartY = currentY;
 
-        const dialog = document.querySelector('.modal-dialog');
-        const sidebar = document.querySelector('.modal-sidebar-scroll');
+        const dialog = elements.lightbox?.querySelector('.modal-dialog');
+        const sidebar = elements.lightbox?.querySelector('.modal-sidebar-scroll');
         const scrollTarget = window.innerWidth < 768 ? dialog : sidebar;
         if (scrollTarget) scrollTarget.scrollTop += deltaY;
 
@@ -194,30 +337,28 @@ function initEventListeners(elements) {
     );
   }
 
-  elements.lightboxBackdrop?.addEventListener(
-    'touchmove',
-    e => {
-      if (e.cancelable) e.preventDefault();
-    },
-    { passive: false }
-  );
+  const preventBackdropTouch = e => {
+    if (e.cancelable) e.preventDefault();
+  };
+  elements.lightboxBackdrop?.addEventListener('touchmove', preventBackdropTouch, { passive: false });
+  elements.customCakeBackdrop?.addEventListener('touchmove', preventBackdropTouch, { passive: false });
 
   elements.lightboxClose?.addEventListener('click', () => hideLightbox(elements));
   elements.lightboxBackdrop?.addEventListener('click', () => hideLightbox(elements));
   elements.lightboxPrev?.addEventListener('click', () => {
-    if (state.lightboxIndex > 0) showLightboxAt(elements, state.lightboxIndex - 1);
+    if (state.lightboxIndex > 0) showLightboxAt(elements, state.lightboxIndex - 1, null, state.lightboxProducts);
   });
   elements.lightboxNext?.addEventListener('click', () => {
-    if (state.lightboxIndex < state.filteredProducts.length - 1) {
-      showLightboxAt(elements, state.lightboxIndex + 1);
+    if (state.lightboxIndex < state.lightboxProducts.length - 1) {
+      showLightboxAt(elements, state.lightboxIndex + 1, null, state.lightboxProducts);
     }
   });
 
   elements.lightboxInquireBtn?.addEventListener('click', e => {
-    handleInquiry(e, elements, state.filteredProducts[state.lightboxIndex]);
+    handleInquiry(e, elements, state.lightboxProducts[state.lightboxIndex]);
   });
   elements.lightboxCopyBtn?.addEventListener('click', e => {
-    copyProductDetails(e, elements, state.filteredProducts[state.lightboxIndex]);
+    copyProductDetails(e, elements, state.lightboxProducts[state.lightboxIndex]);
   });
 
   const header = document.getElementById('mainHeader') || document.querySelector('header');
@@ -244,15 +385,24 @@ function initEventListeners(elements) {
   });
 
   window.addEventListener('keydown', e => {
+    if (elements.customCakeModal?.classList.contains('active')) {
+      if (e.key === 'Tab') {
+        trapModalFocus(elements.customCakeModal, e);
+      } else if (e.key === 'Escape') {
+        closeCustomCakeModal(elements);
+      }
+      return;
+    }
+
     if (!elements.lightbox?.classList.contains('active')) return;
     if (e.key === 'Tab') {
-      trapLightboxFocus(elements, e);
+      trapModalFocus(elements.lightbox, e);
     } else if (e.key === 'Escape') {
       hideLightbox(elements);
-    } else if (e.key === 'ArrowRight' && state.lightboxIndex < state.filteredProducts.length - 1) {
-      showLightboxAt(elements, state.lightboxIndex + 1);
+    } else if (e.key === 'ArrowRight' && state.lightboxIndex < state.lightboxProducts.length - 1) {
+      showLightboxAt(elements, state.lightboxIndex + 1, null, state.lightboxProducts);
     } else if (e.key === 'ArrowLeft' && state.lightboxIndex > 0) {
-      showLightboxAt(elements, state.lightboxIndex - 1);
+      showLightboxAt(elements, state.lightboxIndex - 1, null, state.lightboxProducts);
     }
   });
 }
@@ -260,10 +410,14 @@ function initEventListeners(elements) {
 async function bootstrap() {
   const elements = getElements();
   initEventListeners(elements);
+  updateCustomCakePreview(elements);
 
   try {
     state.products = await loadProducts();
     state.isCatalogLoaded = true;
+    state.heroShowcase = selectHeroShowcaseProducts(state.products, 3, false);
+    state.heroSpotlightIndex = 0;
+    renderHeroShowcase(elements, state.heroShowcase);
     updateView(elements);
   } catch (error) {
     console.error('Failed to load products catalog:', error);

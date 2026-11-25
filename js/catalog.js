@@ -73,6 +73,40 @@ export function createVisitRandomizedProducts(masterProducts) {
 }
 
 /**
+ * Selects up to `count` featured products for the hero collage, preferring
+ * priced items across distinct categories for visual variety.
+ */
+export function selectHeroShowcaseProducts(products, count = 3, randomize = false) {
+  const source = randomize ? shuffleArray(products) : products;
+  const pricedFeatured = source.filter(p => p.featured === true && p.imagePath && p.numericPrice > 0);
+  const anyFeatured = source.filter(p => p.featured === true && p.imagePath);
+  const fallbackPool = pricedFeatured.length >= count ? pricedFeatured : anyFeatured.length >= count ? anyFeatured : source.filter(p => p.imagePath);
+
+  const selected = [];
+  const usedIds = new Set();
+  const usedCategories = new Set();
+
+  for (const item of pricedFeatured) {
+    if (selected.length >= count) break;
+    if (!usedCategories.has(item.category)) {
+      selected.push(item);
+      usedIds.add(item.id);
+      usedCategories.add(item.category);
+    }
+  }
+
+  for (const item of fallbackPool) {
+    if (selected.length >= count) break;
+    if (!usedIds.has(item.id)) {
+      selected.push(item);
+      usedIds.add(item.id);
+    }
+  }
+
+  return selected;
+}
+
+/**
  * Filters and sorts normalized products according to active UI state.
  */
 export function filterAndSortProducts(

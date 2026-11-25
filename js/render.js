@@ -159,6 +159,83 @@ const THUMB_INACTIVE_CLASSES = `${THUMB_BASE_CLASSES} border-[#E5DCD3] hover:bor
 let savedBodyScrollY = 0;
 let lastTriggerElement = null;
 
+/**
+ * Updates the hero showcase spotlight caption and floating price tag badge.
+ */
+export function updateHeroSpotlight(elements, product, activeIndex = 0) {
+  if (!product) return;
+
+  if (elements.heroBadgePrice) {
+    elements.heroBadgePrice.textContent = product.price;
+  }
+  if (elements.heroBadgeCategory) {
+    elements.heroBadgeCategory.textContent = product.shortCategoryLabel || 'Featured';
+  }
+  if (elements.heroSpotlightTitle) {
+    elements.heroSpotlightTitle.textContent = product.name;
+    elements.heroSpotlightTitle.title = product.name;
+  }
+  if (elements.heroSpotlightMeta) {
+    const metaParts = [product.flavor, product.size].filter(Boolean);
+    elements.heroSpotlightMeta.textContent = metaParts.join(' • ') || product.categoryLabel;
+  }
+  if (elements.heroInspectBtn) {
+    elements.heroInspectBtn.dataset.activeIndex = String(activeIndex);
+    elements.heroInspectBtn.setAttribute('aria-label', `Inspect ${product.name}`);
+  }
+
+  elements.heroShowcaseStage?.querySelectorAll('.collage-photo-card').forEach((card, idx) => {
+    card.classList.toggle('is-active', idx === activeIndex);
+  });
+}
+
+/**
+ * Renders 3 overlapping featured cake cards into the hero Signature Creations collage.
+ */
+export function renderHeroShowcase(elements, showcaseProducts) {
+  const stage = elements.heroShowcaseStage;
+  if (!stage || !Array.isArray(showcaseProducts) || showcaseProducts.length === 0) return;
+
+  const slotClasses = ['collage-slot-primary', 'collage-slot-top', 'collage-slot-bottom'];
+
+  stage.innerHTML = showcaseProducts
+    .slice(0, 3)
+    .map((product, index) => {
+      const safeName = escapeHtml(product.name);
+      const safeImagePath = escapeHtml(product.imagePath);
+      const fallbackSrc = escapeHtml(buildFallbackSvg(product.name));
+      const slotClass = slotClasses[index] || slotClasses[0];
+      const activeClass = index === 0 ? ' is-active' : '';
+
+      return `
+        <button
+          type="button"
+          class="collage-photo-card ${slotClass}${activeClass} group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-caramel-500"
+          data-hero-index="${index}"
+          aria-label="Preview ${safeName} (${escapeHtml(product.price)})"
+        >
+          <span class="block w-full h-full rounded-xl overflow-hidden bg-cream-200 relative">
+            <img
+              src="${safeImagePath}"
+              alt="${safeName}"
+              decoding="async"
+              data-fallback="${fallbackSrc}"
+              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105 pointer-events-none"
+              onerror="this.onerror=null; this.src=this.dataset.fallback;"
+            />
+            <span class="collage-card-scrim pointer-events-none absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-[#26180F]/75 via-[#26180F]/25 to-transparent flex items-end justify-between gap-1 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200">
+              <span class="text-[10px] font-medium text-cream-50 truncate">${escapeHtml(product.shortCategoryLabel)}</span>
+              <span class="text-[10px] font-bold text-caramel-200 shrink-0">${escapeHtml(product.price)}</span>
+            </span>
+          </span>
+        </button>
+      `;
+    })
+    .join('');
+
+  updateHeroSpotlight(elements, showcaseProducts[0], 0);
+}
+
 function getFocusableModalElements(modal) {
   const dialog = modal?.querySelector('.modal-dialog');
   if (!dialog) return [];
@@ -169,13 +246,37 @@ function getFocusableModalElements(modal) {
   );
 }
 
+function lockBodyScroll() {
+  if (document.body.classList.contains('modal-open')) return;
+  savedBodyScrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.classList.add('modal-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${savedBodyScrollY}px`;
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+}
+
+function unlockBodyScroll() {
+  document.body.classList.remove('modal-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.overflow = '';
+  window.scrollTo(0, savedBodyScrollY);
+}
+
+function restoreTriggerFocus() {
+  if (lastTriggerElement && lastTriggerElement.isConnected && typeof lastTriggerElement.focus === 'function') {
+    lastTriggerElement.focus({ preventScroll: true });
+  }
+  lastTriggerElement = null;
+}
+
 /**
- * Traps Tab / Shift+Tab keyboard focus inside the open lightbox modal dialog.
+ * Traps Tab / Shift+Tab keyboard focus inside an active modal dialog.
  */
-export function trapLightboxFocus(elements, event) {
-  if (event.key !== 'Tab') return;
-  const modal = elements.lightbox || document.getElementById('lightboxModal');
-  if (!modal?.classList.contains('active')) return;
+export function trapModalFocus(modal, event) {
+  if (event.key !== 'Tab' || !modal?.classList.contains('active')) return;
 
   const dialog = modal.querySelector('.modal-dialog');
   const focusables = getFocusableModalElements(modal);
@@ -205,11 +306,19 @@ export function trapLightboxFocus(elements, event) {
 }
 
 /**
- * Opens the lightbox modal for the given index in filteredProducts.
+ * Traps Tab / Shift+Tab keyboard focus inside the open lightbox modal dialog.
  */
-export function openLightbox(elements, filteredProducts, index, triggerElement = null) {
-  if (index < 0 || index >= filteredProducts.length) return false;
-  const product = filteredProducts[index];
+export function trapLightboxFocus(elements, event) {
+  const modal = elements.lightbox || document.getElementById('lightboxModal');
+  trapModalFocus(modal, event);
+}
+
+/**
+ * Opens the lightbox modal for the given index in products.
+ */
+export function openLightbox(elements, products, index, triggerElement = null) {
+  if (index < 0 || index >= products.length) return false;
+  const product = products[index];
   if (!product) return false;
 
   const modal = elements.lightbox || document.getElementById('lightboxModal');
@@ -284,17 +393,10 @@ export function openLightbox(elements, filteredProducts, index, triggerElement =
 
   modal.classList.add('active');
   modal.setAttribute('aria-hidden', 'false');
-  // Flush CSS visibility: visible synchronously so focus() inside the modal succeeds immediately.
   void modal.offsetWidth;
 
-  // Lock background scroll on mobile & desktop without losing scroll position.
   if (!wasOpen) {
-    savedBodyScrollY = window.scrollY || window.pageYOffset || 0;
-    document.body.classList.add('modal-open');
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${savedBodyScrollY}px`;
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
   }
 
   const dialog = modal.querySelector('.modal-dialog');
@@ -307,11 +409,10 @@ export function openLightbox(elements, filteredProducts, index, triggerElement =
     elements.lightboxPrev.classList.toggle('opacity-30', index === 0);
   }
   if (elements.lightboxNext) {
-    elements.lightboxNext.disabled = index === filteredProducts.length - 1;
-    elements.lightboxNext.classList.toggle('opacity-30', index === filteredProducts.length - 1);
+    elements.lightboxNext.disabled = index === products.length - 1;
+    elements.lightboxNext.classList.toggle('opacity-30', index === products.length - 1);
   }
 
-  // Keep focus inside the modal on initial open or if an active nav button becomes disabled.
   if (!wasOpen) {
     const initialFocusTarget =
       elements.lightboxClose || getFocusableModalElements(modal)[0] || dialog;
@@ -344,16 +445,39 @@ export function closeLightbox(elements) {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
   }
+  unlockBodyScroll();
+  restoreTriggerFocus();
+}
 
-  document.body.classList.remove('modal-open');
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  document.body.style.overflow = '';
-  window.scrollTo(0, savedBodyScrollY);
+/**
+ * Opens the Custom Cake Builder modal with focus management and scroll lock.
+ */
+export function openCustomCakeModal(elements, triggerElement = null) {
+  const modal = elements.customCakeModal || document.getElementById('customCakeModal');
+  if (!modal) return false;
 
-  if (lastTriggerElement && lastTriggerElement.isConnected && typeof lastTriggerElement.focus === 'function') {
-    lastTriggerElement.focus({ preventScroll: true });
+  lastTriggerElement = triggerElement || document.activeElement;
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  void modal.offsetWidth;
+  lockBodyScroll();
+
+  const dialog = modal.querySelector('.modal-dialog');
+  if (dialog) dialog.scrollTop = 0;
+  const target = elements.customCakeClose || getFocusableModalElements(modal)[0] || dialog;
+  target?.focus({ preventScroll: true });
+  return true;
+}
+
+/**
+ * Closes the Custom Cake Builder modal and restores scroll/focus.
+ */
+export function closeCustomCakeModal(elements) {
+  const modal = elements.customCakeModal || document.getElementById('customCakeModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
   }
-  lastTriggerElement = null;
+  unlockBodyScroll();
+  restoreTriggerFocus();
 }

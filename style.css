@@ -160,6 +160,105 @@ header.header-scrolled {
 .hero-counter-anim {
   animation: heroFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
 }
+.hero-showcase-anim {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+/* Split-Screen Editorial Hero: Signature Creations Collage Card */
+.hero-collage-frame {
+  background: linear-gradient(145deg, #FFFDF9 0%, #FAF5EE 55%, #F2E4D3 100%);
+  border: 1px solid rgba(184, 115, 51, 0.45);
+  box-shadow:
+    inset 0 0 0 1px rgba(218, 189, 160, 0.4),
+    0 24px 55px -16px rgba(61, 35, 20, 0.16),
+    0 8px 20px -8px rgba(184, 115, 51, 0.12);
+}
+
+.collage-stage {
+  aspect-ratio: 10 / 8.8;
+}
+
+.collage-photo-card {
+  position: absolute;
+  padding: 0.375rem;
+  background-color: #FFFFFF;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(201, 152, 106, 0.55);
+  box-shadow: 0 14px 30px -10px rgba(38, 24, 15, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.9);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s ease, border-color 0.25s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .collage-photo-card {
+    padding: 0.45rem;
+    border-radius: 1.25rem;
+  }
+}
+
+.collage-slot-primary {
+  left: 1%;
+  top: 7%;
+  width: 59%;
+  aspect-ratio: 1 / 1;
+  z-index: 20;
+  transform: rotate(-2.5deg);
+}
+
+.collage-slot-top {
+  right: 1.5%;
+  top: 0%;
+  width: 45%;
+  aspect-ratio: 1 / 1;
+  z-index: 10;
+  transform: rotate(3.8deg);
+}
+
+.collage-slot-bottom {
+  right: 4%;
+  bottom: 1%;
+  width: 46%;
+  aspect-ratio: 1 / 1;
+  z-index: 30;
+  transform: rotate(-2.2deg);
+}
+
+.collage-photo-card:hover,
+.collage-photo-card:focus-visible,
+.collage-photo-card.is-active {
+  border-color: #B87333;
+  box-shadow: 0 20px 38px -10px rgba(61, 35, 20, 0.3), 0 0 0 2px rgba(201, 152, 106, 0.35);
+}
+
+.collage-photo-card:hover,
+.collage-photo-card:focus-visible {
+  z-index: 35;
+  transform: translateY(-4px) scale(1.035) rotate(0deg);
+}
+
+.floating-price-badge {
+  box-shadow: 0 14px 28px -8px rgba(38, 24, 15, 0.42), 0 0 0 1px rgba(218, 189, 160, 0.25);
+  transition: transform 0.25s ease;
+}
+
+.custom-option-pill {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-option-pill:hover {
+  border-color: #B87333;
+  transform: translateY(-1px);
+}
+
+.custom-option-pill.active {
+  background-color: #6E4E37;
+  color: #FFFFFF;
+  border-color: #543B29;
+  box-shadow: 0 4px 12px rgba(110, 78, 55, 0.28);
+  font-weight: 600;
+}
 
 @keyframes heroFadeInDown {
   0% {
