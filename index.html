@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frostoria | Freshly Baked Memories</title>
   <meta name="description" content="Handcrafted birthday cakes, floral celebration cakes, minimal aesthetic designs, theme cakes, and freshly baked treats lovingly baked by Frostoria. Freshly baked memories.">
+  <link rel="canonical" href="https://frostoria.vercel.app/">
+
+  <!-- Open Graph / Social Preview Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Frostoria">
+  <meta property="og:url" content="https://frostoria.vercel.app/">
+  <meta property="og:title" content="Frostoria | Freshly Baked Memories">
+  <meta property="og:description" content="Handcrafted birthday cakes, floral celebration cakes, minimal aesthetic designs, theme cakes, and freshly baked treats lovingly baked by Frostoria.">
+  <meta property="og:image" content="https://frostoria.vercel.app/logo.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Frostoria — Freshly Baked Memories logo">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Frostoria | Freshly Baked Memories">
+  <meta name="twitter:description" content="Handcrafted birthday cakes, floral celebration cakes, minimal aesthetic designs, theme cakes, and freshly baked treats lovingly baked by Frostoria.">
+  <meta name="twitter:image" content="https://frostoria.vercel.app/logo.jpg">
+
   <link rel="icon" type="image/jpeg" href="logo.jpg">
 
   <!-- Google Fonts (Preconnect & Non-blocking Link) -->
@@ -13,8 +32,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 
   <!-- Compiled Tailwind CSS & Custom CSS -->
-  <link rel="stylesheet" href="output.css?v=1">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="output.css?v=2">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
@@ -93,12 +112,13 @@
           aria-expanded="false" 
           aria-controls="searchFilterContainer"
           aria-label="Toggle search and filters"
-          class="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-cream-50 hover:bg-white text-mocha-900 border border-[#E5DCD3] hover:border-caramel-300 shadow-xs transition-all active:scale-95 cursor-pointer shrink-0"
+          class="flex items-center justify-center w-8 h-8 sm:w-auto sm:h-9 sm:px-3.5 sm:gap-1.5 rounded-full bg-cream-50 hover:bg-white text-mocha-900 border border-[#E5DCD3] hover:border-caramel-300 shadow-xs transition-all active:scale-95 cursor-pointer shrink-0"
           title="Toggle search and filters"
         >
           <svg class="w-4 h-4 text-caramel-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
+          <span class="hidden sm:inline text-xs font-semibold">Search &amp; Filter</span>
         </button>
       </div>
 
@@ -144,40 +164,6 @@
               <option value="name-asc">Name: A to Z</option>
             </select>
           </div>
-        </div>
-      </div>
-
-      <!-- Categories Filter Row -->
-      <div class="flex flex-col md:flex-row md:items-center gap-2 pt-2 border-t border-[#EAE0D5]/70">
-        <span class="text-[11px] font-bold uppercase tracking-wider text-mocha-700 shrink-0 md:w-20">Category:</span>
-        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          <button type="button" class="category-btn filter-pill active px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="all">
-            All Cakes & Treats
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="birthday">
-            Birthday Cakes
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="floral">
-            Floral Cakes
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="aesthetic">
-            Minimal & Aesthetic
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="theme">
-            Theme Cakes
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="special-occasion">
-            Special Occasion
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="funny">
-            Funny Cakes
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="cookies">
-            Cookies & Treats
-          </button>
-          <button type="button" class="category-btn filter-pill px-3 py-1 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="cheesecake">
-            Cheesecake
-          </button>
         </div>
       </div>
 
@@ -301,20 +287,65 @@
         </a>
       </div>
 
-      <!-- Active Counter Badge -->
-      <div class="hero-counter-anim mt-5 flex items-center justify-center gap-2 text-xs text-warm-600 font-medium">
+      <!-- Active Counter Badge & Quick Filter Drawer Trigger -->
+      <div class="hero-counter-anim mt-5 flex flex-wrap items-center justify-center gap-2 text-xs text-warm-600 font-medium">
         <span id="itemCount" class="live-item-count px-4 py-1.5 bg-cream-50 rounded-full border border-caramel-200 shadow-2xs font-semibold text-mocha-900 inline-block">
           Loading cakes...
         </span>
+        <button
+          id="heroFilterTriggerBtn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="searchFilterContainer"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white hover:bg-caramel-50 rounded-full border border-[#DFD4C7] hover:border-caramel-300 shadow-2xs font-medium text-mocha-800 transition-all active:scale-95 cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5 text-caramel-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span>Search &amp; Flavours</span>
+        </button>
       </div>
     </section>
 
     <!-- Product Showcase Gallery Grid -->
     <section id="gallerySection" aria-label="Product Showcase Gallery">
       
+      <!-- Always-Visible Category Filter Strip -->
+      <nav aria-label="Filter cakes by category" class="mb-5 sm:mb-8">
+        <div class="category-scroll-row flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 sm:pb-0 sm:flex-wrap sm:justify-center">
+          <button type="button" class="category-btn filter-pill active shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="all">
+            All Cakes &amp; Treats
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="birthday">
+            Birthday Cakes
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="floral">
+            Floral Cakes
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="aesthetic">
+            Minimal &amp; Aesthetic
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="theme">
+            Theme Cakes
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="special-occasion">
+            Special Occasion
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="funny">
+            Funny Cakes
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="cookies">
+            Cookies &amp; Treats
+          </button>
+          <button type="button" class="category-btn filter-pill shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[#D9CFC4] bg-white text-warm-800 hover:border-caramel-400" data-category="cheesecake">
+            Cheesecake
+          </button>
+        </div>
+      </nav>
+
       <!-- Responsive Cards Grid -->
       <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-7">
-        <!-- Rendered dynamically by app.js -->
+        <!-- Rendered dynamically by js/render.js -->
       </div>
 
       <!-- Empty State (When search has no results) -->
@@ -336,13 +367,13 @@
   </main>
 
   <!-- Lightbox / Image Detail Modal -->
-  <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+  <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxTitle">
     
     <!-- Background Dim Overlay -->
     <div id="lightboxBackdrop" class="absolute inset-0 bg-[#1F1815]/75 backdrop-blur-sm cursor-pointer"></div>
 
     <!-- Modal Dialog Content Box -->
-    <div class="modal-dialog relative w-full max-w-3xl md:max-w-4xl lg:max-w-[920px] bg-white rounded-3xl shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row md:h-[600px] lg:h-[620px] max-h-[90vh] overflow-y-auto md:overflow-hidden overscroll-contain">
+    <div tabindex="-1" class="modal-dialog relative w-full max-w-3xl md:max-w-4xl lg:max-w-[920px] bg-white rounded-3xl shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row md:h-[600px] lg:h-[620px] max-h-[90vh] overflow-y-auto md:overflow-hidden overscroll-contain focus:outline-hidden">
       
       <!-- Close Button -->
       <button 
@@ -534,6 +565,6 @@
   </div>
 
   <!-- Application Entry Module -->
-  <script type="module" src="js/main.js?v=1"></script>
+  <script type="module" src="js/main.js?v=2"></script>
 </body>
 </html>

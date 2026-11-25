@@ -157,17 +157,68 @@ const THUMB_ACTIVE_CLASSES = `${THUMB_BASE_CLASSES} border-[#B87333] ring-2 ring
 const THUMB_INACTIVE_CLASSES = `${THUMB_BASE_CLASSES} border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100`;
 
 let savedBodyScrollY = 0;
+let lastTriggerElement = null;
+
+function getFocusableModalElements(modal) {
+  const dialog = modal?.querySelector('.modal-dialog');
+  if (!dialog) return [];
+  const selector =
+    'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])';
+  return Array.from(dialog.querySelectorAll(selector)).filter(
+    el => !el.closest('.hidden') && el.getClientRects().length > 0
+  );
+}
+
+/**
+ * Traps Tab / Shift+Tab keyboard focus inside the open lightbox modal dialog.
+ */
+export function trapLightboxFocus(elements, event) {
+  if (event.key !== 'Tab') return;
+  const modal = elements.lightbox || document.getElementById('lightboxModal');
+  if (!modal?.classList.contains('active')) return;
+
+  const dialog = modal.querySelector('.modal-dialog');
+  const focusables = getFocusableModalElements(modal);
+  if (focusables.length === 0) {
+    event.preventDefault();
+    dialog?.focus({ preventScroll: true });
+    return;
+  }
+
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  const active = document.activeElement;
+
+  if (!dialog?.contains(active)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first).focus({ preventScroll: true });
+    return;
+  }
+
+  if (event.shiftKey && active === first) {
+    event.preventDefault();
+    last.focus({ preventScroll: true });
+  } else if (!event.shiftKey && active === last) {
+    event.preventDefault();
+    first.focus({ preventScroll: true });
+  }
+}
 
 /**
  * Opens the lightbox modal for the given index in filteredProducts.
  */
-export function openLightbox(elements, filteredProducts, index) {
+export function openLightbox(elements, filteredProducts, index, triggerElement = null) {
   if (index < 0 || index >= filteredProducts.length) return false;
   const product = filteredProducts[index];
   if (!product) return false;
 
   const modal = elements.lightbox || document.getElementById('lightboxModal');
   if (!modal) return false;
+
+  const wasOpen = modal.classList.contains('active');
+  if (!wasOpen) {
+    lastTriggerElement = triggerElement || document.activeElement;
+  }
 
   const img = elements.lightboxImg || document.getElementById('lightboxImg');
   if (img) {
@@ -232,14 +283,17 @@ export function openLightbox(elements, filteredProducts, index) {
   }
 
   modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
 
   // Lock background scroll on mobile & desktop without losing scroll position.
-  savedBodyScrollY = window.scrollY || window.pageYOffset || 0;
-  document.body.classList.add('modal-open');
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${savedBodyScrollY}px`;
-  document.body.style.width = '100%';
-  document.body.style.overflow = 'hidden';
+  if (!wasOpen) {
+    savedBodyScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.classList.add('modal-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedBodyScrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  }
 
   const dialog = modal.querySelector('.modal-dialog');
   if (dialog) dialog.scrollTop = 0;
@@ -255,15 +309,32 @@ export function openLightbox(elements, filteredProducts, index) {
     elements.lightboxNext.classList.toggle('opacity-30', index === filteredProducts.length - 1);
   }
 
+  // Ensure focus stays inside the modal on initial open or if a nav button becomes disabled.
+  if (!wasOpen) {
+    const initialFocusTarget =
+      elements.lightboxClose || getFocusableModalElements(modal)[0] || dialog;
+    initialFocusTarget?.focus({ preventScroll: true });
+  } else if (document.activeElement?.disabled) {
+    const fallbackTarget =
+      (!elements.lightboxNext?.disabled && elements.lightboxNext) ||
+      (!elements.lightboxPrev?.disabled && elements.lightboxPrev) ||
+      elements.lightboxClose ||
+      dialog;
+    fallbackTarget?.focus({ preventScroll: true });
+  }
+
   return true;
 }
 
 /**
- * Closes the lightbox modal and restores previous body scroll position.
+ * Closes the lightbox modal, restores scroll position, and returns focus to trigger.
  */
 export function closeLightbox(elements) {
   const modal = elements.lightbox || document.getElementById('lightboxModal');
-  if (modal) modal.classList.remove('active');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
 
   document.body.classList.remove('modal-open');
   document.body.style.position = '';
@@ -271,4 +342,9 @@ export function closeLightbox(elements) {
   document.body.style.width = '';
   document.body.style.overflow = '';
   window.scrollTo(0, savedBodyScrollY);
+
+  if (lastTriggerElement && lastTriggerElement.isConnected && typeof lastTriggerElement.focus === 'function') {
+    lastTriggerElement.focus({ preventScroll: true });
+  }
+  lastTriggerElement = null;
 }

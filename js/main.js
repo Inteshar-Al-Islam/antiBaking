@@ -3,7 +3,8 @@ import {
   closeLightbox,
   openLightbox,
   renderProductGrid,
-  showCatalogLoadError
+  showCatalogLoadError,
+  trapLightboxFocus
 } from './render.js';
 import { copyProductDetails, handleInquiry } from './actions.js';
 
@@ -27,6 +28,7 @@ function getElements() {
     clearSearchBtn: document.getElementById('clearSearchBtn'),
     resetFiltersBtn: document.getElementById('resetFiltersBtn'),
     filterToggleBtn: document.getElementById('filterToggleBtn'),
+    heroFilterTriggerBtn: document.getElementById('heroFilterTriggerBtn'),
     searchFilterContainer: document.getElementById('searchFilterContainer'),
     categoryPills: document.querySelectorAll('.category-btn'),
     flavourPills: document.querySelectorAll('.flavour-btn'),
@@ -63,8 +65,8 @@ function updateView(elements) {
   renderProductGrid(elements, state.filteredProducts);
 }
 
-function showLightboxAt(elements, index) {
-  if (openLightbox(elements, state.filteredProducts, index)) {
+function showLightboxAt(elements, index, triggerElement = null) {
+  if (openLightbox(elements, state.filteredProducts, index, triggerElement)) {
     state.lightboxIndex = index;
   }
 }
@@ -104,15 +106,20 @@ function initEventListeners(elements) {
   elements.clearSearchBtn?.addEventListener('click', () => resetAllFilters(elements));
   elements.resetFiltersBtn?.addEventListener('click', () => resetAllFilters(elements));
 
-  if (elements.filterToggleBtn && elements.searchFilterContainer) {
-    elements.filterToggleBtn.addEventListener('click', () => {
-      const isExpanded = elements.searchFilterContainer.classList.contains('open');
-      elements.searchFilterContainer.classList.toggle('open', !isExpanded);
-      elements.filterToggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-      elements.filterToggleBtn.classList.toggle('bg-caramel-100', !isExpanded);
-      elements.filterToggleBtn.classList.toggle('border-caramel-400', !isExpanded);
-      if (!isExpanded) elements.searchInput?.focus();
-    });
+  if (elements.searchFilterContainer) {
+    const toggleDrawer = () => {
+      const nextOpen = !elements.searchFilterContainer.classList.contains('open');
+      elements.searchFilterContainer.classList.toggle('open', nextOpen);
+      [elements.filterToggleBtn, elements.heroFilterTriggerBtn].filter(Boolean).forEach(btn => {
+        btn.setAttribute('aria-expanded', String(nextOpen));
+        btn.classList.toggle('bg-caramel-100', nextOpen);
+        btn.classList.toggle('border-caramel-400', nextOpen);
+      });
+      if (nextOpen) elements.searchInput?.focus();
+    };
+
+    elements.filterToggleBtn?.addEventListener('click', toggleDrawer);
+    elements.heroFilterTriggerBtn?.addEventListener('click', toggleDrawer);
   }
 
   elements.categoryPills.forEach(btn => {
@@ -144,7 +151,7 @@ function initEventListeners(elements) {
       if (!card) return;
       const idx = parseInt(card.getAttribute('data-index'), 10);
       if (!Number.isNaN(idx)) {
-        showLightboxAt(elements, idx);
+        showLightboxAt(elements, idx, card);
       }
     };
 
@@ -244,7 +251,9 @@ function initEventListeners(elements) {
 
   window.addEventListener('keydown', e => {
     if (!elements.lightbox?.classList.contains('active')) return;
-    if (e.key === 'Escape') {
+    if (e.key === 'Tab') {
+      trapLightboxFocus(elements, e);
+    } else if (e.key === 'Escape') {
       hideLightbox(elements);
     } else if (e.key === 'ArrowRight' && state.lightboxIndex < state.filteredProducts.length - 1) {
       showLightboxAt(elements, state.lightboxIndex + 1);
