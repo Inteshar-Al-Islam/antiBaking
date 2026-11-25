@@ -323,17 +323,6 @@ header.header-scrolled {
   opacity: 1;
 }
 
-/* Always-Visible Category Strip Mobile Horizontal Scroll */
-.category-scroll-row {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.category-scroll-row::-webkit-scrollbar {
-  display: none;
-}
-
 /* Filter Tag Pills Micro-Interactions */
 .filter-pill {
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
