@@ -1,1793 +1,91 @@
 /**
  * Frostoria - Artisan Bakery & Cake Showcase
- * Handcrafted Cakes, Real Products Catalog & Interactive Showcase
+ * Catalog Loader, Filtering, Lightbox & Interactive Showcase
  */
 
-// 1. Handcrafted Product Catalog (Curated with premier visual showpieces at the top)
-const PRODUCTS = [
-  {
-    id: "prod-27",
-    name: "Enchanted Floral Storybook Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "2.5 Pound",
-    rawPrice: "2000",
-    numericPrice: 2000,
-    price: "\u09f32,000",
-    imageSrc: encodeURI("resources/Floral cake/Floral book cake flavour_ chocolate size_ 2.5 pound price_ 2k.JPG"),
-    details: "Meticulously carved to resemble an antique open book adorned with cascading wildflowers and gilded page trims. A majestic 2.5-pound chocolate masterpiece created for weddings, convocations, and milestone chapters."
-  },
-  {
-    id: "prod-61",
-    name: "Emerald Moon & Golden Butterfly Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Theme cake/Green half moon and butterfly cake flavour_ chocolate size_ 1 pound price_ 1k.JPG"),
-    details: "A sculptural 3D crescent moon in delicate pistachio green, graced by an oversized hand-textured emerald butterfly, soft garden roses, and wild florets. Layered with rich chocolate truffle sponge and bathed in natural sunlight elegance."
-  },
-  {
-    id: "prod-43",
-    name: "Soft Pink & White Lambeth Vintage Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Soft pink and white vintage cake_flavour_ chocolate size_1 pound price_800 tk.JPG"),
-    details: "Ornate Victorian Lambeth piping with intricate shell garlands, ruffles, and soft blush buttercream accents. Inside, moist chocolate truffle sponge layers ensure deep chocolate decadence."
-  },
-  {
-    id: "prod-40",
-    name: "Pink Drip 'Pookie' Vintage Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Pink dripping pookie cake_ flavour_ chocolate size_ 1 pound price_ 800 tk .JPG"),
-    details: "Trending aesthetic Korean-style cake featuring luscious pink chocolate drip, vintage shell borders, and playful retro lettering. Rich cocoa sponge layers inside make it as delicious to eat as it is to photograph."
-  },
-  {
-    id: "prod-28",
-    name: "Wildflower Meadow Blossom Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Butterscotch",
-    size: "1.5 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources/Floral cake/Lots of flowers flavour_ butterscotch size_ 1.5 pound price_ 1500tk.JPG"),
-    details: "An abundant tapestry of multicolored butter blossoms densely piped across the top in breathtaking harmony. Paired with aromatic butterscotch crunch sponge and golden brown sugar buttercream."
-  },
-  {
-    id: "prod-44",
-    name: "Two-Tier Cherry Vintage Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Black Forest",
-    size: "1 Pound (Two Tier)",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Two tier cherry cake_flavour_ Black Forest size_ 1 pound price_1k .JPG"),
-    details: "Two-tier vintage piped cake crowned with bright ruby maraschino cherries, scalloped borders, and delicate frills. Authentic Black Forest sponge soaked in cherry syrup with whipped cream layers."
-  },
-  {
-    id: "prod-2",
-    name: "Black Bow Coquette Ribbon Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Black bow ribbon cake_Flavour_chocolate size_1 pound Price_800Tk.JPG"),
-    details: "A chic minimalist celebration cake featuring hand-tied noir ribbon bows gracefully draped across silky ivory frosting. Inside, moist chocolate sponge layers are generously filled with smooth chocolate buttercream."
-  },
-  {
-    id: "prod-66",
-    name: "Raiden Shogun Anime Buttercream Portrait Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "2200",
-    numericPrice: 2200,
-    price: "\u09f32,200",
-    imageSrc: encodeURI("resources/Theme cake/Raiden shogun buttercream art flavour_ chocolate size_ 2 pound price_ 2200tk.JPG"),
-    details: "A masterwork of freehand buttercream portraiture depicting Genshin's Raiden Shogun with her electro blade and braided hair. Sized at 2 pounds with double chocolate truffle layers, an unforgettable centerpiece for anime lovers."
-  },
-  {
-    id: "prod-57",
-    name: "Bookworm Doll & Library Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Theme cake/Doll with books flavour_ chocolate size_ 1 pound price_ 1k.JPG"),
-    details: "Delightful illustration of an avid reader doll surrounded by miniature stacked books and a warm tea mug. Layered with tender chocolate sponge and silky cocoa frosting for passionate readers."
-  },
-  {
-    id: "prod-48",
-    name: "Watermelon Cat Kawaii Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Strawberry",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Watermelon cat_flavour_strawberry size_ 1 pound price_900tk.JPG"),
-    details: "An adorable pastel illustration of a sleepy kitten cuddled up with a juicy slice of ripe watermelon. Fluffy strawberry sponge layered with strawberry fruit compote and light vanilla cream."
-  },
-  {
-    id: "prod-69",
-    name: "Starry Night Celestial Moon & Sun Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources/Theme cake/Starry night moonsun cake flavour_ chocolate size_ 1.5 pound price_ 1500tk.JPG"),
-    details: "Swirling blues and yellows inspired by Van Gogh's masterpiece, uniting celestial sun and crescent moon motifs. Moist chocolate sponge layers filled with whipped chocolate cream for lovers of cosmic art."
-  },
-  {
-    id: "prod-50",
-    name: "Kath Golap & Morning Cha Cake",
-    featured: true,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Special occasion cake/Kath golap with a cup of tea flavour_ chocolate size_ 1 pound price_1k.JPG"),
-    details: "A poetic Bengali homage featuring hand-painted fragrant Kath Golap (Plumeria) blossoms beside a steaming cup of tea. Moist chocolate sponge with silky chocolate cream, evoking cozy rainy day addas."
-  },
-  {
-    id: "prod-36",
-    name: "Dainty Ribbon Bow Strawberry Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Strawberry",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Cute bow on top flavour_ strawberry size_ 1 pound price_ 900tk .JPG"),
-    details: "A pristine minimalist cake crowned with a single handcrafted pink ribbon bow and delicate pearl shell border. Soft strawberry chiffon sponge layered with strawberry compote and whipped cream."
-  },
-  {
-    id: "prod-25",
-    name: "Architectural Top-Forward Arch Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Birthday cake/Top forward cake flavour_ chocolate size_ 1 pound price_ 900 tk.JPG"),
-    details: "Modern sculptural cake standing vertically on its edge with a stunning floral archway showcased front and center. Packed with moist chocolate sponge and ganache, offering a striking profile from every angle."
-  },
-  {
-    id: "prod-53",
-    name: "Bengali Pitha Utshob Celebration Cake",
-    featured: true,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources/Special occasion cake/Pitha festival cake flavour_chocolate size_ 2 pound price_1800tk .JPG"),
-    details: "A unique cultural centerpiece celebrating winter Pitha festivals with sculpted edible sweets atop an artisan tier. Grand 2-pound size baked with dark chocolate sponge and rich cocoa filling for family feasts."
-  },
-  {
-    id: "prod-24",
-    name: "Cuddly Teddy Bear Birthday Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Birthday cake/Teddy cake flavour_ chocolate size_ 1.5 pound price_1200Tk.JPG"),
-    details: "Heartwarming three-dimensional teddy bear piped in textured buttercream with tiny celebration party hat accents. Built on 1.5 pounds of moist chocolate fudge sponge, guaranteed to be adored by toddlers."
-  },
-  {
-    id: "prod-29",
-    name: "Royal Orchid & Salted Caramel Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources/Floral cake/Orchid flower cake flavour_ chocolate caramel size_ 1.5 pound price_ 1500tk.JPG"),
-    details: "Featuring graceful hand-sculpted orchid petals resting against a softly textured ivory tier. Infused with rich cocoa sponge and house-made salted caramel filling for an exquisite harmony of flavors."
-  },
-  {
-    id: "prod-64",
-    name: "Traditional Mukhe Bhaat Ceremony Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources/Theme cake/Mukhe vhaat flavour_ chocolate cake size_ 1 pound price_1500tk.JPG"),
-    details: "Special cultural celebration cake commemorating baby's first rice ceremony, decorated with sacred alpana motifs. Moist chocolate sponge with rich chocolate buttercream to mark this auspicious milestone."
-  },
-  {
-    id: "prod-23",
-    name: "Bright Sunflower Sunshine Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Lemon",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Birthday cake/Sunflower cake.JPG flavour_ lemon size_ 1 pound price_ 900 tk.jpg"),
-    details: "Radiant golden sunflower petals piped with dark chocolate seed centers, bringing vibrant warmth to the table. Baked with fresh lemon zest infused sponge layered with silky citrus buttercream."
-  },
-  {
-    id: "prod-51",
-    name: "Heartbeat Scarlet Romance Cake",
-    featured: true,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1600",
-    numericPrice: 1600,
-    price: "\u09f31,600",
-    imageSrc: encodeURI("resources/Special occasion cake/Middle red love flavour_ chocolate size_ 2 pound price_1600 tk.JPG"),
-    details: "A vibrant crimson heart framed by elegant pearl borders and passionate anniversary accents. Substantial 2-pound capacity with dark chocolate ganache and cocoa sponge, ideal for proposals and anniversaries."
-  },
-  {
-    id: "prod-1",
-    name: "Brown Button Chocolate Chip Cookies",
-    featured: false,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Chocolate",
-    size: "Freshly Baked",
-    rawPrice: "80",
-    numericPrice: 80,
-    price: "\u09f380",
-    imageSrc: encodeURI("resources/Brown button chocolate chips cookies price 80 taka .JPG"),
-    details: "Freshly baked to golden perfection using browned French dairy butter and overflowing with decadent Belgian chocolate buttons. Crisp caramelized edges give way to a chewy, melt-in-your-mouth center."
-  },
-  {
-    id: "prod-3",
-    name: "Artisan Oil Painting Canvas Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Canvas cake flavour_chocolate size_ 1 pound Price_ 800Tk.JPG"),
-    details: "Designed like an impressionist fine art canvas with textured palette knife strokes in serene pastel shades. Decadent cocoa sponge layered with whipped chocolate cream makes this as delightful to eat as it is to admire."
-  },
-  {
-    id: "prod-4",
-    name: "Cars & Fluffy Clouds Birthday Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Birthday cake/Cars and cloud .JPG Flavour_ chocolate size_ 1.5 pound price_ 1200Tk.JPG"),
-    details: "Fluffy hand-piped buttercream clouds drifting against gentle blue skies with vibrant sports cars cruising along the base. Generously sized at 1.5 pounds with moist chocolate cake layers that kids and parents will love."
-  },
-  {
-    id: "prod-5",
-    name: "Cool Guy in Sunglasses Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Cool guy with sunglasses Flavour_ chocolate size_ 1 pound price_ 800Tk.JPG"),
-    details: "Radiates effortless swagger with an expressive illustrated cartoon dude rocking dark shades. Layered with soft chocolate sponge and luscious chocolate buttercream, perfect for best friends and brothers."
-  },
-  {
-    id: "prod-6",
-    name: "Colourful Floral Moon Cake (Azure Blue)",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Vanilla",
-    size: "1.5 Pound",
-    rawPrice: "1100",
-    numericPrice: 1100,
-    price: "\u09f31,100",
-    imageSrc: encodeURI("resources/Birthday cake/Flower like a colourful moon cake (blue) Flavour_ vanila  size_ 1.5 pound price_1100Tk.JPG"),
-    details: "A celestial crescent garland of delicate baby blue, lilac, and buttercup blossoms encircling half the cake. Baked with fragrant vanilla bean sponge and velvety vanilla cream frosting for a light, dreamy bite."
-  },
-  {
-    id: "prod-7",
-    name: "Colourful Floral Moon Cake (Blush Pink)",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1300",
-    numericPrice: 1300,
-    price: "\u09f31,300",
-    imageSrc: encodeURI("resources/Birthday cake/Flowers like colourful moon cake (pink) flavour_ chocolate  size_ 1.5 pound price_1300Tk.JPG"),
-    details: "Romantic crescent arrangement of hand-piped pink rosettes, buds, and delicate foliage curving across the surface. Underneath is a rich chocolate sponge brushed with cocoa syrup and layered with chocolate ganache."
-  },
-  {
-    id: "prod-8",
-    name: "Freehand Vintage Car Sketch Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Birthday cake/Free hand car art Flavour_ chocolate size_ 1 pound Price_900 tk.JPG"),
-    details: "Showcasing bespoke freehand automobile line art sketched directly in chocolate buttercream over a silky cream canvas. Tender chocolate sponge layers make it an unforgettable tribute for car enthusiasts."
-  },
-  {
-    id: "prod-9",
-    name: "Friendly Green Dragon Birthday Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Green dragon flavour_ chocolate. Size_ 1 Pound Price 800Tk.JPG"),
-    details: "An adorable piped green dragon complete with cute scales, playful horns, and friendly cartoon eyes. Soft chocolate cake crumb layered with light cocoa frosting makes this a fantasy treat for birthday boys and girls."
-  },
-  {
-    id: "prod-10",
-    name: "Warm Embrace Holding Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Holding cake Flavour_ chocolate size_ 1 pound price_800tk.JPG"),
-    details: "Artistic minimalist line drawing of hands gently cradling a birthday cake with an emotional warmth that speaks for itself. Layered with moist chocolate sponge and silky smooth buttercream."
-  },
-  {
-    id: "prod-11",
-    name: "Citrus Zest & Botanical Green Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Lemon and green flavour_ chocolate size_ 1 pound price_ 800tk.JPG"),
-    details: "Earthy sage greens meet bright lemon-yellow palette strokes for a breezy, contemporary garden vibe. Filled with luscious chocolate sponge and smooth buttercream for rich cocoa satisfaction."
-  },
-  {
-    id: "prod-12",
-    name: "Flying With Balloons Storybook Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1700",
-    numericPrice: 1700,
-    price: "\u09f31,700",
-    imageSrc: encodeURI("resources/Birthday cake/Little girls fly with ballon Flavour_ chocolate size_ 2 pound price_1700tk.JPG"),
-    details: "A dreamy storybook illustration of young girls lifted high by a colorful cluster of floating balloons. Sized at a grand 2 pounds with double chocolate sponge layers, crafted for memorable family gatherings."
-  },
-  {
-    id: "prod-13",
-    name: "Petite Red Beetle Birthday Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Vanilla",
-    size: "1 Pound",
-    rawPrice: "700",
-    numericPrice: 700,
-    price: "\u09f3700",
-    imageSrc: encodeURI("resources/Birthday cake/Mini car cake flavour_ vanilla size_ 1 pound price_700tk.JPG"),
-    details: "Cute cartoon red car merrily cruising across sweet snowy vanilla frosting with tiny piped road accents. Fluffy, melt-in-your-mouth vanilla chiffon sponge layered with whipped dairy cream."
-  },
-  {
-    id: "prod-14",
-    name: "Mini White Daisy Meadow Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Mini white flowers flavour_ chocolate size_ 1 pound price_ 800 Tk.JPG"),
-    details: "Sprinkled with delicate white daisy florets and golden pistil centers over smooth bakery frosting. The moist chocolate sponge core is paired with cocoa filling for an effortless, charming birthday cake."
-  },
-  {
-    id: "prod-15",
-    name: "Midnight Skies & Dream Clouds Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Birthday cake/Night and cloudy Flavour_ chocolate size_ 1.5 pound price_ 1200Tk.JPG"),
-    details: "Atmospheric midnight navy shades blended with sculpted white cumulus clouds and starlight gold flecks. Built with 1.5 pounds of dark chocolate sponge and rich cocoa ganache for late-night celebrations."
-  },
-  {
-    id: "prod-16",
-    name: "Olive Wreath Botanical Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Birthday cake/Olive floral cake flavour_ chocolate size_ 1.5 pound price_ 1200Tk.JPG"),
-    details: "Subtle olive and eucalyptus greens arranged in textured palette-knife florals with delicate cream highlights. Beneath its organic aesthetic lies deep chocolate sponge layered with smooth chocolate frosting."
-  },
-  {
-    id: "prod-17",
-    name: "Pink Ribbon Coquette Birthday Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Pink bow ribbon cake flavour_ chocolate size_ 1 pound price_800tk.JPG"),
-    details: "Delicate pastel pink sugar ribbons draped gracefully across the top with vintage beaded shell borders. Tender chocolate sponge filled with velvety chocolate cream makes this a birthday favorite."
-  },
-  {
-    id: "prod-18",
-    name: "Pink Butterfly Whimsy Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Birthday cake/Pink butterfly cake flavour_ chocolate size_ 1 pound price_ 900 tk.JPG"),
-    details: "Lifelike sugarcraft pink butterflies resting upon creamy rosettes and shimmering candy pearls. Rich chocolate sponge and smooth buttercream provide a heavenly melt-in-the-mouth texture."
-  },
-  {
-    id: "prod-19",
-    name: "Crimson & Ivory Palette Knife Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Red and white palate knife cake flavour_ chocolate size_ 1 pound price_ 800tk.JPG"),
-    details: "Bold crimson red and pure white painterly strokes swept across a silky smooth backdrop like modern gallery art. Filled with moist chocolate sponge and rich cocoa cream for refined birthday indulgence."
-  },
-  {
-    id: "prod-20",
-    name: "Vintage Red Bicycle Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Red bike flavour_ chocolate size_ 1 pound price_800tk.JPG"),
-    details: "A nostalgic retro red cruiser bicycle hand-piped with charming basket details over smooth ivory frosting. Moist chocolate cake inside offers comforting cocoa richness for bike lovers of all ages."
-  },
-  {
-    id: "prod-21",
-    name: "Scarlet Ribbon Bow Celebration Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Birthday cake/Red bow ribbon cake flavour_ chocolate size_ 1 pound price_ 800tk.JPG"),
-    details: "Striking scarlet red ribbons hand-tied over snowy ruffled buttercream borders for high-contrast drama. Delicious chocolate sponge layered with cocoa ganache ensures every slice is rich and memorable."
-  },
-  {
-    id: "prod-22",
-    name: "English Rose Garden Birthday Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Birthday cake/Rose cake flavour_ chocolate size_ 1 pound price_ 900tk.JPG"),
-    details: "Blooming hand-piped pink and crimson English roses nestled atop delicately textured buttercream swirls. Features decadent chocolate sponge with chocolate cream that melts luxuriously on the palate."
-  },
-  {
-    id: "prod-30",
-    name: "Pink Floral & Butterfly Dream Cake",
-    featured: false,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Floral cake/Pink floral cake with butterfly flavour_ chocolate  size_ 1 pound price_800tk.JPG"),
-    details: "Lush blush-pink piped florals paired with a shimmering sugar butterfly alighting on a pristine cream tier. Light chocolate sponge layered with smooth chocolate frosting creates an irresistible slice."
-  },
-  {
-    id: "prod-31",
-    name: "Tiny Pink Blossom Garland Cake",
-    featured: false,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Floral cake/Tiny Pink flowers cake flavour_ chocolate size_ 1 pound price_ 800 Tk.JPG"),
-    details: "A tender wreath of miniature pink florets and soft green sprigs encircling the rim of a silky frosted cake. Fluffy chocolate sponge inside keeps each forkful moist, light, and wonderfully satisfying."
-  },
-  {
-    id: "prod-32",
-    name: "Two-Tier Petite Butterscotch Floral Cake",
-    featured: false,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Butterscotch",
-    size: "1 Pound (Two Tier)",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Floral cake/Two tier floral cake flavour_ butterscotch size_ 1 pound price_900Tk.JPG"),
-    details: "An exquisite stacked two-tier miniature cake embellished with delicate floral piping and golden sugar beads. Layered with butterscotch praline sponge, bringing grand tiered elegance to smaller celebrations."
-  },
-  {
-    id: "prod-33",
-    name: "Playful Emoji Meme Bento Cake",
-    featured: false,
-    category: "funny",
-    categoryLabel: "Funny Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Funny cake/Funny cake flavour_ chocolate size_ 1 pound price_ 800Tk.JPG"),
-    details: "A witty, lighthearted cake featuring a hilarious meme expression that breaks the ice at any birthday party. Underneath the comedy is moist chocolate sponge with cocoa frosting, delivering top-tier laughter and taste."
-  },
-  {
-    id: "prod-34",
-    name: "Derpy Smile Celebration Meme Cake",
-    featured: false,
-    category: "funny",
-    categoryLabel: "Funny Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Funny cake/Funny cake flavour_chocolate size_1 pound price_800 tk.JPG"),
-    details: "Hilariously goofy smiling character drawn in expressive black buttercream on a bright pastel background. Baked with rich dark chocolate sponge and smooth buttercream filling for guaranteed laughs."
-  },
-  {
-    id: "prod-35",
-    name: "Silly Face Expression Bento Cake",
-    featured: false,
-    category: "funny",
-    categoryLabel: "Funny Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Funny cake/Funny face flavour_ chocolate size_ 1 pound price_ 800 tk.JPG"),
-    details: "An unforgettable hand-piped silly cartoon face designed to have everyone laughing and snapping photos instantly. Delicious chocolate sponge layered with smooth chocolate ganache ensures the cake tastes as great as it looks."
-  },
-  {
-    id: "prod-37",
-    name: "Sculpted Floral Bouquet Gift Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Flower bouquet cake flavour_ chocolate size_ 1.5 pound price_ 1200Tk .JPG"),
-    details: "Artfully sculpted to look like a fresh posy of hand-tied flowers wrapped in bakery parchment with blooming buds. Filled with luscious chocolate sponge and chocolate buttercream, doubling as flowers and dessert."
-  },
-  {
-    id: "prod-38",
-    name: "Melting Ice Cream Cone Bento Mini",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "Mini Cake",
-    rawPrice: "150",
-    numericPrice: 150,
-    price: "\u09f3150",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Ice cream cone cake flavour_ chocolate size_ mini cake price_150 tk .JPG"),
-    details: "An adorable mini bento treat topped with an inverted waffle cone and dripping chocolate ice cream illusion. Perfect for single servings or cute party favors, packed with rich chocolate sponge."
-  },
-  {
-    id: "prod-39",
-    name: "Oval Rose Wreath Aesthetic Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Oval rose bouquet flavour_ chocolate size_ 1 pound price_ 800tk .JPG"),
-    details: "An elegant oval silhouette framed with a delicate wreath of hand-piped blush and ivory rose blossoms. Soft chocolate velvet sponge with whipped cocoa cream provides a sophisticated dessert experience."
-  },
-  {
-    id: "prod-41",
-    name: "Ruby Velvet Bow Aesthetic Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Red bow_flavour_ chocolate size_1 pound price_900 tk.JPG"),
-    details: "Pure minimalist elegance featuring an understated snowy white tier accented by a single sculpted scarlet ribbon bow. Rich dark chocolate sponge inside gives an intense, luxurious cocoa note."
-  },
-  {
-    id: "prod-42",
-    name: "Petite Posy Wildflower Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Simple tiny bouquet cakes_flavour_ chocolate size_ 1 pound price_ 800 tk.JPG"),
-    details: "A sweet, gentle design showcasing a tiny hand-piped bundle of pastel meadow flowers bound by sugar twine. Moist chocolate sponge with whipped chocolate buttercream provides quiet, refined luxury."
-  },
-  {
-    id: "prod-45",
-    name: "Vintage Orange Blossom Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Orange",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Vintage floral cake_flavour_ orange size_ 1 pound price_ 1000tk .JPG"),
-    details: "Detailed retro piping in warm apricot and cream tones with botanical scrollwork reminiscent of antique teaware. Aromatic orange sponge infused with citrus syrup and layered with orange cream."
-  },
-  {
-    id: "prod-46",
-    name: "Periwinkle Blue Vintage Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Vintage in shade of blue_flavour_ chocolate size_ 1 pound price_ 800tk .JPG"),
-    details: "Finished in dreamy powder blue with intricate French piping swags, shell frills, and delicate pearl drops. Rich chocolate sponge layered with cocoa ganache gives a delicious contrast to the cool exterior."
-  },
-  {
-    id: "prod-47",
-    name: "Grand Victorian Ruffled Vintage Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1400",
-    numericPrice: 1400,
-    price: "\u09f31,400",
-    imageSrc: encodeURI("resources/Minimal & Aesthetic cakes/Vintage_flavour_ chocolate size_1.5 pound price_1400tk .JPG"),
-    details: "Heavily draped in elaborate Victorian piping swags, shell cornices, and elegant scrolled garlands. Sized at 1.5 pounds with dense chocolate cake layers, embodying timeless vintage romance."
-  },
-  {
-    id: "prod-49",
-    name: "Regal Black & White Tiara Crown Cake",
-    featured: false,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Special occasion cake/Black and white crown cake_flavour_ chocolate size_ 1.5 pound price_1200tk.JPG"),
-    details: "Crowned with a sparkling tiara against a monochromatic backdrop of dramatic black and ivory piping. Built with 1.5 pounds of moist chocolate fudge cake, fitting for kings, queens, and milestone birthdays."
-  },
-  {
-    id: "prod-54",
-    name: "Dhaka to Kuala Lumpur Farewell Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Theme cake/Bangladesh to Malaysia flavour_ chocolate size_ 1 pound price_ 800 tk.JPG"),
-    details: "An emotional long-distance departure cake mapping a scenic flight trail from Bangladesh to Malaysia. Filled with rich chocolate sponge and cocoa cream to sweeten bittersweet farewells."
-  },
-  {
-    id: "prod-55",
-    name: "Blackpink 'Born Pink' K-Pop Theme Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1100",
-    numericPrice: 1100,
-    price: "\u09f31,100",
-    imageSrc: encodeURI("resources/Theme cake/Black pink cake flavour_ chocolate size_ 1 pound price_ 1100 tk.JPG"),
-    details: "Bold dark chocolate frosting paired with vibrant pink drip and signature K-Pop styling for true BLINKs. Layers of dark chocolate sponge with berry-infused chocolate filling."
-  },
-  {
-    id: "prod-56",
-    name: "Midnight Witch & Potion Bottle Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Theme cake/Black witch with bottle flavour_ chocolate size_ 1 pound price_ 1200tk.JPG"),
-    details: "Gothic fantasy artwork depicting a stylish witch brewing starry magical potions under moonlight. Moist cocoa sponge layered with rich dark chocolate ganache for bewitching celebrations."
-  },
-  {
-    id: "prod-58",
-    name: "Football Championship Match Day Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources/Theme cake/Football theme flavour_ chocolate size_ 2 pound price 1800tk .JPG"),
-    details: "Vibrant emerald grass turf piping complete with goal lines, football details, and victory crests. Substantial 2-pound double chocolate mud cake to fuel the entire squad on match day."
-  },
-  {
-    id: "prod-59",
-    name: "Pastel Balloon Dreams Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Theme cake/Girls with balloons flavour_ chocolate size_ 1 pound price_ 1k.JPG"),
-    details: "Gentle illustration of young girls carried away by a giant bunch of shimmering pastel balloons. Soft chocolate sponge layers with whipped chocolate buttercream to celebrate youthful dreams."
-  },
-  {
-    id: "prod-60",
-    name: "Convocation Honors Graduation Mud Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "2000",
-    numericPrice: 2000,
-    price: "\u09f32,000",
-    imageSrc: encodeURI("resources/Theme cake/Graduation cake flavour_ chocolate mud cake size_ 1 pound price_2k.JPG"),
-    details: "Topped with an elegant handcrafted graduation cap, golden tassel, and rolled certificate scroll. Rich, dense chocolate mud cake with fudgy ganache, crafted for convocation triumphs."
-  },
-  {
-    id: "prod-62",
-    name: "Baby Girl's Pink Shoes Keepsake Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources/Theme cake/Little girls pair of shoes flavour_ chocolate size_1pound price_ 900tk.JPG"),
-    details: "Sweetly piped pair of tiny pink baby shoes with delicate ribbon bows and floral borders. Soft chocolate sponge layered with smooth chocolate frosting, perfect for first birthdays and baby showers."
-  },
-  {
-    id: "prod-63",
-    name: "Five Little Yellow Ducklings Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Theme cake/Mini five ducks flavour_ chocolate size_ 1 pound price_ 800 tk.JPG"),
-    details: "Five cheerful sunny-yellow ducklings swimming peacefully along a bright blue ripple-textured pond. Moist chocolate sponge with milk chocolate buttercream, guaranteed to delight little toddlers."
-  },
-  {
-    id: "prod-65",
-    name: "PUBG Battleground Gaming Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources/Theme cake/Pubg theme cake flavour_ chocolate size_ 1 pound price_1500tk JPG.jpg"),
-    details: "Action-packed gaming cake featuring iconic PUBG airdrop crate, helmet details, and battleground motifs. Packed with dense chocolate truffle cake and rich ganache to celebrate game night victories."
-  },
-  {
-    id: "prod-67",
-    name: "Tropical Sea Beach & Sandy Shores Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Vanilla",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources/Theme cake/Sea beach cake. Flavour_ vanilla size_ 1 pound price _ 800tkJPG.jpg"),
-    details: "Piped turquoise ocean waves crashing onto realistic biscuit 'sand' with tiny seashells and beach parasols. Fluffy vanilla sponge soaked in light vanilla syrup and filled with whipped fresh cream."
-  },
-  {
-    id: "prod-68",
-    name: "Vintage Sewing Machine Artisan Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1700",
-    numericPrice: 1700,
-    price: "\u09f31,700",
-    imageSrc: encodeURI("resources/Theme cake/Sewing machine  flavour_ chocolate size_ 2 pound protein 1700 tk.JPG"),
-    details: "Handcrafted tribute featuring a vintage Singer-style sewing machine with spool, needle, and stitched measuring tape details. Substantial 2-pound chocolate sponge with velvety ganache, honoring gifted creators."
-  },
-  {
-    id: "prod-70",
-    name: "Fresh Strawberry & Black Forest Gateau",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Black Forest",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources/Theme cake/Strawberry cake flavour_ Black Forest size_ 1 pound price_ 10tkJPG.jpg"),
-    details: "Dark cocoa sponge infused with sour cherry syrup, crowned with fresh crimson strawberries and dark chocolate curls. Light whipped cream frosting provides the classic balance to deep chocolate sponge."
-  },
-  {
-    id: "prod-71",
-    name: "The Holy & The Hole Custom Concept Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources/Theme cake/The holy and the hole flavour_ chocolate size _ 1 pound price_ 1200 tk.JPG"),
-    details: "A bold conceptual centerpiece designed with sculptural hollowed geometry and mystical golden halo accents. Rich Belgian chocolate sponge layered with smooth chocolate ganache, crafted for truly bespoke themed celebrations."
-  },
-  {
-    id: "prod-72",
-    name: "Classic Italian Espresso Tiramisu",
-    featured: true,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Classic Espresso",
-    size: "250g Box",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/Tiramisu flavour_ classic size_ 250gm price_ TBA .jpeg"),
-    details: "Traditional Italian dessert crafted with authentic espresso-soaked Savoiardi ladyfingers, velvety mascarpone cream, and a generous dusting of rich Belgian cocoa powder."
-  },
-  {
-    id: "prod-73",
-    name: "Royal Pistachio Tiramisu Box",
-    featured: true,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Pistachio",
-    size: "250g Box",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/Tiramisu flavour_ pistachio size_ 250gm price_ TBA .jpeg"),
-    details: "Luxurious fusion tiramisu layered with handcrafted Sicilian pistachio paste, whipped mascarpone cream, espresso sponge, and topped with crushed roasted green pistachios."
-  },
-  {
-    id: "prod-74",
-    name: "Lemon & Strawberry Swirl Cheesecake",
-    featured: true,
-    category: "cheesecake",
-    categoryLabel: "Cheesecake",
-    flavour: "Lemon",
-    size: "400g Box",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/cheesecake cake flavour_ lemon and strawberry size_ 400gm price_ TBA.jpg"),
-    details: "Silky baked cream cheese infused with zesty lemon curd and swirled with fresh homemade strawberry fruit compote atop a buttery biscuit crust."
-  },
-  {
-    id: "prod-75",
-    name: "Fresh Strawberry Cream Swiss Roll",
-    featured: false,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Strawberry",
-    size: "1 Roll",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/Swiss roll flavour_ strawberry price_ TBA .jpeg"),
-    details: "Feather-light Japanese style chiffon roll cake wrapped around luscious fresh strawberry cream and sweet strawberry purée."
-  },
-  {
-    id: "prod-76",
-    name: "Zesty Orange Buttercream Cupcakes",
-    featured: false,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Orange",
-    size: "Box of 4/6",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/Cupcake flavour_ orange price_ TBA .JPG"),
-    details: "Moist orange blossom sponge cupcakes piped with citrusy orange buttercream and garnished with candied peel."
-  },
-  {
-    id: "prod-77",
-    name: "Grand 3-Tier Castle & Cotton Cloud Celebration Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate & Vanilla",
-    size: "5 Pound (3 Tiers)",
-    rawPrice: "6000",
-    numericPrice: 6000,
-    price: "\u09f36,000",
-    imageSrc: encodeURI("resources01/Birthday cake/Castle cotton cloud cake flavour_ 1st tier chocolate 2nd tier vanilla 3rd tier chocolate size_5 pound price_ 6k .png"),
-    details: "An awe-inspiring 5-pound fairytale centerpiece featuring 3 majestic tiers (Tier 1 & 3 Belgian Chocolate, Tier 2 Madagascar Vanilla), sculpted castle turrets, and billowing dreamy cotton clouds. Designed for monumental milestone birthdays and grand galas."
-  },
-  {
-    id: "prod-78",
-    name: "Whimsical Two-Tier Princess Castle Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Strawberry",
-    size: "2 Pound (2 Tiers)",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources01/Birthday cake/2 tier castle cake flavour_ strawberry size _ 2 pound price_ 1800 tk JPG.jpg"),
-    details: "Enchanting two-tier castle cake decorated with pastel strawberry towers, pearlescent frosting, and delicate floral piping. Baked with fragrant strawberry sponge and strawberry compote."
-  },
-  {
-    id: "prod-79",
-    name: "Enchanted Sleeping Baby Dragon Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Blueberry",
-    size: "1.5 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources01/Birthday cake/Sleeping dragon cake flavour_ blueberry cake size_ 1.5 pound price_ 1500 tk .JPG"),
-    details: "A sculptural masterpiece featuring a sweet baby dragon curled asleep atop a mossy stone garden. Moist wild blueberry sponge layered with real blueberry buttercream."
-  },
-  {
-    id: "prod-80",
-    name: "Sapphire Dragon & Gold Caramel Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate Caramel",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources01/Birthday cake/Blue dragon cake flavour_ chocolate caramel size_ 1 pound price_ 1k .jpeg"),
-    details: "Stunning azure dragon curling around textured buttercream with gilded horns and scales. Layered with rich chocolate sponge and house-made salted caramel."
-  },
-  {
-    id: "prod-81",
-    name: "Playful Blue Duck Celebration Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Black Forest",
-    size: "1.5 Pound",
-    rawPrice: "1600",
-    numericPrice: 1600,
-    price: "\u09f31,600",
-    imageSrc: encodeURI("resources01/Birthday cake/Blue Duck cake flavour_ Black Forest size _ 1.5 pound price_ 1600 tk .jpeg"),
-    details: "Delightful sky-blue birthday cake crowned with a sculpted duckling floating amidst gentle buttercream ripples. Authentic Black Forest sponge with dark cherries and whipped cream."
-  },
-  {
-    id: "prod-82",
-    name: "Vintage Brown & Ivory Floral Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Vanilla",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Birthday cake/Brown floral cake flavour_ vanilla size_ 1 pound price_ 800tk .jpeg"),
-    details: "Warm earthy vintage tones featuring mocha-brown border piping and ivory wildflowers. Delicate vanilla bean sponge with velvety buttercream."
-  },
-  {
-    id: "prod-83",
-    name: "Bunny in Blossom Garden Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "2400",
-    numericPrice: 2400,
-    price: "\u09f32,400",
-    imageSrc: encodeURI("resources01/Birthday cake/Bunny in garden flavour_ chocolate size_ 2 pound price_ 2400 tk .JPG"),
-    details: "Generous 2-pound garden wonderland with hand-piped bunny figurines exploring butter blossoms and trailing greenery. Rich double chocolate truffle sponge."
-  },
-  {
-    id: "prod-84",
-    name: "Party Frog Birthday Celebration Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Birthday cake/Frog celebrating birthday flavour_ chocolate size_ 1 pound price_800 tk.jpg"),
-    details: "Adorable viral frog celebrating with its own miniature birthday cake and festive party hat. Moist chocolate sponge with smooth chocolate filling."
-  },
-  {
-    id: "prod-85",
-    name: "Masha's Cozy Woodland House Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources01/Birthday cake/Masha house cake flavour_ chocolate size_ 1 pound price_ 1500 tk .JPG"),
-    details: "Detailed 3D woodland cottage inspired by Masha & the Bear with edible fences, sunflower borders, and log cabin textures. Decadent chocolate truffle layers."
-  },
-  {
-    id: "prod-86",
-    name: "Fairytale Woodland Mushroom Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Butterscotch",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Birthday cake/Mashroom cake flavour_ butterscotch size_ 1 pound price_ 800 tk .JPG"),
-    details: "Charming red-and-white spotted toadstool mushroom perched atop a grassy tier. Sweet butterscotch sponge with caramel crunch."
-  },
-  {
-    id: "prod-87",
-    name: "Moments with Maa Tribute Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Rashmalai",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Birthday cake/Moments with Maa flavour_ rashmalai size_ 1 pound price_ 900 tk.JPG"),
-    details: "A deeply heartfelt tribute showcasing a mother carrying her child painted in delicate silhouette art. Infused with aromatic cardamom, saffron milk, and real rashmalai bites."
-  },
-  {
-    id: "prod-88",
-    name: "Crimson Heart Red Love Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Birthday cake/Red love cake flavour_ chocolate size_ 1 pound price_900 tk.jpg"),
-    details: "Vibrant scarlet heart cake with delicate vintage borders and romantic script. Deep dark chocolate fudge sponge."
-  },
-  {
-    id: "prod-89",
-    name: "Roblox Rivals Battle Arena Theme Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Orange",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources01/Birthday cake/Roblox rivals theme cake flavour_ orange cake size_ 1 pound price_ 1k.JPG"),
-    details: "Action-packed gaming centerpiece styled for Roblox fans with game logo art and gaming palette. Light citrus orange sponge."
-  },
-  {
-    id: "prod-90",
-    name: "Sunny Sea Beach & Parasol Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Birthday cake/Sea beach with umbrella flavour_ chocolate size_ 1 pound price_900 tk.JPG"),
-    details: "Miniature seaside escape with biscuit-crumb sandy beach, blue turquoise waves, and a tiny beach parasol. Soft chocolate sponge."
-  },
-  {
-    id: "prod-91",
-    name: "Spider-Man Web-Slinger Theme Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "2000",
-    numericPrice: 2000,
-    price: "\u09f32,000",
-    imageSrc: encodeURI("resources01/Birthday cake/Spider man cake flavour_ chocolate size_ 2 pound price_ 2k .JPG"),
-    details: "Bold 2-pound superhero creation with handcrafted Spider-Man mask, web piping, and city silhouette. Moist chocolate sponge with dark cocoa ganache."
-  },
-  {
-    id: "prod-92",
-    name: "The Math Magic Geometric Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources01/Birthday cake/The Math Magic Cake flavour_ chocolate size_ 1.5 pound price_ 1200 Tk.JPG"),
-    details: "Smart educational design decorated with mathematical equations, geometric rulers, and abacus motifs. Chocolate sponge with buttercream filling."
-  },
-  {
-    id: "prod-93",
-    name: "Safari Tiger Theme Celebration Cake",
-    featured: false,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources01/Birthday cake/Tigar theme cake flavour_ chocolate size_ 1 pound price_ 1200 tk .jpeg"),
-    details: "Fierce yet adorable tiger stripes and jungle greenery hand-piped around golden amber frosting. Chocolate fudge cake."
-  },
-  {
-    id: "prod-94",
-    name: "Ocean Blue & Ivory Coquette Ribbon Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate Ganache",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources01/Birthday cake/White & Blue ribbon cake flavour_ chocolate cake with ganache frosting size_ 1 pound price_ 1000tk .JPG"),
-    details: "Chic Parisian aesthetics featuring silky chocolate cake with rich ganache frosting draped in elegant powder-blue bows."
-  },
-  {
-    id: "prod-95",
-    name: "Biyebari Grand Floral Celebration Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "3 Pound",
-    rawPrice: "2800",
-    numericPrice: 2800,
-    price: "\u09f32,800",
-    imageSrc: encodeURI("resources01/Floral cake/Floral square cake flavour_ chocolate size_ 3 pound price_ 2500tk .JPG"),
-    details: "Statuesque 3-pound square architecture adorned with luxuriant cascading pastel garden roses, hydrangeas, and buds. Rich dark chocolate truffle layers throughout."
-  },
-  {
-    id: "prod-96",
-    name: "Woven Flower Basket Celebration Cake",
-    featured: false,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Vanilla",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Floral cake/Flower basket cake flavour_ vanila size_ 1 pound price_ 800tk .JPG"),
-    details: "Artisanal basketweave piping around the sides overflowing with vibrant multicolored wildflowers. Pure vanilla sponge."
-  },
-  {
-    id: "prod-97",
-    name: "Girl in the Flower Garden Art Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources01/Floral cake/Girl in the Flower Garden flavour_ chocolate size_ 1 pound price_ 1k .JPG"),
-    details: "Dreamy illustration of a flower maiden surrounded by hand-piped blossom textures and fluttering petals. Moist chocolate sponge."
-  },
-  {
-    id: "prod-98",
-    name: "Minimalist Botanical Floral Arch Cake",
-    featured: false,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources01/Floral cake/Minimal floral cake flavour_ chocolate size_ 1.5 pound price_ 1200 tk.JPG"),
-    details: "Understated Scandinavian simplicity with delicate single-stem floral wreath piping against smooth ivory cream."
-  },
-  {
-    id: "prod-99",
-    name: "Pink & White Blossom Garden Cake",
-    featured: false,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Floral cake/Pink and white floral cake flavour_ chocolate size _ 1 pound protein_ 800 tk .JPG"),
-    details: "Sweet pastel pink and white wild roses scattered across ivory buttercream with delicate leaves. Chocolate fudge sponge."
-  },
-  {
-    id: "prod-100",
-    name: "Dutch Spring Tulip Garden Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources01/Floral cake/Tulip cake flavour_ chocolate size_ 1 pound price_ 1k .JPG"),
-    details: "Graceful hand-piped upright tulips in soft spring shades of blush and coral. Moist chocolate sponge with cocoa filling."
-  },
-  {
-    id: "prod-101",
-    name: "Boba Milk Tea Aesthetic Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Mocha",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Boba drink cake flavour_ mocha cake size_ 1 pound price_ 800tk .jpeg"),
-    details: "Playful Korean cafe aesthetic inspired by brown sugar pearl milk tea. Aromatic mocha espresso sponge with creamy frosting."
-  },
-  {
-    id: "prod-102",
-    name: "Cute Little Bunny Pastel Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Bunny cake flavour_ chocolate size_ 1 pound price_ 800 tk .jpeg"),
-    details: "Minimalist Japanese kawaii bunny face with blushing cheeks and tiny flower crowns. Chocolate sponge inside."
-  },
-  {
-    id: "prod-103",
-    name: "Fluffy White Bunny Meadow Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Cute bunny cake flavour_ chocolate size_ 1 pound price_ 800 tk .jpeg"),
-    details: "Sweet pastel green lawn with a fluffy sculpted bunny nibbling sweet garden greens. Moist chocolate layers."
-  },
-  {
-    id: "prod-104",
-    name: "Ducklings in Pond Serene Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Duck pond cake flavour_ chocolate size_ 1 pound price_ 800 tk.JPG"),
-    details: "Calming blue water ripple textures with miniature yellow ducks and water lilies. Chocolate fudge sponge."
-  },
-  {
-    id: "prod-105",
-    name: "Floating Moon & Butterfly Tier Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "2.5 Pound",
-    rawPrice: "3000",
-    numericPrice: 3000,
-    price: "\u09f33,000",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Floating moon butterfly cake flavour_ chocolate cake with buttercream size_ 2.5 pound price_ 3k .jpeg"),
-    details: "A show-stopping 2.5-pound celestial dream featuring a floating golden crescent moon, fluttering 3D butterflies, and celestial pearl clouds over smooth buttercream."
-  },
-  {
-    id: "prod-106",
-    name: "Lotus Water Lily Pond Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Rashmalai",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Lotus pond cake flavour_ rashmalai size_ 1 pound price_ 800 tk .jpeg"),
-    details: "Poetic Bengali nature art with sculpted pink lotus blossoms and emerald lily pads. Cardamom-scented rashmalai milk sponge."
-  },
-  {
-    id: "prod-107",
-    name: "Pastel Pink & Blue Vintage Lambeth Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Pink and blue minimal vintage cake flavour_ chocolate size_ 1 pound price_ 800tk .jpeg"),
-    details: "Trending retro piping featuring delicate scallops, swags, and dual pastel pink and periwinkle frosting accents."
-  },
-  {
-    id: "prod-108",
-    name: "Blush Pink & White Chocolate Blossom Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Pink cake with white chocolate flower flavour_ chocolate size_ 1 pound price_ 900tk.JPG"),
-    details: "Silky pink tier topped with handcrafted white chocolate flower petals and pearl shell rims. Rich chocolate filling."
-  },
-  {
-    id: "prod-109",
-    name: "Red Velvet & Cream Cheese Lambeth Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Red Velvet",
-    size: "1.5 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Red and white vintage cake flavour _ red velvet with cream cheese frosting size_ 1.5 pound price_ 1500 tk.JPG"),
-    details: "Intricate Victorian Lambeth piping with deep crimson accents. Authentic southern red velvet sponge with silky cream cheese frosting."
-  },
-  {
-    id: "prod-110",
-    name: "Ornate Victorian Birdcage Cake",
-    featured: true,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Blueberry",
-    size: "2 Pound",
-    rawPrice: "2200",
-    numericPrice: 2200,
-    price: "\u09f32,200",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Vintage cage cake flavour_ blueberry size_ 2 pound price_ 2200 tk .JPG"),
-    details: "Breathtaking 2-pound dome sculpted to resemble an antique gilded birdcage intertwined with garden blossoms and songbird motifs. Blueberry compote sponge."
-  },
-  {
-    id: "prod-111",
-    name: "Sunny Yellow Vintage Scallop Cake",
-    featured: false,
-    category: "aesthetic",
-    categoryLabel: "Minimal & Aesthetic",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Minimal & aesthetic cake/Yellow vintage cake flavour_ chocolate size_ 1 pound price_ 900 tk .jpeg"),
-    details: "Cheerful sunshine yellow vintage piping with delicate shell ruffles and pearl accents. Chocolate truffle sponge inside."
-  },
-  {
-    id: "prod-112",
-    name: "Gaye Holud Marigold Celebration Cake",
-    featured: true,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Orange",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources01/Special occasion/Gaye holud cake flavour_ orange size_ 1.5 pound price_ 1200tk .jpg"),
-    details: "Traditional Gaye Holud centerpiece vibrant with golden turmeric and marigold hues, Dala motifs, and celebratory Bengali wedding spirit. Citrus orange sponge."
-  },
-  {
-    id: "prod-113",
-    name: "Half Way to One Milestone Cake",
-    featured: false,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Special occasion/Half way to one cake flavour_ chocolate size_ 1 pound price_ 800 tk.JPG"),
-    details: "Celebrates baby's first 6 months with custom semi-circle / half-cake architecture and pastel party accents."
-  },
-  {
-    id: "prod-114",
-    name: "Irfa's Mukhe Bhaat Ceremony Cake",
-    featured: true,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1.5 Pound",
-    rawPrice: "1500",
-    numericPrice: 1500,
-    price: "\u09f31,500",
-    imageSrc: encodeURI("resources01/Special occasion/Irfa mukhe vhaat flavour_ chocolate size_ 1.5 pound price_ 1500 tk .JPG"),
-    details: "Commemorates the traditional Annaprashan / Mukhe Bhaat ceremony with auspicious rice bowl illustration, alpana borders, and personalized baby name."
-  },
-  {
-    id: "prod-115",
-    name: "Acoustic Guitar & Floral Heart Cake",
-    featured: false,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Special occasion/Love shape guitar and floral  cake flavour_ chocolate size_ 1 pound price_ 900 tk.png"),
-    details: "Heart-shaped celebration cake featuring a sculpted acoustic guitar and romantic wild roses. Baked for musicians and music lovers."
-  },
-  {
-    id: "prod-116",
-    name: "Olive Wreath Botanical Caramel Cake",
-    featured: false,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate Caramel",
-    size: "1.5 Pound",
-    rawPrice: "1400",
-    numericPrice: 1400,
-    price: "\u09f31,400",
-    imageSrc: encodeURI("resources01/Special occasion/Olive shade with leafs flavour_ chocolate caramel size _ 1.5 pound price_ 1400tk .JPG"),
-    details: "Serene olive green ombr\u00e9 frosted tier adorned with delicate golden olive branches. Chocolate sponge with caramel filling."
-  },
-  {
-    id: "prod-117",
-    name: "Special Celebration Slice Cake",
-    featured: false,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "800",
-    numericPrice: 800,
-    price: "\u09f3800",
-    imageSrc: encodeURI("resources01/Special occasion/Special slice cake flavour_ chocolate size_ 1 pound price_ 800 tk .JPG"),
-    details: "Clever cake-slice presentation style with exposed chocolate sponge crumb and silky ganache drizzle."
-  },
-  {
-    id: "prod-118",
-    name: "Midnight Noir & Maroon Rose Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Vanilla",
-    size: "1 Pound",
-    rawPrice: "1000",
-    numericPrice: 1000,
-    price: "\u09f31,000",
-    imageSrc: encodeURI("resources01/Theme cake/Black cake with maroon flower flavour_ vanilla size_ 1 pound price_ 1k .JPG"),
-    details: "Dramatic all-black noir buttercream contrasted with deep velvety maroon sugar roses and golden flecks. Vanilla sponge."
-  },
-  {
-    id: "prod-119",
-    name: "Friend Group Squad Portrait Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources01/Theme cake/Friend group character cake flavour_ chocolate size_ 2 pound price_ 1800 tk .jpeg"),
-    details: "Custom freehand buttercream illustration capturing best friends hanging out together. Generous 2-pound chocolate truffle size."
-  },
-  {
-    id: "prod-120",
-    name: "Minecraft Pixel Pool & Creeper Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources01/Theme cake/Minecraft cake with pool flavour_ chocolate size_ 2 pound price_ 1800tk .JPG"),
-    details: "Block-by-block isometric Minecraft world with voxel pool water, grass blocks, and mini pixel figurines. 2 pounds of dark chocolate sponge."
-  },
-  {
-    id: "prod-121",
-    name: "Mathematician's Open Book & Rose Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "2.5 Pound",
-    rawPrice: "2200",
-    numericPrice: 2200,
-    price: "\u09f32,200",
-    imageSrc: encodeURI("resources01/Theme cake/Rose math book flavour_ chocolate size_2.5 pound price 2200 tk.JPG"),
-    details: "Sculpted 2.5-pound antique leather-bound book decorated with complex calculus formulas and delicate sugar roses."
-  },
-  {
-    id: "prod-122",
-    name: "Winter Frost Snowman & Drift Cake",
-    featured: false,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Theme cake/Snowman with snow cake flavour_ chocolate size_ 1 pound price_ 900tk .jpeg"),
-    details: "Jolly winter snowman bundled in scarf with coconut-flake snowdrifts and pastel snowflakes. Moist chocolate fudge sponge."
-  },
-  {
-    id: "prod-123",
-    name: "Zenitsu Thunderclap Anime Buttercream Art Cake",
-    featured: true,
-    category: "theme",
-    categoryLabel: "Theme Cakes",
-    flavour: "Chocolate",
-    size: "1 Pound",
-    rawPrice: "900",
-    numericPrice: 900,
-    price: "\u09f3900",
-    imageSrc: encodeURI("resources01/Theme cake/Zenitsu cake flavour_ chocolate size_ 1 pound price_ 900 tk .JPG"),
-    details: "Hand-painted anime portrait of Demon Slayer's Zenitsu Agatsuma wielding yellow lightning breathing strokes. Layered with rich chocolate truffle sponge."
-  },
-  {
-    id: "prod-124",
-    name: "Midnight Bloom Cake",
-    featured: true,
-    category: "floral",
-    categoryLabel: "Floral Cakes",
-    flavour: "Vanilla",
-    size: "1.5 Pound",
-    rawPrice: "1200",
-    numericPrice: 1200,
-    price: "\u09f31,200",
-    imageSrc: encodeURI("resources01/Floral cake/Blue floral plate knife cake category_ floral flavour_ vanilla size 1.5 pound price_ 1k.jpeg"),
-    details: "Artistic buttercream creation sculpted with midnight-navy and azure palette knife petals, shimmering golden pearls, and delicate watercolor marbling. Soft aromatic vanilla bean sponge inside."
-  },
-  {
-    id: "prod-125",
-    name: "Square Gaye Holud Cake",
-    featured: true,
-    category: "special-occasion",
-    categoryLabel: "Special Occasion",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "1800",
-    numericPrice: 1800,
-    price: "\u09f31,800",
-    imageSrc: encodeURI("resources01/Special occasion/Square gaye holud cake category_ special occasion flavour_ chocolate size_ 2 pound price_ 1800 tk .jpeg"),
-    details: "Traditional square Gaye Holud celebration cake adorned with intricate white royal icing mehndi embroidery, festive marigold and ivory roses, and a celebratory 'সানির হলুদ সন্ধ্যা' banner. Layered with rich chocolate sponge."
-  },
-  {
-    id: "prod-126",
-    name: "Artisan Layered Chocolate Dessert Tubs",
-    featured: true,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Chocolate & Caramel",
-    size: "Duo Pack (2 Tubs)",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/Dessert tubs/IMG_0570.JPG"),
-    images: [
-      encodeURI("resources01/Dessert tubs/IMG_0570.JPG"),
-      encodeURI("resources01/Dessert tubs/IMG_0568.JPG"),
-      encodeURI("resources01/Dessert tubs/IMG_0566.JPG"),
-      encodeURI("resources01/Dessert tubs/IMG_0569.JPG")
-    ],
-    details: "Indulgent layered dessert tubs featuring moist cocoa sponge, velvety cream layers, and artisanal glazes topped with crispy chocolate buttons. Includes handcrafted Pistachio Ganache and Salted Caramel Marble tubs."
-  },
-  {
-    id: "prod-127",
-    name: "Red Velvet Cream Cheese Cupcakes",
-    featured: true,
-    category: "cookies",
-    categoryLabel: "Cookies & Treats",
-    flavour: "Red Velvet",
-    size: "Box of 4/6",
-    rawPrice: "TBA",
-    numericPrice: 0,
-    price: "TBA",
-    imageSrc: encodeURI("resources01/Cupcake flavour_ red velvet price_ TBA .JPG"),
-    details: "Velvety, moist red velvet sponge cupcakes crowned with luscious swirls of whipped cream cheese frosting, fine red velvet cake crumbs, and charming red heart confections."
-  },
-  {
-    id: "prod-128",
-    name: "Wedding Photo Buttercream Art Cake",
-    featured: true,
-    category: "birthday",
-    categoryLabel: "Birthday Cakes",
-    flavour: "Chocolate",
-    size: "2 Pound",
-    rawPrice: "2400",
-    numericPrice: 2400,
-    price: "\u09f32,400",
-    imageSrc: encodeURI("resources01/Birthday cake/Wedding photo Buttercream art category_ birthday flavour_ chocolate size_ 2 pound price_ 2400tk.jpg"),
-    details: "Exquisite custom freehand buttercream portraiture recreating a traditional wedding photo in ornate celebratory attire with personalized birthday calligraphy. Sized at 2 pounds with rich chocolate sponge and velvety cocoa cream."
-  }
-];
-
-// 2. Bakery Brand Configuration
+// 1. Bakery Brand Configuration & Category Metadata
 const CONFIG = {
   currencySymbol: '৳',
   brandName: 'Frostoria',
   tagline: 'Freshly baked memories.',
+  dataUrl: 'products.json',
   socialLinks: {
     facebook: 'https://www.facebook.com/share/1HkyGvf5Se/',
     messenger: 'https://m.me/delightsbysuraiya',
     instagram: 'https://www.instagram.com/frostoria_cakes?obrf=MXB4eWhvaWpqaGlhdg=='
   }
 };
+
+const CATEGORY_META = {
+  birthday: { label: 'Birthday Cakes', shortLabel: 'Birthday' },
+  floral: { label: 'Floral Cakes', shortLabel: 'Floral' },
+  aesthetic: { label: 'Minimal & Aesthetic', shortLabel: 'Aesthetic' },
+  theme: { label: 'Theme Cakes', shortLabel: 'Theme' },
+  'special-occasion': { label: 'Special Occasion', shortLabel: 'Occasion' },
+  funny: { label: 'Funny Cakes', shortLabel: 'Funny' },
+  cookies: { label: 'Cookies & Treats', shortLabel: 'Cookies' },
+  cheesecake: { label: 'Cheesecake', shortLabel: 'Cheesecake' }
+};
+
+function formatPrice(price) {
+  if (typeof price !== 'number' || !Number.isFinite(price) || price <= 0) {
+    return 'TBA';
+  }
+  return `${CONFIG.currencySymbol}${price.toLocaleString('en-US')}`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildFallbackSvg(name) {
+  const safeName = escapeHtml(name);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="100%" height="100%" fill="#F5ECE3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#6E4E37" font-family="sans-serif" font-size="18">🎂 ${safeName}</text></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
+function normalizeProduct(raw) {
+  const category = raw.category || 'birthday';
+  const meta = CATEGORY_META[category];
+  const categoryLabel = meta ? meta.label : category;
+  const shortCategoryLabel = meta
+    ? meta.shortLabel
+    : categoryLabel.replace(/\s*Cakes?|\s*&\s*Treats?/gi, '').trim() || categoryLabel;
+
+  const numericPrice =
+    typeof raw.price === 'number' && Number.isFinite(raw.price) && raw.price > 0
+      ? raw.price
+      : 0;
+
+  const imagePath = raw.imagePath || raw.imageSrc || '';
+  const images =
+    Array.isArray(raw.images) && raw.images.length > 0
+      ? raw.images
+      : imagePath
+        ? [imagePath]
+        : [];
+
+  return {
+    id: raw.id,
+    name: raw.name || '',
+    featured: Boolean(raw.featured),
+    category,
+    categoryLabel,
+    shortCategoryLabel,
+    flavor: raw.flavor ?? raw.flavour ?? '',
+    size: raw.size || '',
+    numericPrice,
+    price: formatPrice(numericPrice),
+    imagePath,
+    images,
+    details: raw.details || ''
+  };
+}
 
 // Helper for unbiased random array shuffling (Fisher-Yates)
 function shuffleArray(array) {
@@ -1801,27 +99,24 @@ function shuffleArray(array) {
 
 // Generate randomized product list per page visit/refresh:
 // All featured products shuffled randomly at top, followed by all normal products shuffled randomly below.
-// Original PRODUCTS data remains immutable.
 function createVisitRandomizedProducts(masterProducts) {
   const featured = masterProducts.filter(p => p.featured === true);
   const normal = masterProducts.filter(p => p.featured !== true);
 
-  const shuffledFeatured = shuffleArray(featured);
-  const shuffledNormal = shuffleArray(normal);
-
-  return [...shuffledFeatured, ...shuffledNormal];
+  return [...shuffleArray(featured), ...shuffleArray(normal)];
 }
 
-// 3. Application State Management
-let products = createVisitRandomizedProducts(PRODUCTS);
-let currentFilteredProducts = [...products];
+// 2. Application State Management
+let products = [];
+let currentFilteredProducts = [];
 let currentLightboxIndex = -1;
+let isCatalogLoaded = false;
 let activeCategory = 'all';
 let activeFlavour = 'all';
 let searchQuery = '';
 let activeSort = 'featured';
 
-// 4. Cached DOM Elements
+// 3. Cached DOM Elements
 const elements = {
   productGrid: document.getElementById('productGrid'),
   itemCount: document.getElementById('itemCount'),
@@ -1860,24 +155,59 @@ const elements = {
   backToTopBtn: document.getElementById('backToTopBtn')
 };
 
-// Helper for short category names on compact mobile cards
-function getShortCategoryLabel(category, label) {
-  const map = {
-    'birthday': 'Birthday',
-    'floral': 'Floral',
-    'aesthetic': 'Aesthetic',
-    'theme': 'Theme',
-    'special-occasion': 'Occasion',
-    'funny': 'Funny',
-    'cookies': 'Cookies',
-    'cheesecake': 'Cheesecake'
-  };
-  return map[category] || label.replace(/\s*Cakes?|\s*&\s*Treats?/gi, '').trim() || label;
+function updateCountBadges(text, animate = true) {
+  const countBadges = [elements.itemCount, elements.drawerItemCount].filter(Boolean);
+  countBadges.forEach(badge => {
+    badge.textContent = text;
+    if (!animate) return;
+    badge.classList.remove('badge-pop');
+    void badge.offsetWidth;
+    badge.classList.add('badge-pop');
+  });
+}
+
+function showCatalogLoadError() {
+  updateCountBadges('Catalog unavailable', false);
+  if (!elements.productGrid) return;
+
+  const isFileProtocol = window.location.protocol === 'file:';
+  const hint = isFileProtocol
+    ? 'Open this site via a local web server (e.g. npx serve or VS Code Live Server) so products.json can load.'
+    : 'Please refresh the page to try loading the catalog again.';
+
+  elements.emptyState?.classList.add('hidden');
+  elements.productGrid.innerHTML = `
+    <div class="col-span-full text-center py-16 px-4 bg-white/80 rounded-2xl border border-[#EFE8E1]">
+      <h3 class="font-serif text-xl font-medium text-warm-800">Unable to load cake catalog</h3>
+      <p class="text-sm text-warm-600 mt-2 max-w-md mx-auto">${escapeHtml(hint)}</p>
+    </div>
+  `;
+}
+
+// 4. Fetch & Initialize Product Catalog
+async function loadProducts() {
+  try {
+    const response = await fetch(CONFIG.dataUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    const data = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error('Expected an array of products');
+    }
+
+    products = createVisitRandomizedProducts(data.map(normalizeProduct));
+    isCatalogLoaded = true;
+    renderProductGrid();
+  } catch (error) {
+    console.error('Failed to load products catalog:', error);
+    showCatalogLoadError();
+  }
 }
 
 // 5. Render Product Showcase Cards
 function renderProductGrid() {
-  if (!elements.productGrid) return;
+  if (!elements.productGrid || !isCatalogLoaded) return;
 
   const query = searchQuery.toLowerCase().trim();
 
@@ -1887,7 +217,7 @@ function renderProductGrid() {
 
     let matchesFlavour = true;
     if (activeFlavour !== 'all') {
-      const pFlavour = (product.flavour || '').toLowerCase();
+      const pFlavour = product.flavor.toLowerCase();
       if (activeFlavour === 'butterscotch') {
         matchesFlavour = pFlavour.includes('butterscotch') || pFlavour.includes('caramel');
       } else {
@@ -1898,7 +228,7 @@ function renderProductGrid() {
     const matchesSearch = !query ||
       product.name.toLowerCase().includes(query) ||
       product.categoryLabel.toLowerCase().includes(query) ||
-      product.flavour.toLowerCase().includes(query) ||
+      product.flavor.toLowerCase().includes(query) ||
       product.size.toLowerCase().includes(query) ||
       product.details.toLowerCase().includes(query) ||
       product.price.toLowerCase().includes(query);
@@ -1938,15 +268,7 @@ function renderProductGrid() {
 
   // Update live item counter badges with pop animation
   const count = currentFilteredProducts.length;
-  const countText = `${count} ${count === 1 ? 'Creation' : 'Creations'} Available`;
-  const countBadges = [elements.itemCount, elements.drawerItemCount].filter(Boolean);
-
-  countBadges.forEach(badge => {
-    badge.textContent = countText;
-    badge.classList.remove('badge-pop');
-    void badge.offsetWidth;
-    badge.classList.add('badge-pop');
-  });
+  updateCountBadges(`${count} ${count === 1 ? 'Creation' : 'Creations'} Available`);
 
   // Toggle Empty State view
   if (currentFilteredProducts.length === 0) {
@@ -1959,8 +281,11 @@ function renderProductGrid() {
 
   // Render responsive product cards with staggered entrance
   elements.productGrid.innerHTML = currentFilteredProducts.map((product, index) => {
-    const shortCategory = getShortCategoryLabel(product.category, product.categoryLabel);
+    const safeName = escapeHtml(product.name);
+    const safeImagePath = escapeHtml(product.imagePath);
+    const fallbackSrc = escapeHtml(buildFallbackSvg(product.name));
     const animDelay = Math.min(index * 35, 420);
+
     return `
       <article 
         class="product-card group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#EFE8E1] cursor-pointer flex flex-col select-none"
@@ -1969,25 +294,26 @@ function renderProductGrid() {
         onclick="openLightbox(${index})"
         role="button"
         tabindex="0"
-        aria-label="View details for ${product.name}"
+        aria-label="View details for ${safeName}"
         onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(${index}); }"
       >
         <!-- Product Photo Container -->
         <div class="product-image-wrap aspect-square w-full relative overflow-hidden bg-[#FAF7F2]">
           <img 
-            src="${product.imageSrc}" 
-            alt="${product.name}" 
+            src="${safeImagePath}" 
+            alt="${safeName}" 
             loading="lazy"
+            data-fallback="${fallbackSrc}"
             class="product-image w-full h-full object-cover object-center pointer-events-none"
-            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23F5ECE3\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%236E4E37\' font-family=\'sans-serif\' font-size=\'18\'%3E🎂 ${product.name}%3C/text%3E%3C/svg%3E';"
+            onerror="this.onerror=null; this.src=this.dataset.fallback;"
           />
           
           <!-- Top Badges Flex Bar: Prevents Collisions on Mobile -->
           <div class="absolute top-1.5 inset-x-1.5 sm:top-3 sm:inset-x-3 flex items-center justify-between gap-1 pointer-events-none z-10">
             <!-- Category Badge (Short on mobile, Full on desktop) -->
             <span class="pointer-events-none px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-medium tracking-wide bg-white/95 backdrop-blur-xs text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate shrink">
-              <span class="sm:hidden">${shortCategory}</span>
-              <span class="hidden sm:inline">${product.categoryLabel}</span>
+              <span class="sm:hidden">${escapeHtml(product.shortCategoryLabel)}</span>
+              <span class="hidden sm:inline">${escapeHtml(product.categoryLabel)}</span>
             </span>
 
             <!-- Featured Best-Seller Badge (Compact on mobile) -->
@@ -2016,11 +342,11 @@ function renderProductGrid() {
           <!-- Top Area: Cake Name & Price -->
           <div>
             <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-2.5">
-              <h3 class="font-serif text-xs sm:text-lg font-medium text-[#26180F] line-clamp-2 sm:line-clamp-1 group-hover:text-[#B87333] transition-colors leading-snug sm:leading-normal" title="${product.name}">
-                ${product.name}
+              <h3 class="font-serif text-xs sm:text-lg font-medium text-[#26180F] line-clamp-2 sm:line-clamp-1 group-hover:text-[#B87333] transition-colors leading-snug sm:leading-normal" title="${safeName}">
+                ${safeName}
               </h3>
               <span class="shrink-0 self-start sm:self-auto inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-[#FAF7F2] text-[#6E4E37] font-bold sm:font-semibold text-xs sm:text-sm rounded-md sm:rounded-lg border border-[#EFE8E1]">
-                ${product.price}
+                ${escapeHtml(product.price)}
               </span>
             </div>
           </div>
@@ -2028,10 +354,10 @@ function renderProductGrid() {
           <!-- Bottom Row: Flavour & Size Pills -->
           <div class="flex flex-wrap items-center gap-1 sm:gap-1.5 mt-2 sm:mt-2.5 text-xs text-[#73655A]">
             <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[10px] sm:text-[11px] font-medium text-[#6E4E37] whitespace-nowrap">
-              ${product.flavour}
+              ${escapeHtml(product.flavor)}
             </span>
             <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[10px] sm:text-[11px] text-[#73655A] whitespace-nowrap">
-              ${product.size}
+              ${escapeHtml(product.size)}
             </span>
           </div>
         </div>
@@ -2061,7 +387,7 @@ function openLightbox(index) {
   const details = elements.lightboxDetails || document.getElementById('lightboxDetails');
 
   if (img) {
-    img.src = product.imageSrc;
+    img.src = product.imagePath;
     img.alt = product.name;
     img.classList.remove('lightbox-img-enter');
     void img.offsetWidth;
@@ -2071,19 +397,20 @@ function openLightbox(index) {
   if (title) title.textContent = product.name;
   if (price) price.textContent = product.price;
   if (category) category.textContent = product.categoryLabel;
-  if (flavour) flavour.textContent = product.flavour || '';
-  if (size) size.textContent = product.size || '';
-  if (details) details.textContent = product.details || '';
+  if (flavour) flavour.textContent = product.flavor;
+  if (size) size.textContent = product.size;
+  if (details) details.textContent = product.details;
 
   // Handle Multiple Product Images / Thumbnails
-  const productImages = (product.images && product.images.length > 0) ? product.images : [product.imageSrc];
+  const productImages = product.images.length > 0 ? product.images : [product.imagePath];
   const thumbsContainer = elements.lightboxThumbnailsContainer || document.getElementById('lightboxThumbnailsContainer');
   const thumbs = elements.lightboxThumbnails || document.getElementById('lightboxThumbnails');
 
   if (thumbsContainer && thumbs) {
     if (productImages.length > 1) {
       thumbsContainer.classList.remove('hidden');
-      thumbs.innerHTML = productImages.map((imgSrc, imgIdx) => `
+      const safeName = escapeHtml(product.name);
+      thumbs.innerHTML = productImages.map((imgPath, imgIdx) => `
         <button
           type="button"
           class="lightbox-thumb-btn w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${imgIdx === 0 ? 'border-[#B87333] ring-2 ring-[#B87333]/30 scale-105 shadow-xs' : 'border-[#E5DCD3] hover:border-caramel-400 opacity-70 hover:opacity-100'}"
@@ -2091,7 +418,7 @@ function openLightbox(index) {
           title="View photo ${imgIdx + 1}"
           aria-label="View photo ${imgIdx + 1}"
         >
-          <img src="${imgSrc}" alt="${product.name} view ${imgIdx + 1}" class="w-full h-full object-cover object-center" />
+          <img src="${escapeHtml(imgPath)}" alt="${safeName} view ${imgIdx + 1}" class="w-full h-full object-cover object-center" />
         </button>
       `).join('');
 
@@ -2249,7 +576,7 @@ function handleInquiry(e) {
     triggerSparkleBurst(e.clientX, e.clientY);
   }
   const product = currentFilteredProducts[currentLightboxIndex];
-  const orderMessage = `Hello Frostoria! I would like to inquire about ordering "${product.name}" (${product.flavour}, ${product.size}, ${product.price}).`;
+  const orderMessage = `Hello Frostoria! I would like to inquire about ordering "${product.name}" (${product.flavor}, ${product.size}, ${product.price}).`;
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(orderMessage).then(() => {
@@ -2272,7 +599,7 @@ function copyProductDetails(e) {
     triggerSparkleBurst(e.clientX, e.clientY);
   }
   const product = currentFilteredProducts[currentLightboxIndex];
-  const text = `Frostoria ("Freshly baked memories.") - ${product.name} | Flavour: ${product.flavour} | Size: ${product.size} | Price: ${product.price}`;
+  const text = `Frostoria ("Freshly baked memories.") - ${product.name} | Flavour: ${product.flavor} | Size: ${product.size} | Price: ${product.price}`;
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text).then(() => {
@@ -2485,5 +812,5 @@ function initEventListeners() {
 // 8. Application Mount
 document.addEventListener('DOMContentLoaded', () => {
   initEventListeners();
-  renderProductGrid();
+  loadProducts();
 });
