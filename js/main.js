@@ -8,6 +8,7 @@ import {
   toggleSavedId
 } from './favorites.js';
 import {
+  appendProductCards,
   closeCustomCakeModal,
   closeLightbox,
   closeMenuDrawer,
@@ -26,6 +27,7 @@ import {
   syncCardFavoriteButtons,
   syncLightboxFavoriteButton,
   trapModalFocus,
+  updateCountBadges,
   updateHeroSpotlight,
   updateSavedFloatingPill
 } from './render.js';
@@ -40,9 +42,13 @@ import {
   triggerSparkleBurst
 } from './actions.js';
 
+const PRODUCT_BATCH_SIZE = 24;
+
 const state = {
   products: [],
   filteredProducts: [],
+  visibleLimit: PRODUCT_BATCH_SIZE,
+  pendingGridRender: false,
   savedIds: [],
   heroShowcase: [],
   heroSpotlightIndex: 0,
@@ -69,6 +75,10 @@ const lightboxHistory = createLightboxHistoryController();
 function getElements() {
   return {
     productGrid: document.getElementById('productGrid'),
+    loadMoreContainer: document.getElementById('loadMoreContainer'),
+    loadMoreStatus: document.getElementById('loadMoreStatus'),
+    loadMoreBtn: document.getElementById('loadMoreBtn'),
+    showAllBtn: document.getElementById('showAllBtn'),
     itemCount: document.getElementById('itemCount'),
     drawerItemCount: document.getElementById('drawerItemCount'),
     menuDrawerItemCount: document.getElementById('menuDrawerItemCount'),
@@ -273,16 +283,39 @@ function syncMenuFilterSummary(elements, filteredCount = state.filteredProducts.
   }
 }
 
-function updateView(elements) {
+function updateView(elements, { deferGrid = false, resetLimit = true } = {}) {
   if (!state.isCatalogLoaded) return;
+  state.filteredProducts = filterAndSortProducts(state.products, state);
+  const count = state.filteredProducts.length;
+  syncMenuFilterSummary(elements, count);
+
+  if (deferGrid) {
+    state.pendingGridRender = true;
+    updateCountBadges(
+      elements,
+      `${count} ${count === 1 ? 'Creation' : 'Creations'} Available`,
+      false
+    );
+    return;
+  }
+
+  state.pendingGridRender = false;
+  if (resetLimit) {
+    state.visibleLimit = PRODUCT_BATCH_SIZE;
+  }
   if (elements.galleryHeading) {
     elements.galleryHeading.textContent = formatGalleryHeading(state.activeCategories);
   }
-  state.filteredProducts = filterAndSortProducts(state.products, state);
-  renderProductGrid(elements, state.filteredProducts, state.savedIds);
+  renderProductGrid(elements, state.filteredProducts, state.savedIds, state.visibleLimit);
   renderActiveFilterChips(elements, state);
-  syncMenuFilterSummary(elements, state.filteredProducts.length);
   updateScrollButtons(elements);
+}
+
+function closeMenuDrawerAndSync(elements) {
+  closeMenuDrawer(elements);
+  if (state.pendingGridRender) {
+    updateView(elements, { deferGrid: false, resetLimit: true });
+  }
 }
 
 function syncWishlistUi(
@@ -542,7 +575,7 @@ function openCustomCakeBuilder(elements, triggerElement) {
   openCustomCakeModal(elements, triggerElement);
 }
 
-function resetAllFilters(elements) {
+function resetAllFilters(elements, { deferGrid = false } = {}) {
   clearSearchInput(elements);
   setActiveCategories(elements, []);
   setActiveFlavours(elements, []);
@@ -550,7 +583,7 @@ function resetAllFilters(elements) {
   setActiveSizes(elements, []);
   setFeaturedOnly(elements, false);
 
-  updateView(elements);
+  updateView(elements, { deferGrid });
   if (elements.menuFilterDrawer?.classList.contains('active')) {
     elements.menuSearchInput?.focus();
   } else if (elements.searchFilterContainer?.classList.contains('open')) {
@@ -574,7 +607,7 @@ function initEventListeners(elements) {
   if (elements.menuSearchInput) {
     elements.menuSearchInput.addEventListener('input', e => {
       setSearchQuery(elements, e.target.value, elements.menuSearchInput);
-      updateView(elements);
+      updateView(elements, { deferGrid: true });
     });
   }
 
@@ -586,21 +619,25 @@ function initEventListeners(elements) {
 
   elements.menuClearSearchBtn?.addEventListener('click', () => {
     clearSearchInput(elements);
-    updateView(elements);
+    updateView(elements, { deferGrid: true });
     elements.menuSearchInput?.focus();
   });
 
   elements.resetFiltersBtn?.addEventListener('click', () => resetAllFilters(elements));
-  elements.menuDrawerResetBtn?.addEventListener('click', () => resetAllFilters(elements));
-  elements.menuFooterResetBtn?.addEventListener('click', () => resetAllFilters(elements));
+  elements.menuDrawerResetBtn?.addEventListener('click', () =>
+    resetAllFilters(elements, { deferGrid: true })
+  );
+  elements.menuFooterResetBtn?.addEventListener('click', () =>
+    resetAllFilters(elements, { deferGrid: true })
+  );
 
   elements.menuDrawerBtn?.addEventListener('click', () => {
     openMenuDrawer(elements, elements.menuDrawerBtn);
   });
-  elements.menuDrawerClose?.addEventListener('click', () => closeMenuDrawer(elements));
-  elements.menuDrawerBackdrop?.addEventListener('click', () => closeMenuDrawer(elements));
+  elements.menuDrawerClose?.addEventListener('click', () => closeMenuDrawerAndSync(elements));
+  elements.menuDrawerBackdrop?.addEventListener('click', () => closeMenuDrawerAndSync(elements));
   elements.menuApplyCloseBtn?.addEventListener('click', () => {
-    closeMenuDrawer(elements);
+    closeMenuDrawerAndSync(elements);
     elements.gallerySection?.scrollIntoView({
       behavior: getScrollBehavior(),
       block: 'start'
@@ -611,7 +648,7 @@ function initEventListeners(elements) {
     cb.addEventListener('change', () => {
       const next = toggleArraySelection(state.activeCategories, cb.value, cb.checked);
       setActiveCategories(elements, next);
-      updateView(elements);
+      updateView(elements, { deferGrid: true });
     });
   });
 
@@ -619,7 +656,7 @@ function initEventListeners(elements) {
     cb.addEventListener('change', () => {
       const next = toggleArraySelection(state.activeFlavours, cb.value, cb.checked);
       setActiveFlavours(elements, next);
-      updateView(elements);
+      updateView(elements, { deferGrid: true });
     });
   });
 
@@ -627,7 +664,7 @@ function initEventListeners(elements) {
     cb.addEventListener('change', () => {
       const next = toggleArraySelection(state.activePriceRanges, cb.value, cb.checked);
       setActivePriceRanges(elements, next);
-      updateView(elements);
+      updateView(elements, { deferGrid: true });
     });
   });
 
@@ -635,13 +672,13 @@ function initEventListeners(elements) {
     cb.addEventListener('change', () => {
       const next = toggleArraySelection(state.activeSizes, cb.value, cb.checked);
       setActiveSizes(elements, next);
-      updateView(elements);
+      updateView(elements, { deferGrid: true });
     });
   });
 
   elements.menuFeaturedCheckbox?.addEventListener('change', e => {
     setFeaturedOnly(elements, e.target.checked);
-    updateView(elements);
+    updateView(elements, { deferGrid: true });
   });
 
   elements.menuClearGroupBtns?.forEach(btn => {
@@ -657,8 +694,34 @@ function initEventListeners(elements) {
         setActiveSizes(elements, []);
         setFeaturedOnly(elements, false);
       }
-      updateView(elements);
+      updateView(elements, { deferGrid: true });
     });
+  });
+
+  elements.loadMoreBtn?.addEventListener('click', () => {
+    const prevLimit = state.visibleLimit;
+    state.visibleLimit = Math.min(state.filteredProducts.length, prevLimit + PRODUCT_BATCH_SIZE);
+    appendProductCards(
+      elements,
+      state.filteredProducts,
+      prevLimit,
+      state.visibleLimit,
+      state.savedIds
+    );
+    updateScrollButtons(elements);
+  });
+
+  elements.showAllBtn?.addEventListener('click', () => {
+    const prevLimit = state.visibleLimit;
+    state.visibleLimit = state.filteredProducts.length;
+    appendProductCards(
+      elements,
+      state.filteredProducts,
+      prevLimit,
+      state.visibleLimit,
+      state.savedIds
+    );
+    updateScrollButtons(elements);
   });
 
   elements.activeFilterChips?.addEventListener('click', e => {
@@ -823,7 +886,7 @@ function initEventListeners(elements) {
 
   elements.menuSortSelect?.addEventListener('change', e => {
     setActiveSort(elements, e.target.value);
-    updateView(elements);
+    updateView(elements, { deferGrid: true });
   });
 
   if (elements.productGrid) {
@@ -1037,7 +1100,7 @@ function initEventListeners(elements) {
       if (e.key === 'Tab') {
         trapModalFocus(elements.menuFilterDrawer, e);
       } else if (e.key === 'Escape') {
-        closeMenuDrawer(elements);
+        closeMenuDrawerAndSync(elements);
       }
     }
   });

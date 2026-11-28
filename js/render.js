@@ -161,10 +161,140 @@ export function showCatalogLoadError(elements) {
   `;
 }
 
+function buildProductCardHtml(product, index, savedSet) {
+  const safeId = escapeHtml(product.id);
+  const safeName = escapeHtml(product.name);
+  const safeImagePath = escapeHtml(product.imagePath);
+  const fallbackSrc = escapeHtml(buildFallbackSvg(product.name));
+  const animDelay = Math.min((index % 24) * 30, 360);
+  const isSaved = savedSet.has(product.id);
+
+  return `
+    <article 
+      class="product-card group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E5D8CA] cursor-pointer flex flex-col select-none"
+      data-index="${index}"
+      data-product-id="${safeId}"
+      style="--card-delay: ${animDelay}ms;"
+    >
+      <div class="product-image-wrap aspect-square w-full relative overflow-hidden bg-[#FAF7F2]">
+        <img 
+          src="${safeImagePath}" 
+          alt="${safeName}" 
+          loading="lazy"
+          decoding="async"
+          data-fallback="${fallbackSrc}"
+          class="product-image w-full h-full object-cover object-center pointer-events-none"
+          onerror="this.onerror=null; this.src=this.dataset.fallback;"
+        />
+        
+        <div class="absolute top-1.5 inset-x-1.5 sm:top-3 sm:inset-x-3 flex items-center justify-between gap-1 pointer-events-none z-10">
+          <span class="pointer-events-none px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-medium tracking-wide bg-white/95 text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate shrink">
+            <span class="sm:hidden">${escapeHtml(product.shortCategoryLabel)}</span>
+            <span class="hidden sm:inline">${escapeHtml(product.categoryLabel)}</span>
+          </span>
+
+          ${
+            product.featured
+              ? `
+            <span class="pointer-events-none shrink-0 px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-semibold tracking-wide bg-[#B87333] text-white rounded-full shadow-xs flex items-center gap-0.5 sm:gap-1">
+              <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-200 fill-current shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <span>Featured</span>
+            </span>
+          `
+              : ''
+          }
+        </div>
+
+        <button
+          type="button"
+          class="card-save-btn${isSaved ? ' is-saved' : ''} absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-caramel-500"
+          data-product-id="${safeId}"
+          data-product-name="${safeName}"
+          aria-pressed="${isSaved ? 'true' : 'false'}"
+          aria-label="${isSaved ? `Remove ${safeName} from saved` : `Save ${safeName} to favorites`}"
+          title="${isSaved ? 'Saved in wishlist' : 'Save to wishlist'}"
+        >
+          <svg class="w-4 h-4 pointer-events-none" fill="${isSaved ? 'currentColor' : 'none'}" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </button>
+
+        <div class="pointer-events-none hidden md:flex absolute inset-0 bg-[#26180F]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center">
+          <span class="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/95 text-[#26180F] rounded-full text-[11px] sm:text-xs font-semibold tracking-wider uppercase shadow-md transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-[#B87333]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            View Details
+          </span>
+        </div>
+      </div>
+
+      <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between bg-white">
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-2.5">
+            <h3 class="font-serif text-xs sm:text-lg font-medium text-[#26180F] group-hover:text-[#B87333] transition-colors leading-snug sm:leading-normal min-w-0" title="${safeName}">
+              <button
+                type="button"
+                class="card-open-btn block w-full text-left cursor-pointer focus:outline-hidden"
+                aria-label="View details for ${safeName}"
+              >
+                <span class="line-clamp-2 sm:line-clamp-1">${safeName}</span>
+              </button>
+            </h3>
+            <span class="shrink-0 self-start sm:self-auto inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-[#FAF7F2] text-[#6E4E37] font-bold sm:font-semibold text-xs sm:text-sm rounded-md sm:rounded-lg border border-[#EFE8E1]">
+              ${escapeHtml(product.price)}
+            </span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1 sm:gap-1.5 mt-2 sm:mt-2.5 text-xs text-[#73655A]">
+          <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[10px] sm:text-[11px] font-medium text-[#6E4E37] whitespace-nowrap">
+            ${escapeHtml(product.flavor)}
+          </span>
+          <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[10px] sm:text-[11px] text-[#73655A] whitespace-nowrap">
+            ${escapeHtml(product.size)}
+          </span>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function syncLoadMoreControls(elements, shownCount, totalCount) {
+  const container = elements.loadMoreContainer;
+  if (!container) return;
+
+  const remaining = Math.max(0, totalCount - shownCount);
+  if (remaining === 0) {
+    container.classList.add('hidden');
+    container.classList.remove('flex');
+    return;
+  }
+
+  container.classList.remove('hidden');
+  container.classList.add('flex');
+
+  if (elements.loadMoreStatus) {
+    elements.loadMoreStatus.textContent = `Showing ${shownCount} of ${totalCount} creations`;
+  }
+
+  const nextBatch = Math.min(24, remaining);
+  const btnLabel = elements.loadMoreBtn?.querySelector('span');
+  if (btnLabel) {
+    btnLabel.textContent = `Load ${nextBatch} More (${remaining} left)`;
+  }
+}
+
 /**
  * Renders filtered product cards into the showcase grid and toggles empty state.
  */
-export function renderProductGrid(elements, filteredProducts, savedIds = []) {
+export function renderProductGrid(
+  elements,
+  filteredProducts,
+  savedIds = [],
+  visibleLimit = filteredProducts.length
+) {
   if (!elements.productGrid) return;
 
   const count = filteredProducts.length;
@@ -173,113 +303,44 @@ export function renderProductGrid(elements, filteredProducts, savedIds = []) {
   if (count === 0) {
     elements.productGrid.innerHTML = '';
     elements.emptyState?.classList.remove('hidden');
+    syncLoadMoreControls(elements, 0, 0);
     return;
   }
 
   elements.emptyState?.classList.add('hidden');
   const savedSet = new Set(savedIds);
+  const visibleSlice = filteredProducts.slice(0, visibleLimit);
 
-  elements.productGrid.innerHTML = filteredProducts
-    .map((product, index) => {
-      const safeId = escapeHtml(product.id);
-      const safeName = escapeHtml(product.name);
-      const safeImagePath = escapeHtml(product.imagePath);
-      const fallbackSrc = escapeHtml(buildFallbackSvg(product.name));
-      const animDelay = Math.min(index * 35, 420);
-      const isSaved = savedSet.has(product.id);
-
-      return `
-        <article 
-          class="product-card group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E5D8CA] cursor-pointer flex flex-col select-none"
-          data-index="${index}"
-          data-product-id="${safeId}"
-          style="--card-delay: ${animDelay}ms;"
-        >
-          <div class="product-image-wrap aspect-square w-full relative overflow-hidden bg-[#FAF7F2]">
-            <img 
-              src="${safeImagePath}" 
-              alt="${safeName}" 
-              loading="lazy"
-              decoding="async"
-              data-fallback="${fallbackSrc}"
-              class="product-image w-full h-full object-cover object-center pointer-events-none"
-              onerror="this.onerror=null; this.src=this.dataset.fallback;"
-            />
-            
-            <div class="absolute top-1.5 inset-x-1.5 sm:top-3 sm:inset-x-3 flex items-center justify-between gap-1 pointer-events-none z-10">
-              <span class="pointer-events-none px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-medium tracking-wide bg-white/95 backdrop-blur-xs text-[#6E4E37] rounded-full border border-[#EFE8E1] shadow-xs truncate shrink">
-                <span class="sm:hidden">${escapeHtml(product.shortCategoryLabel)}</span>
-                <span class="hidden sm:inline">${escapeHtml(product.categoryLabel)}</span>
-              </span>
-
-              ${
-                product.featured
-                  ? `
-                <span class="pointer-events-none shrink-0 px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-xs font-semibold tracking-wide bg-[#B87333] text-white rounded-full shadow-xs flex items-center gap-0.5 sm:gap-1">
-                  <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-200 fill-current shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <span>Featured</span>
-                </span>
-              `
-                  : ''
-              }
-            </div>
-
-            <button
-              type="button"
-              class="card-save-btn${isSaved ? ' is-saved' : ''} absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-caramel-500"
-              data-product-id="${safeId}"
-              data-product-name="${safeName}"
-              aria-pressed="${isSaved ? 'true' : 'false'}"
-              aria-label="${isSaved ? `Remove ${safeName} from saved` : `Save ${safeName} to favorites`}"
-              title="${isSaved ? 'Saved in wishlist' : 'Save to wishlist'}"
-            >
-              <svg class="w-4 h-4 pointer-events-none" fill="${isSaved ? 'currentColor' : 'none'}" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </button>
-
-            <div class="pointer-events-none absolute inset-0 bg-[#26180F]/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <span class="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/95 text-[#26180F] rounded-full text-[11px] sm:text-xs font-semibold tracking-wider uppercase shadow-md transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-[#B87333]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-                View Details
-              </span>
-            </div>
-          </div>
-
-          <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between bg-white">
-            <div>
-              <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-2.5">
-                <h3 class="font-serif text-xs sm:text-lg font-medium text-[#26180F] group-hover:text-[#B87333] transition-colors leading-snug sm:leading-normal min-w-0" title="${safeName}">
-                  <button
-                    type="button"
-                    class="card-open-btn block w-full text-left cursor-pointer focus:outline-hidden"
-                    aria-label="View details for ${safeName}"
-                  >
-                    <span class="line-clamp-2 sm:line-clamp-1">${safeName}</span>
-                  </button>
-                </h3>
-                <span class="shrink-0 self-start sm:self-auto inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-[#FAF7F2] text-[#6E4E37] font-bold sm:font-semibold text-xs sm:text-sm rounded-md sm:rounded-lg border border-[#EFE8E1]">
-                  ${escapeHtml(product.price)}
-                </span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-1 sm:gap-1.5 mt-2 sm:mt-2.5 text-xs text-[#73655A]">
-              <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[10px] sm:text-[11px] font-medium text-[#6E4E37] whitespace-nowrap">
-                ${escapeHtml(product.flavor)}
-              </span>
-              <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#EFE8E1] text-[10px] sm:text-[11px] text-[#73655A] whitespace-nowrap">
-                ${escapeHtml(product.size)}
-              </span>
-            </div>
-          </div>
-        </article>
-      `;
-    })
+  elements.productGrid.innerHTML = visibleSlice
+    .map((product, index) => buildProductCardHtml(product, index, savedSet))
     .join('');
+
+  syncLoadMoreControls(elements, visibleSlice.length, count);
+}
+
+/**
+ * Appends the next slice of product cards to the showcase grid without re-rendering prior cards.
+ */
+export function appendProductCards(
+  elements,
+  filteredProducts,
+  startIndex,
+  endIndex,
+  savedIds = []
+) {
+  if (!elements.productGrid) return;
+  const savedSet = new Set(savedIds);
+  const nextSlice = filteredProducts.slice(startIndex, endIndex);
+  if (nextSlice.length === 0) {
+    syncLoadMoreControls(elements, Math.min(startIndex, filteredProducts.length), filteredProducts.length);
+    return;
+  }
+
+  const html = nextSlice
+    .map((product, offset) => buildProductCardHtml(product, startIndex + offset, savedSet))
+    .join('');
+  elements.productGrid.insertAdjacentHTML('beforeend', html);
+  syncLoadMoreControls(elements, Math.min(endIndex, filteredProducts.length), filteredProducts.length);
 }
 
 function applyFavoriteButtonState(btn, productName, isSaved, animate = false) {

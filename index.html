@@ -32,13 +32,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 
   <!-- Compiled Tailwind CSS & Custom CSS -->
-  <link rel="stylesheet" href="output.css?v=11">
-  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="output.css?v=12">
+  <link rel="stylesheet" href="style.css?v=22">
 </head>
 <body class="bg-cream-100 text-warm-900 font-sans antialiased selection:bg-caramel-100 selection:text-mocha-700">
 
   <!-- Top Minimalist Header -->
-  <header id="mainHeader" class="sticky top-0 z-40 bg-cream-100/90 backdrop-blur-md border-b border-[#EFE8E1] transition-all">
+  <header id="mainHeader" class="sticky top-0 z-40 bg-cream-100/95 sm:backdrop-blur-md border-b border-[#EFE8E1] transition-all">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 sm:gap-4">
       
       <!-- Left: 3-Line Menu & Filter Drawer Button + Brand Logo & Title -->
@@ -415,7 +415,7 @@
                   <!-- Floating Price Tag Badge -->
                   <div
                     id="heroPriceBadge"
-                    class="floating-price-badge absolute top-2 left-0 sm:-left-2 z-40 inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-mocha-900/95 text-cream-50 border border-caramel-400/80 shadow-lg backdrop-blur-xs pointer-events-none"
+                    class="floating-price-badge absolute top-2 left-0 sm:-left-2 z-40 inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-mocha-900/95 text-cream-50 border border-caramel-400/80 shadow-lg pointer-events-none"
                   >
                     <span class="w-5 h-5 rounded-full bg-caramel-500/25 border border-caramel-400/50 flex items-center justify-center text-caramel-200 text-[10px]" aria-hidden="true">★</span>
                     <div class="leading-tight">
@@ -585,6 +585,27 @@
         <!-- Responsive Cards Grid -->
         <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-7">
           <!-- Rendered dynamically by app.js -->
+        </div>
+
+        <!-- Progressive Load More Controls -->
+        <div id="loadMoreContainer" class="hidden mt-7 sm:mt-9 flex-col items-center justify-center gap-2.5">
+          <p id="loadMoreStatus" class="text-xs text-warm-600 font-medium"></p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button
+              id="loadMoreBtn"
+              type="button"
+              class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-mocha-600 hover:bg-mocha-700 text-white text-xs sm:text-sm font-semibold shadow-xs transition-all active:scale-95 cursor-pointer"
+            >
+              <span>Load More Creations</span>
+            </button>
+            <button
+              id="showAllBtn"
+              type="button"
+              class="inline-flex items-center px-4 py-2.5 rounded-full bg-white hover:bg-cream-50 text-mocha-800 text-xs font-medium border border-[#DFD4C7] hover:border-caramel-400 shadow-2xs transition-all active:scale-95 cursor-pointer"
+            >
+              Show All
+            </button>
+          </div>
         </div>
 
         <!-- Empty State (When search has no results) -->
@@ -940,7 +961,7 @@
   <div id="lightboxModal" class="modal-backdrop fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxTitle">
     
     <!-- Background Dim Overlay -->
-    <div id="lightboxBackdrop" class="absolute inset-0 bg-[#1F1815]/75 backdrop-blur-sm cursor-pointer"></div>
+    <div id="lightboxBackdrop" class="absolute inset-0 bg-[#1F1815]/80 cursor-pointer"></div>
 
     <!-- Modal Dialog Content Box -->
     <div tabindex="-1" class="modal-dialog relative w-full max-w-3xl md:max-w-4xl lg:max-w-[920px] bg-white rounded-3xl shadow-2xl border border-white/20 z-10 flex flex-col md:flex-row md:h-[600px] lg:h-[620px] max-h-[90vh] overflow-y-auto md:overflow-hidden overscroll-contain focus:outline-hidden">
@@ -949,7 +970,7 @@
       <button 
         id="lightboxClose" 
         type="button" 
-        class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition backdrop-blur-xs cursor-pointer"
+        class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/55 hover:bg-black/75 text-white flex items-center justify-center transition cursor-pointer"
         aria-label="Close modal"
       >
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1355,7 +1376,7 @@
     type="button" 
     aria-label="Back to top" 
     title="Back to top" 
-    class="floating-scroll-btn fixed bottom-6 right-6 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-mocha-700 hover:text-caramel-600 shadow-md hover:shadow-lg border border-[#E5DCD3] flex items-center justify-center opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer backdrop-blur-xs group"
+    class="floating-scroll-btn fixed bottom-6 right-6 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-mocha-700 hover:text-caramel-600 shadow-md hover:shadow-lg border border-[#E5DCD3] flex items-center justify-center opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer group"
   >
     <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
@@ -1367,7 +1388,7 @@
     type="button" 
     aria-label="Go to bottom" 
     title="Go to bottom" 
-    class="floating-scroll-btn fixed bottom-6 right-6 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-mocha-700 hover:text-caramel-600 shadow-md hover:shadow-lg border border-[#E5DCD3] flex items-center justify-center opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer backdrop-blur-xs group"
+    class="floating-scroll-btn fixed bottom-6 right-6 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-mocha-700 hover:text-caramel-600 shadow-md hover:shadow-lg border border-[#E5DCD3] flex items-center justify-center opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer group"
   >
     <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
@@ -1381,7 +1402,7 @@
     aria-label="Open saved cakes comparison drawer"
     aria-controls="savedDrawer"
     aria-expanded="false"
-    class="saved-floating-pill fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-30 inline-flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full bg-mocha-800 hover:bg-mocha-900 text-cream-50 border border-caramel-400/75 shadow-lg opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer backdrop-blur-xs"
+    class="saved-floating-pill fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-30 inline-flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full bg-mocha-800 hover:bg-mocha-900 text-cream-50 border border-caramel-400/75 shadow-lg opacity-0 pointer-events-none translate-y-3 active:scale-95 cursor-pointer"
   >
     <span class="w-5 h-5 rounded-full bg-[#C84B5A]/20 border border-[#F2A7B0]/40 flex items-center justify-center shrink-0">
       <svg class="w-3.5 h-3.5 text-[#FF8A98] fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -1408,7 +1429,7 @@
 
   <!-- Left Menu & Multi-Select Filter Drawer -->
   <div id="menuFilterDrawer" class="drawer-backdrop fixed inset-0 z-50 flex justify-start" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="menuDrawerTitle">
-    <div id="menuDrawerBackdrop" class="drawer-overlay absolute inset-0 bg-[#1F1815]/70 backdrop-blur-sm cursor-pointer"></div>
+    <div id="menuDrawerBackdrop" class="drawer-overlay absolute inset-0 bg-[#1F1815]/80 cursor-pointer"></div>
 
     <aside tabindex="-1" class="drawer-panel drawer-panel-left relative z-10 w-full max-w-[92vw] sm:max-w-[450px] h-full bg-cream-50 shadow-2xl border-r border-caramel-200/80 flex flex-col focus:outline-hidden">
       <!-- Drawer Header -->
@@ -1728,7 +1749,7 @@
 
   <!-- Saved Favorites / Wishlist Comparison Drawer -->
   <div id="savedDrawer" class="drawer-backdrop fixed inset-0 z-50 flex justify-end" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="savedDrawerTitle">
-    <div id="savedDrawerBackdrop" class="drawer-overlay absolute inset-0 bg-[#1F1815]/70 backdrop-blur-sm cursor-pointer"></div>
+    <div id="savedDrawerBackdrop" class="drawer-overlay absolute inset-0 bg-[#1F1815]/80 cursor-pointer"></div>
 
     <aside tabindex="-1" class="drawer-panel relative z-10 w-full sm:max-w-xl md:max-w-3xl lg:max-w-4xl h-full bg-cream-50 shadow-2xl border-l border-caramel-200/80 flex flex-col focus:outline-hidden">
       <!-- Drawer Header -->
@@ -1837,7 +1858,7 @@
 
   <!-- Custom Cake Builder Modal -->
   <div id="customCakeModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="customCakeModalTitle">
-    <div id="customCakeBackdrop" class="absolute inset-0 bg-[#1F1815]/75 backdrop-blur-sm cursor-pointer"></div>
+    <div id="customCakeBackdrop" class="absolute inset-0 bg-[#1F1815]/80 cursor-pointer"></div>
 
     <div tabindex="-1" class="modal-dialog relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-caramel-200/80 z-10 max-h-[90vh] overflow-y-auto overscroll-contain focus:outline-hidden p-5 sm:p-6">
       <button
@@ -1957,6 +1978,6 @@
   </div>
 
   <!-- Application Entry Module -->
-  <script type="module" src="js/main.js?v=12"></script>
+  <script type="module" src="js/main.js?v=13"></script>
 </body>
 </html>

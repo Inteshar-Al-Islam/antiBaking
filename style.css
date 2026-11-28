@@ -115,7 +115,6 @@ header.header-scrolled {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  will-change: transform;
 }
 
 /* Master Centered Ambient Halo - Soft bakery warmth right behind the title */
@@ -392,10 +391,17 @@ header.header-scrolled {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.25s ease;
-  will-change: transform, box-shadow;
+  content-visibility: auto;
+  contain-intrinsic-size: 240px 285px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+@media (min-width: 640px) {
+  .product-card {
+    contain-intrinsic-size: 280px 365px;
+  }
 }
 
 @keyframes cardEntrance {
@@ -497,7 +503,6 @@ header.header-scrolled {
   overflow: hidden;
   border-bottom: 0 dashed transparent;
   transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-  will-change: max-height, opacity;
 }
 
 #searchFilterContainer.open {
@@ -513,7 +518,6 @@ header.header-scrolled {
               background-color 0.2s ease,
               border-color 0.2s ease,
               color 0.2s ease;
-  will-change: transform, box-shadow;
   touch-action: manipulation;
   cursor: pointer;
   user-select: none;
@@ -564,7 +568,6 @@ header.header-scrolled {
 /* Live Counter Badge Pop Animation on Filter Updates */
 .badge-pop {
   animation: badgePopAnim 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both !important;
-  will-change: transform, box-shadow, background-color;
 }
 
 @keyframes badgePopAnim {
@@ -615,7 +618,6 @@ header.header-scrolled {
   opacity: 0;
   transform: scale(0.96) translateY(12px);
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
   max-width: 920px;
   width: 100%;
   overscroll-behavior: contain;
@@ -656,11 +658,10 @@ body.modal-open .saved-comparison-track {
 
 /* Product Card Heart Save Button */
 .card-save-btn {
-  background-color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(255, 255, 255, 0.96);
   color: #584C43;
   border: 1px solid rgba(229, 216, 202, 0.95);
-  box-shadow: 0 4px 12px -2px rgba(38, 24, 15, 0.14);
-  backdrop-filter: blur(4px);
+  box-shadow: 0 3px 10px -2px rgba(38, 24, 15, 0.14);
   transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.2s ease,
               border-color 0.2s ease,
@@ -746,8 +747,7 @@ body.modal-open .saved-comparison-track {
 
 .drawer-panel {
   transform: translateX(100%);
-  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .drawer-panel.drawer-panel-left {
@@ -1016,7 +1016,6 @@ body.modal-open .saved-comparison-track {
   font-size: 14px;
   user-select: none;
   animation: burstParticle cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: transform, opacity;
 }
 
 @keyframes burstParticle {
@@ -1142,6 +1141,23 @@ body.modal-open .saved-comparison-track {
 
 .faq-panel-inner {
   overflow: hidden;
+}
+
+/* Mobile & Low-Spec Device Performance: Skip heavy Gaussian blurs and card entrance animations */
+@media (max-width: 639px) {
+  .ambient-glow-center,
+  .ambient-glow-left,
+  .ambient-glow-right {
+    filter: none;
+    animation: none;
+  }
+  .ambient-glow-left,
+  .ambient-glow-right {
+    opacity: 0.65;
+  }
+  .product-card {
+    animation: none;
+  }
 }
 
 /* Accessibility: Honor User's Reduced Motion Preference */
