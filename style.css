@@ -40,11 +40,74 @@ header.header-scrolled {
 
 /* Subtle bakery dashed border effect */
 .stitch-border {
-  border-bottom: 2px dashed #E5DCD3;
+  border-bottom: 2px dashed var(--stitch-color, #E5DCD3);
 }
 
 .stitch-border-top {
-  border-top: 2px dashed #E5DCD3;
+  border-top: 2px dashed var(--stitch-color, #E5DCD3);
+}
+
+/* Subtle Artisan Bakery Surface Textures (Pure vector SVG + soft glaze, zero external assets) */
+.bakery-texture-cream {
+  background-color: #FAF7F2;
+  background-image:
+    radial-gradient(ellipse 85% 55% at 50% 0%, rgba(245, 236, 227, 0.55) 0%, transparent 72%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='%238C674B' fill-opacity='0.042'%3E%3Ccircle cx='18' cy='24' r='1'/%3E%3Ccircle cx='62' cy='14' r='0.8'/%3E%3Ccircle cx='114' cy='32' r='1.1'/%3E%3Ccircle cx='158' cy='18' r='0.85'/%3E%3Ccircle cx='38' cy='68' r='0.9'/%3E%3Ccircle cx='92' cy='58' r='1.1'/%3E%3Ccircle cx='144' cy='76' r='0.8'/%3E%3Ccircle cx='22' cy='112' r='1.1'/%3E%3Ccircle cx='78' cy='102' r='0.8'/%3E%3Ccircle cx='126' cy='124' r='1'/%3E%3Ccircle cx='164' cy='108' r='0.9'/%3E%3Ccircle cx='48' cy='154' r='0.95'/%3E%3Ccircle cx='104' cy='162' r='0.85'/%3E%3Ccircle cx='152' cy='152' r='1.1'/%3E%3C/g%3E%3Cg fill='%23B87333' fill-opacity='0.036'%3E%3Ccircle cx='42' cy='38' r='0.85'/%3E%3Ccircle cx='132' cy='46' r='0.95'/%3E%3Ccircle cx='68' cy='86' r='1'/%3E%3Ccircle cx='116' cy='92' r='0.75'/%3E%3Ccircle cx='32' cy='138' r='0.8'/%3E%3Ccircle cx='88' cy='142' r='1.05'/%3E%3Ccircle cx='138' cy='168' r='0.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 100%, 180px 180px;
+}
+
+.bakery-texture-latte {
+  --stitch-color: #D6C5B3;
+  background-color: #F5ECE3;
+  background-image:
+    radial-gradient(ellipse 90% 35% at 50% 0%, rgba(255, 253, 249, 0.35) 0%, transparent 72%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='%236E4E37' fill-opacity='0.048'%3E%3Ccircle cx='12' cy='12' r='1'/%3E%3Ccircle cx='44' cy='28' r='1'/%3E%3Ccircle cx='28' cy='44' r='0.9'/%3E%3Ccircle cx='56' cy='56' r='0.9'/%3E%3C/g%3E%3Cg fill='%23B87333' fill-opacity='0.042'%3E%3Ccircle cx='32' cy='10' r='0.75'/%3E%3Ccircle cx='10' cy='38' r='0.8'/%3E%3Ccircle cx='52' cy='14' r='0.7'/%3E%3Ccircle cx='42' cy='54' r='0.75'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 100%, 64px 64px;
+}
+
+.bakery-texture-white {
+  background-color: #FFFFFF;
+  background-image: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(250, 247, 242, 0.45) 0%, transparent 75%);
+}
+
+/* Custom Layered SVG Wave Section Dividers */
+.section-wave {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  margin-bottom: -1px;
+}
+
+.section-wave svg {
+  display: block;
+  width: 100%;
+  height: 28px;
+}
+
+@media (min-width: 640px) {
+  .section-wave svg {
+    height: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-wave svg {
+    height: 54px;
+  }
+}
+
+/* Bespoke Custom Craft Framed Surface */
+.custom-craft-panel {
+  background-color: #FAF7F2;
+  background-image:
+    radial-gradient(circle at 92% 18%, rgba(232, 212, 191, 0.42) 0%, transparent 48%),
+    radial-gradient(circle at 8% 85%, rgba(244, 234, 223, 0.55) 0%, transparent 45%);
+  border: 2px dashed #DFD2C4;
+  box-shadow: 0 14px 36px -14px rgba(61, 35, 20, 0.08);
 }
 
 /* Ambient Bakery Glow in Hero - Seamless, Centered & Symmetrical */
@@ -260,6 +323,24 @@ header.header-scrolled {
   font-weight: 600;
 }
 
+#customCakeModal .modal-dialog {
+  max-width: 680px;
+}
+
+.custom-cake-stage {
+  background: linear-gradient(155deg, #FFFDF9 0%, #FAF3EA 58%, #F1E1CE 100%);
+  border: 1px solid rgba(201, 152, 106, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+.custom-size-compare-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.custom-size-compare-card:hover {
+  transform: translateY(-1px);
+}
+
 @keyframes heroFadeInDown {
   0% {
     opacity: 0;
@@ -307,6 +388,7 @@ header.header-scrolled {
 .product-card {
   animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--card-delay, 0ms);
+  box-shadow: 0 4px 14px -4px rgba(61, 35, 20, 0.06);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.25s ease;
@@ -413,6 +495,7 @@ header.header-scrolled {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
+  border-bottom: 0 dashed transparent;
   transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   will-change: max-height, opacity;
 }
@@ -420,6 +503,7 @@ header.header-scrolled {
 #searchFilterContainer.open {
   max-height: 850px;
   opacity: 1;
+  border-bottom: 2px dashed var(--stitch-color, #D6C5B3);
 }
 
 /* Filter Tag Pills Micro-Interactions */
@@ -463,6 +547,16 @@ header.header-scrolled {
   color: #FFFFFF !important;
   border-color: #965B24 !important;
   box-shadow: 0 0 0 2px rgba(184, 115, 51, 0.45), 0 6px 20px rgba(184, 115, 51, 0.45) !important;
+  transform: translateY(-1px) scale(1.03);
+  font-weight: 600;
+}
+
+/* Price Tier Filter Active State: Toasted Amber Caramel with soft golden halo */
+.price-btn.filter-pill.active {
+  background-color: #874614 !important;
+  color: #FFFFFF !important;
+  border-color: #6E380F !important;
+  box-shadow: 0 0 0 2px rgba(201, 152, 106, 0.45), 0 6px 18px rgba(135, 70, 20, 0.35) !important;
   transform: translateY(-1px) scale(1.03);
   font-weight: 600;
 }
@@ -513,6 +607,10 @@ header.header-scrolled {
   transition: opacity 0.28s ease, visibility 0s linear 0s;
 }
 
+#lightboxModal.modal-backdrop {
+  z-index: 60;
+}
+
 .modal-dialog {
   opacity: 0;
   transform: scale(0.96) translateY(12px);
@@ -536,16 +634,266 @@ body.modal-open {
   touch-action: none;
 }
 
-body.modal-open #lightboxModal {
+body.modal-open #lightboxModal,
+body.modal-open #savedDrawer,
+body.modal-open #menuFilterDrawer {
   touch-action: pan-y;
 }
 
-body.modal-open .modal-dialog {
+body.modal-open .modal-dialog,
+body.modal-open .drawer-panel,
+body.modal-open .drawer-body {
   touch-action: pan-y;
+}
+
+body.modal-open .saved-comparison-track {
+  touch-action: pan-x pan-y;
 }
 
 .lightbox-image-area {
   touch-action: pan-y;
+}
+
+/* Product Card Heart Save Button */
+.card-save-btn {
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #584C43;
+  border: 1px solid rgba(229, 216, 202, 0.95);
+  box-shadow: 0 4px 12px -2px rgba(38, 24, 15, 0.14);
+  backdrop-filter: blur(4px);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+  touch-action: manipulation;
+}
+
+.card-save-btn:hover {
+  background-color: #FFFFFF;
+  color: #C84B5A;
+  border-color: #EAB8BF;
+  transform: scale(1.08);
+}
+
+.card-save-btn:active {
+  transform: scale(0.9);
+}
+
+.card-save-btn.is-saved {
+  background-color: #FFF4F5;
+  color: #C84B5A;
+  border-color: #F0BDC4;
+  box-shadow: 0 6px 14px -3px rgba(200, 75, 90, 0.28);
+}
+
+.card-save-btn.heart-pop svg,
+.heart-pop {
+  animation: heartPopAnim 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes heartPopAnim {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.32); }
+  100% { transform: scale(1); }
+}
+
+/* Card keyboard focus highlight when navigating to card title button */
+.product-card:has(.card-open-btn:focus-visible) {
+  outline: 2px solid #B87333;
+  outline-offset: 2px;
+}
+
+/* Floating Saved Pill */
+.saved-floating-pill {
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              box-shadow 0.2s ease;
+  touch-action: manipulation;
+}
+
+.saved-floating-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -6px rgba(38, 24, 15, 0.32);
+}
+
+.saved-floating-pill.pill-pop {
+  animation: pillPopAnim 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes pillPopAnim {
+  0% { transform: scale(0.94); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Slide-Over Wishlist Comparison Drawer */
+.drawer-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0s linear 0.28s;
+  overscroll-behavior: contain;
+}
+
+.drawer-backdrop.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: opacity 0.28s ease, visibility 0s linear 0s;
+}
+
+.drawer-panel {
+  transform: translateX(100%);
+  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.drawer-panel.drawer-panel-left {
+  transform: translateX(-100%);
+}
+
+.drawer-backdrop.active .drawer-panel {
+  transform: translateX(0);
+}
+
+/* Left Filter & Navigation Drawer Checkboxes */
+.menu-check-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.75rem;
+  border: 1px solid #E5D8CA;
+  background-color: #FAF7F2;
+  color: #3D342D;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.menu-check-option:hover {
+  background-color: #FFFFFF;
+  border-color: #C9986A;
+}
+
+.menu-check-option:active {
+  transform: scale(0.98);
+}
+
+.menu-check-option:has(.bakery-checkbox:checked) {
+  background-color: #FAF5EF;
+  border-color: #B87333;
+  color: #26180F;
+  font-weight: 600;
+  box-shadow: 0 2px 10px -3px rgba(184, 115, 51, 0.25);
+}
+
+.menu-check-option:has(.bakery-checkbox:focus-visible) {
+  outline: 2px solid #B87333;
+  outline-offset: 1px;
+}
+
+.bakery-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  border-radius: 0.3rem;
+  border: 1.5px solid #C2AC99;
+  background-color: #FFFFFF;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.bakery-checkbox::before {
+  content: "";
+  width: 0.58rem;
+  height: 0.58rem;
+  transform: scale(0);
+  transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: #FFFFFF;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.bakery-checkbox:checked {
+  background-color: #6E4E37;
+  border-color: #543B29;
+}
+
+.bakery-checkbox:checked::before {
+  transform: scale(1);
+}
+
+.bakery-checkbox:focus-visible {
+  outline: none;
+}
+
+.menu-check-count:empty {
+  display: none;
+}
+
+/* Side-by-Side Comparison Layout (Horizontal Snap on Mobile, Grid on Desktop) */
+.saved-comparison-track {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #D9CFC4 transparent;
+}
+
+.saved-comparison-card {
+  flex: 0 0 calc(50% - 0.375rem);
+  min-width: 154px;
+  scroll-snap-align: start;
+}
+
+.saved-comparison-track.is-single {
+  flex-direction: column;
+}
+
+.saved-comparison-track.is-single .saved-comparison-card {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+}
+
+@media (min-width: 768px) {
+  .saved-comparison-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .saved-comparison-track.is-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 560px;
+  }
+
+  .saved-comparison-track.is-single {
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .saved-comparison-card {
+    flex: initial;
+    min-width: 0;
+  }
+
+  .saved-comparison-track.is-single .saved-comparison-card {
+    max-width: none;
+  }
 }
 
 /* Image swap cross-fade inside lightbox */
@@ -606,6 +954,7 @@ body.modal-open .modal-dialog {
 
 /* Subtle Toast Notification with Countdown Progress Bar */
 #toast {
+  z-index: 70;
   transform: translateY(100px);
   opacity: 0;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
@@ -634,18 +983,23 @@ body.modal-open .modal-dialog {
   100% { width: 0%; }
 }
 
-/* Floating Back to Top Button */
-#backToTopBtn {
+/* Floating Back to Top & Go to Bottom Buttons */
+.floating-scroll-btn {
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.2s ease,
               box-shadow 0.2s ease;
   touch-action: manipulation;
 }
 
-#backToTopBtn:hover {
+.floating-scroll-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px -3px rgba(61, 35, 20, 0.16);
+}
+
+#goToBottomBtn:hover {
+  transform: translateY(3px);
 }
 
 /* Delightful Click Sparkle Burst */
@@ -677,6 +1031,117 @@ body.modal-open .modal-dialog {
     opacity: 0;
     transform: translate(var(--dx), var(--dy)) scale(var(--scale)) rotate(180deg);
   }
+}
+
+/* Footer Category Navigation Links */
+.footer-category-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.42rem 0.65rem;
+  border-radius: 0.75rem;
+  color: #584C43;
+  border: 1px solid transparent;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.footer-category-link:hover,
+.footer-category-link:focus-visible {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: #E5D8CA;
+  color: #26180F;
+  outline: none;
+}
+
+.footer-category-link.active {
+  background-color: #FFFFFF;
+  border-color: #DABDA0;
+  color: #543B29;
+  font-weight: 600;
+  box-shadow: 0 2px 8px -2px rgba(61, 35, 20, 0.08);
+}
+
+.footer-cat-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.footer-cat-count {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #8C674B;
+  background-color: #F5ECE3;
+  border: 1px solid #EAE0D5;
+  border-radius: 9999px;
+  padding: 0.05rem 0.45rem;
+  line-height: 1.35;
+}
+
+.footer-cat-count:empty {
+  display: none;
+}
+
+.footer-category-link.active .footer-cat-count {
+  background-color: #FAF5EF;
+  border-color: #DABDA0;
+  color: #874614;
+}
+
+.footer-cat-arrow {
+  color: #B87333;
+  opacity: 0.55;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.footer-category-link:hover .footer-cat-arrow,
+.footer-category-link:focus-visible .footer-cat-arrow,
+.footer-category-link.active .footer-cat-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* How to Order 3-Step Strip & Collapsible FAQ Accordion */
+.order-step-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+}
+
+.order-step-card:hover {
+  transform: translateY(-3px);
+  border-color: #DABDA0;
+  box-shadow: 0 14px 26px -10px rgba(61, 35, 20, 0.12);
+}
+
+.faq-item.is-open {
+  border-color: #DABDA0;
+  box-shadow: 0 10px 24px -10px rgba(61, 35, 20, 0.1);
+}
+
+.faq-item.is-open .faq-chevron {
+  transform: rotate(180deg);
+  background-color: #FAF5EF;
+  border-color: #DABDA0;
+  color: #874614;
+}
+
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+  opacity: 0;
+}
+
+.faq-item.is-open .faq-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faq-panel-inner {
+  overflow: hidden;
 }
 
 /* Accessibility: Honor User's Reduced Motion Preference */

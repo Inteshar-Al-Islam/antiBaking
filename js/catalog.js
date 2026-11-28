@@ -106,27 +106,82 @@ export function selectHeroShowcaseProducts(products, count = 3, randomize = fals
   return selected;
 }
 
+const PRICE_RANGE_MATCHERS = {
+  'under-1000': price => price > 0 && price < 1000,
+  '1000-1999': price => price >= 1000 && price < 2000,
+  '2000-plus': price => price >= 2000,
+  tba: price => !price || price <= 0
+};
+
+const POUND_TWO_FIVE_PLUS_RE = /^(2\.5|[3-9]|\d{2,})\s*pound\b/i;
+const ANY_STANDARD_POUND_RE = /^(1|1\.5|2|2\.5|[3-9]|\d{2,})\s*pound\b/i;
+
+const SIZE_RANGE_MATCHERS = {
+  '1-pound': size => /^1\s*pound\b/i.test(size),
+  '1.5-pound': size => /^1\.5\s*pound\b/i.test(size),
+  '2-pound': size => /^2\s*pound\b/i.test(size),
+  '2.5-plus': size => POUND_TWO_FIVE_PLUS_RE.test(size),
+  'mini-treats': size => !ANY_STANDARD_POUND_RE.test(size)
+};
+
+function normalizeSelectionList(list, legacySingle) {
+  if (Array.isArray(list) && list.length > 0) {
+    return list.filter(val => val && val !== 'all');
+  }
+  if (legacySingle && legacySingle !== 'all') {
+    return [legacySingle];
+  }
+  return [];
+}
+
+function matchesFlavourValue(productFlavor, targetFlavour) {
+  const pFlavour = productFlavor.toLowerCase();
+  const target = targetFlavour.toLowerCase();
+  if (target === 'butterscotch') {
+    return pFlavour.includes('butterscotch') || pFlavour.includes('caramel');
+  }
+  return pFlavour.includes(target);
+}
+
 /**
  * Filters and sorts normalized products according to active UI state.
  */
 export function filterAndSortProducts(
   products,
-  { activeCategory = 'all', activeFlavour = 'all', searchQuery = '', activeSort = 'featured' }
+  {
+    activeCategories,
+    activeCategory = 'all',
+    activeFlavours,
+    activeFlavour = 'all',
+    activePriceRanges,
+    activePriceRange = 'all',
+    activeSizes,
+    featuredOnly = false,
+    searchQuery = '',
+    activeSort = 'featured'
+  }
 ) {
   const query = searchQuery.toLowerCase().trim();
+  const categories = normalizeSelectionList(activeCategories, activeCategory);
+  const flavours = normalizeSelectionList(activeFlavours, activeFlavour);
+  const priceRanges = normalizeSelectionList(activePriceRanges, activePriceRange);
+  const sizes = normalizeSelectionList(activeSizes, null);
 
   const filtered = products.filter(product => {
-    const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
+    const matchesCategory = categories.length === 0 || categories.includes(product.category);
 
-    let matchesFlavour = true;
-    if (activeFlavour !== 'all') {
-      const pFlavour = product.flavor.toLowerCase();
-      if (activeFlavour === 'butterscotch') {
-        matchesFlavour = pFlavour.includes('butterscotch') || pFlavour.includes('caramel');
-      } else {
-        matchesFlavour = pFlavour.includes(activeFlavour.toLowerCase());
-      }
-    }
+    const matchesFlavour =
+      flavours.length === 0 || flavours.some(flav => matchesFlavourValue(product.flavor, flav));
+
+    const matchesPriceRange =
+      priceRanges.length === 0 ||
+      priceRanges.some(range => PRICE_RANGE_MATCHERS[range]?.(product.numericPrice));
+
+    const matchesSize =
+      sizes.length === 0 ||
+      sizes.some(sizeKey => SIZE_RANGE_MATCHERS[sizeKey]?.(product.size || ''));
+
+    const matchesFeatured = !featuredOnly || product.featured === true;
 
     const matchesSearch =
       !query ||
@@ -137,7 +192,14 @@ export function filterAndSortProducts(
       product.details.toLowerCase().includes(query) ||
       product.price.toLowerCase().includes(query);
 
-    return matchesCategory && matchesFlavour && matchesSearch;
+    return (
+      matchesCategory &&
+      matchesFlavour &&
+      matchesPriceRange &&
+      matchesSize &&
+      matchesFeatured &&
+      matchesSearch
+    );
   });
 
   if (activeSort === 'price-low' || activeSort === 'price-high') {

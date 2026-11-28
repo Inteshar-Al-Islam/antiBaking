@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js';
+import { CONFIG, CUSTOM_CAKE_SPECS } from './config.js';
 
 /**
  * Triggers a subtle sparkle burst around interactive inquiry/copy buttons.
@@ -86,7 +86,7 @@ function openMessengerWithText(e, elements, messageText, copiedToastMessage, fal
     showToast(elements, fallbackToastMessage);
   }
 
-  window.open(CONFIG.socialLinks.messenger, '_blank');
+  window.open(CONFIG.socialLinks.messenger, '_blank', 'noopener,noreferrer');
 }
 
 /**
@@ -136,11 +136,99 @@ export function copyProductDetails(e, elements, product) {
 }
 
 /**
+ * Builds a single Messenger-ready inquiry message listing all saved cakes.
+ */
+export function formatSavedCakesMessage(savedProducts) {
+  if (!Array.isArray(savedProducts) || savedProducts.length === 0) return '';
+  if (savedProducts.length === 1) {
+    const cake = savedProducts[0];
+    return `Hello Frostoria! I saved "${cake.name}" (${cake.flavor}, ${cake.size}, ${cake.price}) from your collection and would love to inquire about ordering it.`;
+  }
+
+  const lines = savedProducts.map(
+    (cake, idx) => `${idx + 1}. ${cake.name} (${cake.flavor}, ${cake.size}, ${cake.price})`
+  );
+  return `Hello Frostoria! Here are my ${savedProducts.length} saved cake picks I'd like to inquire about:\n${lines.join('\n')}\nCould you share availability and details?`;
+}
+
+/**
+ * Copies all saved cake names in one combined message and opens Messenger.
+ */
+export function handleSavedCakesInquiry(e, elements, savedProducts) {
+  if (!Array.isArray(savedProducts) || savedProducts.length === 0) return;
+  const message = formatSavedCakesMessage(savedProducts);
+  const countLabel = savedProducts.length === 1 ? '1 saved cake' : `${savedProducts.length} saved cakes`;
+  openMessengerWithText(
+    e,
+    elements,
+    message,
+    `Copied ${countLabel}! Paste in Messenger to send.`,
+    'Opening Facebook Messenger...'
+  );
+}
+
+/**
+ * Copies the combined saved cakes inquiry message to clipboard.
+ */
+export function copySavedCakesList(e, elements, savedProducts) {
+  if (!Array.isArray(savedProducts) || savedProducts.length === 0) return;
+  const message = formatSavedCakesMessage(savedProducts);
+  const countLabel = savedProducts.length === 1 ? '1 saved cake' : `${savedProducts.length} saved cakes`;
+  copyTextWithFeedback(
+    e,
+    elements,
+    message,
+    `Copied ${countLabel} to clipboard!`,
+    `Saved: ${savedProducts.map(p => p.name).join(', ')}`
+  );
+}
+
+/**
+ * Calculates live serving metadata and an estimated price range for a custom cake spec.
+ */
+export function getCustomCakeSummary({ style, flavor, size }) {
+  const sizeMeta = CUSTOM_CAKE_SPECS.sizes[size] || CUSTOM_CAKE_SPECS.sizes['1 Pound'];
+  const styleMeta = CUSTOM_CAKE_SPECS.styles[style] || CUSTOM_CAKE_SPECS.styles.Birthday;
+  const flavorMeta = CUSTOM_CAKE_SPECS.flavors[flavor] || CUSTOM_CAKE_SPECS.flavors.Chocolate;
+
+  const min = sizeMeta.baseMin + styleMeta.addMin + flavorMeta.addPrice;
+  const max = sizeMeta.isOpenEnded
+    ? null
+    : sizeMeta.baseMax + styleMeta.addMax + flavorMeta.addPrice;
+
+  const fmt = val => `${CONFIG.currencySymbol}${val.toLocaleString('en-US')}`;
+  const priceLabel = sizeMeta.isOpenEnded
+    ? `From ${fmt(min)}+`
+    : `Est. ${fmt(min)} – ${fmt(max)}`;
+  const compactPriceLabel = sizeMeta.isOpenEnded
+    ? `${fmt(min)}+`
+    : `${fmt(min)}–${fmt(max)}`;
+
+  const leadTime =
+    size === '2.5+ Pound / Tiered' || style === 'Theme / Character'
+      ? '4–7 days notice'
+      : styleMeta.leadTime;
+
+  return {
+    sizeMeta,
+    styleMeta,
+    flavorMeta,
+    min,
+    max,
+    isOpenEnded: sizeMeta.isOpenEnded,
+    priceLabel,
+    compactPriceLabel,
+    leadTime
+  };
+}
+
+/**
  * Builds a clean summary string for a custom cake inquiry.
  */
 export function formatCustomCakeBrief({ style, flavor, size, notes }) {
   const cleanNotes = (notes || '').trim();
-  const base = `Custom ${style} Cake | Flavour: ${flavor} | Size: ${size}`;
+  const { sizeMeta, priceLabel } = getCustomCakeSummary({ style, flavor, size });
+  const base = `Custom ${style} Cake | Flavour: ${flavor} | Size: ${size} (${sizeMeta.shortServings}) | ${priceLabel}`;
   return cleanNotes ? `${base} | Theme/Notes: ${cleanNotes}` : base;
 }
 
@@ -149,7 +237,7 @@ export function formatCustomCakeBrief({ style, flavor, size, notes }) {
  */
 export function handleCustomOrderInquiry(e, elements, customSpec) {
   const brief = formatCustomCakeBrief(customSpec);
-  const message = `Hello Frostoria! I'd love to build a custom cake: ${brief}. Could you share availability and pricing?`;
+  const message = `Hello Frostoria! I'd love to build a custom cake: ${brief}. Could you share availability and final pricing?`;
   openMessengerWithText(e, elements, message, 'Copied custom brief! Opening Messenger...');
 }
 
